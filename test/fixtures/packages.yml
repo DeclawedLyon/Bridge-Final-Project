@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trackingnumber: MyString
+  courier: MyString
+  date_sent: 2021-09-23 23:05:13
+  date_delivered: 2021-09-23 23:05:13
+  lastknownstatus: MyString
+  signed_for: MyString
+  sent_to: MyString
+  sent_from: MyString
+  description: MyString
+
+two:
+  trackingnumber: MyString
+  courier: MyString
+  date_sent: 2021-09-23 23:05:13
+  date_delivered: 2021-09-23 23:05:13
+  lastknownstatus: MyString
+  signed_for: MyString
+  sent_to: MyString
+  sent_from: MyString
+  description: MyString

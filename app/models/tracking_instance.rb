@@ -1,0 +1,2 @@
+class TrackingInstance < ApplicationRecord
+end
