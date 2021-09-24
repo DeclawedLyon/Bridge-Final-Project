@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :couriers
   resources :tracking_instances
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -6,7 +7,7 @@ Rails.application.routes.draw do
 
     get '/data', to: 'tests#index'
     
-    resources :users, :packages, :tracking_instances
+    resources :users, :packages, :tracking_instances, :couriers
 
   end
 
