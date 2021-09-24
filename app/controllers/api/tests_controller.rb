@@ -4,4 +4,10 @@ class Api::TestsController < ApplicationController
       message: "hello!"
     }
   end
+
+  def practice
+    render :json => {
+      phrase: "AWE SHOOT"
+    }
+  end
 end
