@@ -1,0 +1,13 @@
+As a logged-in user I can track all of my shipments from multiple couriers in one place because that expedites the process of checking on all of my shipments.
+
+As a logged-in user I can add a package to my tracking dashboard by typing in the tracking number.
+
+As a logged-in user I can see updates to the status of my packages on my tracking dashboard.
+
+As a logged-in user I can only see shipment information for my tracked packages (packages for which I have entered the tracking number provided by the courier). 
+
+As a logged-in user I can remove a package from my tracking dashboard if I no longer wish to see the status information.
+
+As a logged-in user I can add a nickname and description for a package so I can easily remember what I am sending/receiving. 
+
+As a logged-in user I can click “shipment” to populate the viewer, and then to link to the courier website.
