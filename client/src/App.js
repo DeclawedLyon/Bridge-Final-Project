@@ -21,9 +21,9 @@ export default function App(props) {
   };
 
   return (
-    <div class="App">
+    <div className="App">
 
-      <section class="viewer-container">
+      <section className="viewer-container">
         <h1>{state}</h1>
         <button onClick={() => fetchData()}>Fetch Data</button>
         <PackageManager />
@@ -31,7 +31,7 @@ export default function App(props) {
         <Counters />
       </section>
       
-      <section class="packages-container">
+      <section className="packages-container">
         <h1>I'm the packages container!</h1>
       </section>
 
