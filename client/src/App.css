@@ -23,6 +23,32 @@
   color: #61dafb;
 }
 
+.content_container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tracked_package {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 100%;
+  margin: 1.5em;
+}
+
+.shipping_details {
+  display: flex;
+  flex-direction: column;
+}
+
+.package_footer {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
