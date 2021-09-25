@@ -15,14 +15,13 @@ export default function App(props) {
         // handle success
         console.log(response.data); // The entire response from the Rails API
 
-        console.log(response.data.message); // Just the message
+        console.log(response.data); // Just the message
         setState(response.data.message);
       });
   };
 
   return (
     <div className="App">
-
       <section className="viewer-container">
         <h1>{state}</h1>
         <button onClick={() => fetchData()}>Fetch Data</button>
@@ -30,11 +29,10 @@ export default function App(props) {
         <Viewer />
         <Counters />
       </section>
-      
+
       <section className="packages-container">
         <h1>I'm the packages container!</h1>
       </section>
-
     </div>
   );
 }
