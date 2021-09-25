@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_24_244444) do
+ActiveRecord::Schema.define(version: 2021_09_24_221712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2021_09_24_244444) do
 
   create_table "packages", force: :cascade do |t|
     t.string "tracking_number"
+    t.string "username"
     t.string "courier"
     t.datetime "date_sent"
     t.datetime "date_delivered"
@@ -37,17 +38,6 @@ ActiveRecord::Schema.define(version: 2021_09_24_244444) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tracking_instances", force: :cascade do |t|
-    t.bigint "package_id"
-    t.bigint "user_id"
-    t.bigint "courier_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["courier_id"], name: "index_tracking_instances_on_courier_id"
-    t.index ["package_id"], name: "index_tracking_instances_on_package_id"
-    t.index ["user_id"], name: "index_tracking_instances_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"
@@ -56,7 +46,4 @@ ActiveRecord::Schema.define(version: 2021_09_24_244444) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "tracking_instances", "couriers"
-  add_foreign_key "tracking_instances", "packages"
-  add_foreign_key "tracking_instances", "users"
 end

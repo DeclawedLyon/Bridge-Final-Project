@@ -5,5 +5,5 @@ export default function PackageManager() {
     <main className="package-manager">
       <p>I'm the package manager component!</p>
     </main>
-   ) ;
+  );
 }
