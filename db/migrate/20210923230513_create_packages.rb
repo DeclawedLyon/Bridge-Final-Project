@@ -2,6 +2,7 @@ class CreatePackages < ActiveRecord::Migration[5.2]
   def change
     create_table :packages do |t|
       t.string :tracking_number
+      t.string :username
       t.string :courier
       t.datetime :date_sent
       t.datetime :date_delivered
