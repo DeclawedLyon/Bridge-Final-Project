@@ -19,8 +19,5 @@ Package.create(tracking_number: '1Z12345E02919808', username: 'Geo789', courier:
 Package.create(tracking_number: '1Z12345E02919809', username: 'Geo789', courier: '2', date_sent: '2021-09-11', date_delivered: '2021-09-20', last_known_status: 'DE', signed_for: 'Allan D.', sent_to: 'NY, NY', sent_from: 'Campbell River, BC', description: 'Book')
 Courier.create(name: 'FedEx', code: '1', base_url: 'www.fedex.com/tracking')
 Courier.create(name: 'UPS', code: '2', base_url: 'www.ups.com/tracking')
-<<<<<<< HEAD
-=======
 
 
->>>>>>> f7e65e4b71321c21c45049ab9863a403a736e89d
