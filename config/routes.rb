@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   namespace :api do # /api/data
     
     get '/data', to: 'tests#index'
-    get '/couriers', to: 'couriers#index'
-
+    get '/couriers', to: 'couriers#show'
+    get '/packages', to: 'packages#show'
+    
     resources :users, :packages, :tracking_instances, :couriers
 
   end
