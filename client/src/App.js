@@ -10,7 +10,7 @@ export default function App(props) {
 
   const fetchData = () => {
     axios
-      .get("/api/data") // You can simply make your requests to "/api/whatever you want"
+      .get("/api/users/1") // You can simply make your requests to "/api/whatever you want"
       .then((response) => {
         // handle success
         console.log(response.data); // The entire response from the Rails API
