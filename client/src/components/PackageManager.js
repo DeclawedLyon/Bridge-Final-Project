@@ -1,4 +1,5 @@
 import React from "react";
+import './PackageManager.css';
 
 export default function PackageManager() {
   return (

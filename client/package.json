@@ -31,6 +31,8 @@
   ],
   "proxy": "http://localhost:3001",
   "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "babel-loader": "^8.0.5",
     "node-sass": "^6.0.1"
   }
 }
