@@ -1,4 +1,3 @@
-
 .tracked_package {
   display: flex;
   flex-direction: column;
@@ -6,37 +5,26 @@
   border-radius: 5px;
   width: 100%;
   margin: 1.5em;
-  padding-right: 1.5em;
-
-  &--delivered {
-    background-color: green;
-  }
-}
+  padding-right: 1.5em; }
+  .tracked_package--delivered {
+    background-color: green; }
 
 .delivered {
   border: 10px solid black;
-  background-color: green;
-}
+  background-color: green; }
 
 .tracked_package .tracked_package--delivered {
-  background-color: pink;
-}
+  background-color: pink; }
 
 .tracked_package .delivered {
-  background-color: red;
-}
-
-
-
+  background-color: red; }
 
 .shipping_details {
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
 
 .package_footer {
   display: flex;
   justify-content: space-between;
   margin-left: 0.5em;
-  margin-right: 0.5em;
-}
+  margin-right: 0.5em; }
