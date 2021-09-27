@@ -4,11 +4,11 @@ import "./App.css";
 import Viewer from "./components/Viewer";
 import Counters from "./components/Counters";
 import PackageManager from "./components/PackageManager";
-import TrackedPackage from "./components/tracked_package"
+import TrackedPackage from "./components/tracked_package";
 
 export default function App(props) {
   const [state, setState] = useState("Click the button to load data!");
-  const [statusColor, setStatusColor] = useState("rgb(243, 186, 81)")
+  const [statusColor, setStatusColor] = useState("rgb(243, 186, 81)");
 
   const fetchData = () => {
     axios
@@ -22,13 +22,12 @@ export default function App(props) {
       });
   };
 
-
   const setStatus = (status) => {
-    setStatusColor("rgb(117, 216, 117)")
-  }
+    setStatusColor("rgb(117, 216, 117)");
+  };
   const setError = (status) => {
-    setStatusColor("rgb(238, 119, 119)")
-  }
+    setStatusColor("rgb(238, 119, 119)");
+  };
 
   return (
     <div className="App">
@@ -54,21 +53,22 @@ export default function App(props) {
           setStatusColor={setStatusColor}
         />
 
-        <div className="tracked_package" style={{ backgroundColor: `${statusColor}` }}>
+        <div
+          className="tracked_package"
+          style={{ backgroundColor: `${statusColor}` }}
+        >
           <span className="nickname">Tracking Nickname</span>
           <div className="shipping_details">
             <span className="sender">Sent From:</span>
             <span className="recipient">Sent To:</span>
           </div>
           <div className="package_footer">
-            <span className="courier_logo">🚛</span>
             <span className="status_message">Status:</span>
           </div>
         </div>
         <button onClick={setStatus}>Set Error</button>
         <button onClick={setError}>Set Error</button>
       </section>
-
     </div>
   );
 }
