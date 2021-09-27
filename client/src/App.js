@@ -61,7 +61,7 @@ export default function App(props) {
             <span className="recipient">Sent To:</span>
           </div>
           <div className="package_footer">
-            <span className="courier_logo">🚛</span>
+            <span className="courier_logo" role="img" aria-label="little-truck">🚛</span>
             <span className="status_message">Status:</span>
           </div>
         </div>
