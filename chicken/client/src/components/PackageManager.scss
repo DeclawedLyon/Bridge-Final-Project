@@ -1,0 +1,10 @@
+@import './Colours.scss';
+@import './Styles.scss';
+
+.package-manager {
+  height: 20vh;
+  margin: 1.5em;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  background-color: $component-background;
+}

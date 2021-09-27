@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
+
+.layout {
+  display: flex;
+  min-height: 100vh; }
+
+@media only screen and (max-width: 960px) {
+  html {
+    font-size: 12px; }
+  .layout {
+    flex-direction: column; } }
+
+@media only screen and (max-width: 320px) {
+  html {
+    font-size: 10px; } }
