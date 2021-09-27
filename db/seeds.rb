@@ -46,7 +46,7 @@ Package.create(
   to_st: '162 17th Ave, SW',
   to_city_province: 'Calgary, AB',
   to_post: 'T2S 2C9',
-  nickname: )
+  nickname: 'N/A')
 Package.create(
   tracking_number: '770387548723',
   username: 'Geo789',
@@ -103,7 +103,7 @@ Package.create(
   to_st: '9980 Hillside Ave',
   to_city_province: 'Saskatoon, SK',
   to_post: 'Y5B 2C8',
-  nickname: )
+  nickname: 'N/A')
 Package.create(
   tracking_number: '1Z12345E02919807',
   username: 'Geo789',
@@ -122,7 +122,7 @@ Package.create(
   to_st: '213 Sunny Lane',
   to_city_province: 'Kenora, ON',
   to_post: 'O7C 2B8',
-  nickname: )
+  nickname: 'N/A')
 Package.create(
   tracking_number: '1Z12345E02919808',
   username: 'Geo789',
@@ -160,7 +160,7 @@ Package.create(
   to_st: '2371 5th Ave',
   to_city_province: 'NY, NY',
   to_post: '90001',
-  nickname: )
+  nickname: 'N/A')
 Courier.create(name: 'FedEx', code: '1', base_url: 'www.fedex.com/tracking')
 Courier.create(name: 'UPS', code: '2', base_url: 'www.ups.com/tracking')
 
