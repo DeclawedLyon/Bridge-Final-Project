@@ -1,12 +1,11 @@
-@import "styles/variables.scss";
-@import "styles/reset.scss";
+
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: $font-family;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .layout {

@@ -1,2 +1,12 @@
+.main {
+  height: 10vh;
+  margin: 1.5em; }
+
+.main {
+  height: 5px; }
+
 .counters-container {
-  border: 5px solid salmon; }
+  height: 10vh;
+  margin: 1.5em;
+  border-radius: 7px;
+  background-color: #c3cdd5; }
