@@ -3,9 +3,10 @@
   flex-direction: column;
   border: 2px solid black;
   border-radius: 5px;
-  width: 100%;
+  width: 80%;
   margin: 1.5em;
   padding-right: 1.5em;
+  background-color: blueviolet;
 
   &--delivered {
     background-color: green;
