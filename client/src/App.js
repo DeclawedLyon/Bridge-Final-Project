@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./App.css";
+import "./App.scss";
 import Viewer from "./components/Viewer";
 import Counters from "./components/Counters";
 import PackageManager from "./components/PackageManager";
 import TrackedPackage from "./components/tracked_package";
+import Navbar from "./components/Navbar";
 
 export default function App(props) {
   const [state, setState] = useState("Click the button to load data!");
@@ -31,6 +32,9 @@ export default function App(props) {
 
   return (
     <div className="App">
+      <Navbar />
+    <div className="App-main-body">
+
       <section className="viewer-container">
         <h1>{state}</h1>
         <button onClick={() => fetchData()}>Fetch Data</button>
@@ -51,12 +55,12 @@ export default function App(props) {
           statusMessage={"delivered"}
           delivered={true}
           setStatusColor={setStatusColor}
-        />
+          />
 
         <div
           className="tracked_package"
           style={{ backgroundColor: `${statusColor}` }}
-        >
+          >
           <span className="nickname">Tracking Nickname</span>
           <div className="shipping_details">
             <span className="sender">Sent From:</span>
@@ -70,5 +74,6 @@ export default function App(props) {
         <button onClick={setError}>Set Error</button>
       </section>
     </div>
+  </div>
   );
 }

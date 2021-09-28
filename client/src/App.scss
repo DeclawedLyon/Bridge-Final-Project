@@ -1,9 +1,11 @@
 .App {
+ display: flex;
+ flex-direction: column;
+}
+
+.App-main-body {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  min-height: 100vh;
-  overflow: hidden;
 }
 
 .viewer-container {
