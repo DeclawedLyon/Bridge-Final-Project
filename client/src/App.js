@@ -7,19 +7,30 @@ import PackageManager from "./components/PackageManager";
 import TrackedPackage from "./components/tracked_package";
 
 export default function App(props) {
-  const [state, setState] = useState("Click the button to load data!");
+  const [currentUser, setCurrentUser] = useState("user");
+  const [currentCourier, setCurrentCourier] = useState("courier");
   const [statusColor, setStatusColor] = useState("rgb(243, 186, 81)");
+  let currentUserObj = {};
+  let currentCourierObj = {};
 
-  const fetchData = () => {
+  const fetchUserData = () => {
+    const userId = 1;
     axios
-      .get("/api/users/1") // You can simply make your requests to "/api/whatever you want"
+      .get(`/api/users/${userId}`) // Make all requests to "/api/whatever"
       .then((response) => {
-        // handle success
-        console.log(response.data); // The entire response from the Rails API
-
-        console.log(response.data); // Just the message
-        setState(response.data.user.name);
+        currentUserObj = response.data;
+        console.log("userObj:", currentUserObj);
+        setCurrentUser(response.data.user.name); //change name to anything or move the object around.
       });
+  };
+
+  const fetchCourierData = () => {
+    const courierId = 1;
+    axios.get(`/api/couriers/${courierId}`).then((response) => {
+      currentCourierObj = response.data;
+      console.log("courierObj:", currentCourierObj);
+      setCurrentCourier(response.data.courier.name);
+    });
   };
 
   const setStatus = (status) => {
@@ -32,8 +43,10 @@ export default function App(props) {
   return (
     <div className="App">
       <section className="viewer-container">
-        <h1>{state}</h1>
-        <button onClick={() => fetchData()}>Fetch Data</button>
+        <h1>{currentUser}</h1>
+        <button onClick={() => fetchUserData()}>Fetch User Data</button>
+        <h1>{currentCourier}</h1>
+        <button onClick={() => fetchCourierData()}>Fetch Courier Data</button>
         <PackageManager />
         <Viewer />
         <Counters />
