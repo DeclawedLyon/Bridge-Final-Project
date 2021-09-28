@@ -9,9 +9,10 @@
 }
 
 .viewer-container {
+  justify-content:space-evenly;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 95vh;
   flex-basis: 35vw;
   background-color:rgb(224, 231, 235);
 }
@@ -20,6 +21,6 @@
   display: flex;
   flex-direction: column;
   min-width: 65vw;
-  min-height: 100vh;
+  min-height: 95vh;
   background-color:rgb(195, 205, 213);
 }
