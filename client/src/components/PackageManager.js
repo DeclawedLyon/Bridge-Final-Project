@@ -4,23 +4,63 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function PackageManager() {
-  const [ trkNumSearch, setTrkNumSearch ]= useState("");
-  const [ trkNumNew, setTrkNumNew ]= useState("");
+  const [state, setState] = useState({
+    trkNumNew: "",
+    trkNumSearch: "",
+    courier: "",
+    created_at: "",
+    date_delivered: null,
+    date_sent: "",
+    description: "",
+    estimated_delivery: "",
+    from_city_province: "",
+    from_post: "",
+    from_st: "",
+    last_known_status: "",
+    nickname: "",
+    sent_from: "",
+    sent_to: "",
+    signed_for: "",
+    to_city_province: "",
+    to_post: "",
+    to_st: "",
+    tracking_number: "",
+    updated_at: "",
+  });
+ 
 
   const fetchData = (event) => {
     event.preventDefault()
     //sending the tracking number to a custom route with trknum as parameter
     axios
-      .get(`/api/getpackage?tracking_number=${trkNumSearch}`) 
+      .get(`/api/getpackage?tracking_number=${state.trkNumSearch}`) 
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data[0])
+        setState({
+          courier: response.data[0].courier,
+          created_at: response.data[0].created_at,
+          date_delivered: response.data[0].date_delivered,
+          date_sent: response.data[0].date_sent,
+          description: response.data[0].description,
+          estimated_delivery: response.data[0].estimated_delivery,
+          from_city_province: response.data[0].from_city_province,
+          from_post: response.data[0].from_post,
+          from_st: response.data[0].from_st,
+          last_known_status: response.data[0].last_known_status,
+          nickname: response.data[0].nickname,
+          sent_from: response.data[0].sent_from,
+          sent_to: response.data[0].sent_to,
+          signed_for: response.data[0].signed_for,
+          to_city_province: response.data[0].to_city_province,
+          to_post: response.data[0].to_post,
+          to_st: response.data[0].to_st,
+          tracking_number: response.data[0].tracking_number,
+          updated_at: response.data[0].updated_at
+        })
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
-  // const newPackage = () => {
+  // const newPackage = (event) => {
   //   axios
   //     .post(`/api/packages?tracking_number=${trkNumNew}`) 
   //     .then((response) => {
@@ -38,10 +78,11 @@ export default function PackageManager() {
         <input
           type="text"
           placeholder="Search By Tracking Number"
-          value={trkNumSearch}
+          value={state.trkNumSearch}
           onChange={event => {
-            setTrkNumSearch(event.target.value);
-          }}
+            setState({
+              trkNumSearch: event.target.value,
+          })}}
         />
       </form>
       <button 
@@ -50,16 +91,17 @@ export default function PackageManager() {
       >
           Search
       </button>
-      <div>HERE IS THE PACKAGE:</div>
+      <div>HERE IS THE PACKAGE:{state.trkNumSearch}{state.description}</div>
 
       <form id="add-package-form">
       <input
           type="text"
           placeholder="Enter a new tracking number +"
-          value={trkNumNew}
+          value={state.trkNumNew}
           onChange={event => {
-            setTrkNumNew(event.target.value);
-          }}
+            setState({
+              trkNumNew: event.target.value,
+          })}}
         />
       </form>
       <button 

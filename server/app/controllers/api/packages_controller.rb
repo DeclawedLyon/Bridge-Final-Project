@@ -2,7 +2,6 @@ class Api::PackagesController < ApplicationController
   
   def get_pkg_by_trkNum()
     @package = Package.where(tracking_number: params[:tracking_number])
-    puts @package
     render json: @package
   end
 
