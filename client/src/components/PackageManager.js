@@ -1,10 +1,15 @@
 import React from "react";
-import './PackageManager.css';
+import './PackageManager.scss';
 
 export default function PackageManager() {
   return (
     <main className="package-manager">
-      <p>I'm the package manager component!</p>
+      <form>
+        <input type="text" placeholder="Search Package By Tracking Number"></input>
+      </form>
+      <form>
+        <input type="text" placeholder="Add Package +"></input>
+      </form>
     </main>
   );
 }

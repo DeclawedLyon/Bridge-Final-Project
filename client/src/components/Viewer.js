@@ -1,5 +1,5 @@
 import React from "react";
-import './Viewer.css';
+import './Viewer.scss';
 
 export default function Viewer() {
  return (
