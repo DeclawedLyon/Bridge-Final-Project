@@ -6,9 +6,11 @@ Rails.application.routes.draw do
     
     get '/data', to: 'tests#index'
     get '/couriers', to: 'couriers#show'
-    get '/packages', to: 'packages#show'
+    # get '/packages', to: 'packages#show'
     
-    resources :users, :packages, :couriers
+    resources :packages 
+
+    resources :users, :couriers
 
   end
 
