@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :couriers
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+  get '/packages', to:'packages#index'
 
   namespace :api do # /api/data
     
@@ -10,9 +10,8 @@ Rails.application.routes.draw do
     get '/getpackage', to: 'packages#get_pkg_by_trkNum'
     get '/packages-info', to: 'packages#show'
     
-    resources :packages 
 
-    resources :users, :couriers
+    resources :users, :packages,  :couriers
 
   end
 

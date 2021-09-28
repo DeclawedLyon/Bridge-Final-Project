@@ -50,22 +50,24 @@ export default function App(props) {
 
   return (
     <div className="App">
+
       <Navbar />
-    <div className="App-main-body">
 
-      <section className="viewer-container">
-        <h1>{state.currentUser}</h1>
-        <h1>{state.currentCourier}</h1>
-        <PackageManager />
-        <Viewer />
-        <Counters />
-      </section>
+      <div className="App-main-body">
+        <section className="viewer-container">
+          <h1>{state.currentUser}</h1>
+          <h1>{state.currentCourier}</h1>
+          <PackageManager />
+          <Viewer />
+          <Counters />
+        </section>
 
-      <section className="packages-container">
-        <h1>I'm the packages container!</h1>
-        {mappedPackages}
-      </section>
+        <section className="packages-container">
+          <h1>I'm the packages container!</h1>
+          {mappedPackages}
+        </section>
+      </div>
+
     </div>
-  </div>
   );
 }

@@ -24,3 +24,38 @@
   min-height: 95vh;
   background-color:rgb(195, 205, 213);
 }
+
+.tracked_package {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 80%;
+  margin: 1.5em;
+  padding-right: 1.5em;
+  background-color: orange;
+}
+.tracked_package--delivered {
+  background-color: rgb(97, 224, 97);
+}
+.tracked_package--late {
+  background-color: orange;
+}
+.tracked_package--en_route {
+  background-color: rgb(238, 198, 67);
+}
+.tracked_package--delayed {
+  background-color: rgb(252, 90, 62);
+}
+
+.shipping_details {
+  display: flex;
+  flex-direction: column;
+}
+
+.package_footer {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
