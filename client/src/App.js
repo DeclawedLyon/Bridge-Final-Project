@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.scss";
+import "./App.css";
 import Viewer from "./components/Viewer";
 import Counters from "./components/Counters";
 import PackageManager from "./components/PackageManager";
@@ -30,7 +30,7 @@ export default function App(props) {
         currentCourierObj: response[2].data
       })
     });
-  }, [])
+  }, [state.currentUser, state.currentCourier])
 
   const mappedPackages = state.packages.map(mappedPackage => {
     return (

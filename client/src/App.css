@@ -1,24 +1,29 @@
 .App {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  min-height: 100vh;
-  overflow: hidden; }
-
-.viewer-container {
-  display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  flex-basis: 50vw;
-  background-color: #e0e7eb; }
-
-.packages-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 50vw;
-  min-height: 100vh;
-  background-color: #c3cdd5; 
-}
+ }
+ 
+ .App-main-body {
+   display: flex;
+   flex-direction: row;
+ }
+ 
+ .viewer-container {
+   justify-content:space-evenly;
+   display: flex;
+   flex-direction: column;
+   min-height: 95vh;
+   flex-basis: 35vw;
+   background-color:rgb(224, 231, 235);
+ }
+ 
+ .packages-container {
+   display: flex;
+   flex-direction: column;
+   min-width: 65vw;
+   min-height: 95vh;
+   background-color:rgb(195, 205, 213);
+ }
 
 .tracked_package {
   display: flex;
