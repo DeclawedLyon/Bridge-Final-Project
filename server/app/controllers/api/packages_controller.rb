@@ -1,21 +1,9 @@
 class Api::PackagesController < ApplicationController
   
-  def index
-    
-  end
-  
-  def show
-  end
-  
   def get_pkg_by_trkNum()
-    render :json => {
-      package: get_by_trk(params[:tracking_number])
-    } 
-  end
-
-  def get_by_trk(trkNum)
-    @package = Package.where(tracking_number: trkNum)
-    @package
+    @package = Package.where(tracking_number: params[:tracking_number])
+    puts @package
+    render json: @package
   end
 
   private

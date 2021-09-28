@@ -8,106 +8,67 @@ import TrackedPackage from "./components/tracked_package";
 import Navbar from "./components/Navbar";
 
 export default function App(props) {
-  const [state, setState] = useState({
-    message: "Click the button to load data!",
-    package: "Show me the package info!",
-    packages: []
-  });
-  const [currentUser, setCurrentUser] = useState("user");
-  const [currentCourier, setCurrentCourier] = useState("courier");
-  const [statusColor, setStatusColor] = useState("rgb(243, 186, 81)");
-  let currentUserObj = {};
-  let currentCourierObj = {};
+  // const [state, setState] = useState({
+  //   message: "Click the button to load data!",
+  //   package: "Show me the package info!",
+  //   packages: []
+  // });
+  // const [currentUser, setCurrentUser] = useState("user");
+  // const [currentCourier, setCurrentCourier] = useState("courier");
+  // const [statusColor, setStatusColor] = useState("rgb(243, 186, 81)");
+  // let currentUserObj = {};
+  // let currentCourierObj = {};
 
-  const fetchUserData = () => {
-    const userId = 1;
-    axios
-      .get(`/api/users/${userId}`) // Make all requests to "/api/whatever"
-      .then((response) => {
-        currentUserObj = response.data;
-        console.log("userObj:", currentUserObj);
-        setCurrentUser(response.data.user.name); //change name to anything or move the object around.
-      });
-  };
-
-  const fetchCourierData = () => {
-    const courierId = 1;
-    axios.get(`/api/couriers/${courierId}`).then((response) => {
-      currentCourierObj = response.data;
-      console.log("courierObj:", currentCourierObj);
-      setCurrentCourier(response.data.courier.name);
-    });
-  };
-
-  useEffect(() => {
-    Promise.all([
-      axios.get("/api/users/1"),
-      axios.get("/api/packages/1"),
-      axios.get("/packages")
-    ]).then((response) => {
-      setState({
-        message: state.message,
-        package: state.package,
-        packages: response[2].data
-      })
-    }, []);
-  })
-
-  const mappedPackages = state.packages.map(mappedPackage => {
-    console.log("The current package is:", mappedPackage);
-    return (
-      <TrackedPackage
-      key={`package-${mappedPackage.id}`}
-      nickname={mappedPackage.nickname || mappedPackage.sent_to}
-      sender={mappedPackage.sent_from}
-      recipient={mappedPackage.sent_to}
-      logo={mappedPackage.courier}
-      statusMessage={mappedPackage.last_known_status}
-      delivered={mappedPackage.last_known_status === "DE" ? true : false}
-      />
-    )
-  })
-
-  console.log(mappedPackages)
-
-  // const fetchData = () => {
+  // const fetchUserData = () => {
+  //   const userId = 1;
   //   axios
-  //     .get("/api/users/1") // You can simply make your requests to "/api/whatever you want"
+  //     .get(`/api/users/${userId}`) // Make all requests to "/api/whatever"
   //     .then((response) => {
-  //       // handle success
-  //       console.log(response.data); // The entire response from the Rails API
-
-  //       console.log(response.data); // Just the message
-  //       setState({
-  //         message: response.data.user.name,
-  //         package: state.package
-  //       });
+  //       currentUserObj = response.data;
+  //       console.log("userObj:", currentUserObj);
+  //       setCurrentUser(response.data.user.name); //change name to anything or move the object around.
   //     });
   // };
-  // const fetchPackageData = () => {
-  //   axios.get("/api/packages/1")
-  //     .then((response) => {
-  //       // console.log(response.data.package);
-  //       setState({
-  //         message: state.message,
-  //         package: response.data.package.username
-  //       })
+
+  // const fetchCourierData = () => {
+  //   const courierId = 1;
+  //   axios.get(`/api/couriers/${courierId}`).then((response) => {
+  //     currentCourierObj = response.data;
+  //     console.log("courierObj:", currentCourierObj);
+  //     setCurrentCourier(response.data.courier.name);
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   Promise.all([
+  //     axios.get("/api/users/1"),
+  //     axios.get("/api/packages/1"),
+  //     axios.get("/packages")
+  //   ]).then((response) => {
+  //     setState({
+  //       message: state.message,
+  //       package: state.package,
+  //       packages: response[2].data
   //     })
-  // }
-  // const fetchPackages = () => {
-  //   axios.get("/packages")
-  //     .then((response) => {
-  //       console.log(response.data)
-  //       // console.log("response from packages:",response.data)
-  //       setState({
-  //         message: state.message,
-  //         package: state.package,
-  //         packages: response.data
-  //       })
-  //       // console.log("current packages state:", state)
-  //     })
-  //     .catch(e => console.log(e))
-  // }
+  //   }, []);
+  // })
+
+  // const mappedPackages = state.packages.map(mappedPackage => {
+  //   console.log("The current package is:", mappedPackage);
+  //   return (
+  //     <TrackedPackage
+  //     key={`package-${mappedPackage.id}`}
+  //     nickname={mappedPackage.nickname || mappedPackage.sent_to}
+  //     sender={mappedPackage.sent_from}
+  //     recipient={mappedPackage.sent_to}
+  //     logo={mappedPackage.courier}
+  //     statusMessage={mappedPackage.last_known_status}
+  //     delivered={mappedPackage.last_known_status === "DE" ? true : false}
+  //     />
+  //   )
+  // })
+
+  // console.log(mappedPackages)
 
   return (
     <div className="App">
@@ -115,10 +76,10 @@ export default function App(props) {
     <div className="App-main-body">
 
       <section className="viewer-container">
-        <h1>{currentUser}</h1>
-        <button onClick={() => fetchUserData()}>Fetch User Data</button>
-        <h1>{currentCourier}</h1>
-        <button onClick={() => fetchCourierData()}>Fetch Courier Data</button>
+        {/* <h1>{currentUser}</h1> */}
+        {/* <button onClick={() => fetchUserData()}>Fetch User Data</button> */}
+        {/* <h1>{currentCourier}</h1> */}
+        {/* <button onClick={() => fetchCourierData()}>Fetch Courier Data</button> */}
         <PackageManager />
         <Viewer />
         <Counters />
@@ -126,7 +87,7 @@ export default function App(props) {
 
       <section className="packages-container">
         <h1>I'm the packages container!</h1>
-        {mappedPackages}
+        {/* {mappedPackages} */}
 
         <TrackedPackage
           statusColor={"green"}
