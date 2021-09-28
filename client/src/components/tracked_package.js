@@ -1,6 +1,6 @@
 import React from "react";
-import classnames from "classnames"
-import './tracked_package.scss';
+import classnames from "classnames";
+import './tracked_package.css';
 
 export default function TrackedPackage(props) {
   const packageClass = classnames("tracked_package", {
