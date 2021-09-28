@@ -6,7 +6,7 @@ class Api::PackagesController < ApplicationController
   
   def show
   end
-
+  
   def get_pkg_by_trkNum()
     render :json => {
       package: get_by_trk(params[:tracking_number])
@@ -15,7 +15,6 @@ class Api::PackagesController < ApplicationController
 
   def get_by_trk(trkNum)
     @package = Package.where(tracking_number: trkNum)
-    puts @package
     @package
   end
 

@@ -12,9 +12,11 @@ export default function PackageManager() {
       .get(`/api/getpackage?tracking_number=${trkNum}`) 
       .then((response) => {
         // handle success
-        console.log(response.data); // The entire response from the Rails API
+        console.log(response); // The entire response from the Rails API
 
-        console.log(response.data); // Just the message
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
