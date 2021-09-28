@@ -9,7 +9,7 @@ export default function PackageManager() {
   const fetchData = () => {
 
     axios
-      .get(`/api/packages/?tracking_number=${trkNum}`) 
+      .get(`/api/getpackage?tracking_number=${trkNum}`) 
       .then((response) => {
         // handle success
         console.log(response.data); // The entire response from the Rails API

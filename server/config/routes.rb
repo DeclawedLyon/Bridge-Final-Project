@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     
     get '/data', to: 'tests#index'
     get '/couriers', to: 'couriers#show'
-    # get '/packages', to: 'packages#show'
+    get "/getpackage", to: 'packages#get_pkg_by_trkNum'
+    get '/packages', to: 'packages#show'
     
     resources :packages 
 
