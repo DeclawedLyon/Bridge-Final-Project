@@ -36,11 +36,11 @@
 .tracked_package--late {
   background-color: orange;
 }
-.tracked_package--delayed {
-  background-color: rgb(255, 60, 60);
-}
 .tracked_package--en_route {
-  background-color: green;
+  background-color: rgb(238, 198, 67);
+}
+.tracked_package--delayed {
+  background-color: rgb(252, 90, 62);
 }
 
 .shipping_details {

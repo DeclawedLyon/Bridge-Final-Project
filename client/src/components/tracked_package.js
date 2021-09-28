@@ -5,8 +5,8 @@ export default function TrackedPackage(props) {
   const packageClass = classnames("tracked_package", {
     "tracked_package--delivered": props.delivered,
     "tracked_package--late": props.late,
-    "tracked_package--delayed": props.deleyed,
-    "tracked_package--en_route": props.en_route
+    "tracked_package--delayed": props.delayed,
+    "tracked_package--en_route": props.enRoute
   })
   
   return (
