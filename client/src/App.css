@@ -17,4 +17,40 @@
   flex-direction: column;
   min-width: 50vw;
   min-height: 100vh;
-  background-color: #c3cdd5; }
+  background-color: #c3cdd5; 
+}
+
+.tracked_package {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 80%;
+  margin: 1.5em;
+  padding-right: 1.5em;
+  background-color: orange;
+}
+.tracked_package--delivered {
+  background-color: rgb(97, 224, 97);
+}
+.tracked_package--late {
+  background-color: orange;
+}
+.tracked_package--delayed {
+  background-color: rgb(255, 60, 60);
+}
+.tracked_package--en_route {
+  background-color: green;
+}
+
+.shipping_details {
+  display: flex;
+  flex-direction: column;
+}
+
+.package_footer {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
