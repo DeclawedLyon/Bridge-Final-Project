@@ -9,7 +9,7 @@ export default function PackageManager() {
     trkNumSearch: "",
     courier: "",
     created_at: "",
-    date_delivered: null,
+    date_delivered: "",
     date_sent: "",
     description: "",
     estimated_delivery: "",
@@ -57,6 +57,8 @@ export default function PackageManager() {
           tracking_number: response.data[0].tracking_number,
           updated_at: response.data[0].updated_at
         })
+        let frm = document.getElementById('search-form')
+        frm.reset();
       })
   }
 
@@ -71,6 +73,32 @@ export default function PackageManager() {
   //     });
   // }
 
+  const handleChange = function(event) {
+    setState({
+      trkNumSearch: event.target.value,
+      trkNumNew: "",
+      courier: "",
+      created_at: "",
+      date_delivered: "",
+      date_sent: "",
+      description: "",
+      estimated_delivery: "",
+      from_city_province: "",
+      from_post: "",
+      from_st: "",
+      last_known_status: "",
+      nickname: "",
+      sent_from: "",
+      sent_to: "",
+      signed_for: "",
+      to_city_province: "",
+      to_post: "",
+      to_st: "",
+      tracking_number: "",
+      updated_at: "",
+    })
+  }
+
   return (
     <main className="package-manager">
 
@@ -79,10 +107,8 @@ export default function PackageManager() {
           type="text"
           placeholder="Search By Tracking Number"
           value={state.trkNumSearch}
-          onChange={event => {
-            setState({
-              trkNumSearch: event.target.value,
-          })}}
+          onChange={(event) => {
+            handleChange(event)}}
         />
       </form>
       <button 
