@@ -53,6 +53,8 @@ export default function App(props) {
     setState((prev) => ({ ...prev, thisPackage: "Cool words here:" }));
   };
 
+  console.log("The current app state is:", state.thisPackage);
+
   return (
     <div className="App">
       <Navbar />

@@ -10,6 +10,10 @@ export default function useApplicationData() {
     currentUserObj: {},
     currentCourier: 1,
     currentCourierObj: {},
+    trkNumNew: "",
+    trkNumSearch: "",
+    newNickname: "",
+    newDescription: "",
   });
 
   useEffect(() => {
@@ -53,7 +57,7 @@ export default function useApplicationData() {
     }));
   };
 
-  const activeCount = state.packages.length;
+  const activeCount = state.packages ? state.packages.length : 0;
 
   const delayedCount = () => {
     let delayed = 0;
