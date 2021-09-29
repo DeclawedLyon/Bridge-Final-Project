@@ -4,12 +4,13 @@ import axios from "axios"
 export default function useApplicationData () {
   const [state, setState] = useState({
     packages: [],
-    thisPackage: "",
+    thisPackage: {},
     currentUser: 1,
     currentUserObj: {},
     currentCourier: 1,
     currentCourierObj: {}
   });
+  
   useEffect(() => {
     Promise.all([
       axios.get("/packages"),

@@ -10,16 +10,14 @@ export default function App(props) {
 
   const {state, setState, deletePackage, selectedPackage} = useApplicationData()
 
-  const selectPackage = (currentPackage) => {
+  const selectPackage = (packageId) => {
+    let packageIndex = packageId - 1;
     setState(prev => ({
       ...prev,
-      thisPackage: currentPackage
+      thisPackage: state.packages[packageIndex]
     }))
-    console.log("current package var:", currentPackage)
-    console.log("Can I select?")
   }
 
-  console.log("current state:", state.thisPackage)
   const mappedPackages = state.packages.map(mappedPackage => {
     return (
       <TrackedPackage
@@ -41,11 +39,6 @@ export default function App(props) {
   })
 
   const insertDescription = () => {
-  //   const textArray = [];
-  //   let elements = document.getElementsByClassName('description')
-  //   console.log(elements);
-  //   let description = document.createElement("div")
-  //   elements.appendChild(document.createTextNode(description))
     setState(prev => ({...prev, thisPackage: "Cool words here:"}))
   }
 
@@ -58,7 +51,7 @@ export default function App(props) {
         <h1>{state.currentCourier}</h1>
         <PackageManager />
         <Viewer 
-        description={state.thisPackage}
+        package={state.thisPackage}
         />
         <button onClick={() => insertDescription()}>Hello</button>
         <Counters />
