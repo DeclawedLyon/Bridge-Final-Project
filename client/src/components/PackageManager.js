@@ -19,11 +19,11 @@ export default function PackageManager() {
     axios
       .get(`/api/getpackage?tracking_number=${state.trkNumSearch}`) 
       .then((response) => {
-        console.log(response.data[0])
+        // console.log(response.data[0])
         setState({
           selectedPackage: {}
         })
-        console.log(state.selectedPackage);
+        // console.log(state.selectedPackage);
         let frm = document.getElementById('search-form')
         frm.reset();
       })
