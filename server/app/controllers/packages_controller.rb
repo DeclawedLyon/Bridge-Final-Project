@@ -52,7 +52,7 @@ class PackagesController < ApplicationController
     to_st: '33 Ashway Crescent',
     to_city_province: 'Nanaimo, BC',
     to_post: 'V9F 7K7',
-    nickname: params[:description])
+    nickname: params[:nickname])
   end
 
 
@@ -69,6 +69,7 @@ class PackagesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def package_params
+      params.permit(:tracking_number, :description, :nickname)
       params.fetch(:package, {})
     end
 end
