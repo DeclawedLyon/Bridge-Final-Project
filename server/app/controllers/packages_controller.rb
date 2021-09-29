@@ -33,10 +33,11 @@ class PackagesController < ApplicationController
     end
   end
 
-  # DELETE /packages/1
   def destroy
+    # @package = Package.where(id: params[:id])
     @package.destroy
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -46,6 +47,6 @@ class PackagesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def package_params
-      params.fetch(:package, {})
+      params.permit(:id)
     end
 end
