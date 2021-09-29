@@ -4,31 +4,15 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function PackageManager() {
+  //if you add all of the column names to state you can access the whole package in the browser; the setup below (selectedPackage) is not working
+
   const [state, setState] = useState({
     trkNumNew: "",
     trkNumSearch: "",
-    courier: "",
-    created_at: "",
-    date_delivered: "",
-    date_sent: "",
-    description: "",
-    estimated_delivery: "",
-    from_city_province: "",
-    from_post: "",
-    from_st: "",
-    last_known_status: "",
-    nickname: "",
-    sent_from: "",
-    sent_to: "",
-    signed_for: "",
-    to_city_province: "",
-    to_post: "",
-    to_st: "",
-    tracking_number: "",
-    updated_at: "",
+    selectedPackage: {}
   });
  
-
+  
   const fetchData = (event) => {
     event.preventDefault()
     //sending the tracking number to a custom route with trknum as parameter
@@ -37,26 +21,9 @@ export default function PackageManager() {
       .then((response) => {
         console.log(response.data[0])
         setState({
-          courier: response.data[0].courier,
-          created_at: response.data[0].created_at,
-          date_delivered: response.data[0].date_delivered,
-          date_sent: response.data[0].date_sent,
-          description: response.data[0].description,
-          estimated_delivery: response.data[0].estimated_delivery,
-          from_city_province: response.data[0].from_city_province,
-          from_post: response.data[0].from_post,
-          from_st: response.data[0].from_st,
-          last_known_status: response.data[0].last_known_status,
-          nickname: response.data[0].nickname,
-          sent_from: response.data[0].sent_from,
-          sent_to: response.data[0].sent_to,
-          signed_for: response.data[0].signed_for,
-          to_city_province: response.data[0].to_city_province,
-          to_post: response.data[0].to_post,
-          to_st: response.data[0].to_st,
-          tracking_number: response.data[0].tracking_number,
-          updated_at: response.data[0].updated_at
+          selectedPackage: {}
         })
+        console.log(state.selectedPackage);
         let frm = document.getElementById('search-form')
         frm.reset();
       })
@@ -76,26 +43,6 @@ export default function PackageManager() {
   const handleChange = function(event) {
     setState({
       trkNumSearch: event.target.value,
-      trkNumNew: "",
-      courier: "",
-      created_at: "",
-      date_delivered: "",
-      date_sent: "",
-      description: "",
-      estimated_delivery: "",
-      from_city_province: "",
-      from_post: "",
-      from_st: "",
-      last_known_status: "",
-      nickname: "",
-      sent_from: "",
-      sent_to: "",
-      signed_for: "",
-      to_city_province: "",
-      to_post: "",
-      to_st: "",
-      tracking_number: "",
-      updated_at: "",
     })
   }
 
