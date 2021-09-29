@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./App.scss";
 import Viewer from "./components/Viewer";
 import Counters from "./components/Counters";
@@ -11,6 +9,7 @@ import useApplicationData from "./helpers/useApplicationData";
 export default function App(props) {
   const { state, deletePackage, selectedPackage } = useApplicationData();
 
+<<<<<<< HEAD
   console.log(state);
   const mappedPackages = state.packages.map((mappedPackage) => {
     return (
@@ -31,17 +30,58 @@ export default function App(props) {
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
         onDelete={deletePackage}
         onSelect={selectedPackage}
+=======
+  const {state, setState, deletePackage, selectedPackage} = useApplicationData()
+
+  const selectPackage = (currentPackage) => {
+    setState(prev => ({
+      ...prev,
+      thisPackage: currentPackage
+    }))
+    console.log("current package var:", currentPackage)
+    console.log("Can I select?")
+  }
+
+  console.log("current state:", state.thisPackage)
+  const mappedPackages = state.packages.map(mappedPackage => {
+    return (
+      <TrackedPackage
+      key={`package-${mappedPackage.id}`}
+      id={mappedPackage.id}
+      nickname={mappedPackage.nickname === "N/A" ? mappedPackage.tracking_number : mappedPackage.nickname}
+      sender={mappedPackage.sent_from}
+      recipient={mappedPackage.sent_to}
+      logo={mappedPackage.courier}
+      statusMessage={mappedPackage.last_known_status}
+      delivered={mappedPackage.last_known_status === "DE" ? true : false}
+      delayed={mappedPackage.last_known_status === "EX" ? true : false}
+      enRoute={mappedPackage.last_known_status === "OF" ? true : false}
+      onDelete={deletePackage}
+      onSelect={selectedPackage}
+      selectPackage={selectPackage}
+>>>>>>> d6245e977df8f8a76a554245c76fc7600be25fe1
       />
     );
   });
 
   const insertDescription = () => {
+<<<<<<< HEAD
     return <span>Super cool sentence here</span>;
   };
+=======
+  //   const textArray = [];
+  //   let elements = document.getElementsByClassName('description')
+  //   console.log(elements);
+  //   let description = document.createElement("div")
+  //   elements.appendChild(document.createTextNode(description))
+    setState(prev => ({...prev, thisPackage: "Cool words here:"}))
+  }
+>>>>>>> d6245e977df8f8a76a554245c76fc7600be25fe1
 
   return (
     <div className="App">
       <Navbar />
+<<<<<<< HEAD
       <div className="App-main-body">
         <section className="viewer-container">
           <h1>{state.currentUser}</h1>
@@ -53,6 +93,25 @@ export default function App(props) {
           <button onClick={() => insertDescription()}>Hello</button>
           <Counters />
         </section>
+=======
+    <div className="App-main-body">
+      <section className="viewer-container">
+        <h1>{state.currentUser}</h1>
+        <h1>{state.currentCourier}</h1>
+        <PackageManager />
+        <Viewer 
+        description={state.thisPackage}
+        />
+        <button onClick={() => insertDescription()}>Hello</button>
+        <Counters />
+      </section>
+
+      <section className="packages-container">
+        <h1>I'm the packages container!</h1>
+        {mappedPackages}
+      </section>
+    </div>
+>>>>>>> d6245e977df8f8a76a554245c76fc7600be25fe1
 
         <section className="packages-container">
           <h1>I'm the packages container!</h1>
