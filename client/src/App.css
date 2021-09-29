@@ -20,6 +20,11 @@
   background-color: #c3cdd5; 
 }
 
+.package_header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .tracked_package {
   display: flex;
   flex-direction: column;
@@ -27,7 +32,10 @@
   border-radius: 5px;
   width: 80%;
   margin: 1.5em;
-  padding-right: 1.5em;
+  padding-right: 0.25em;
+  padding-left: 0.5em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
   background-color: orange;
 }
 .tracked_package--delivered {
