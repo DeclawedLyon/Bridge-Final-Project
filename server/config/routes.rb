@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   get "/packages", to: 'packages#index'
   delete '/removepackage/:id', to: 'packages#destroy'
   
+  resource :packages, only: [:show] do 
+    post  :add_item
+    post  :remove_item
+  end
+  
   namespace :api do # /api/data
     
     get '/data', to: 'tests#index'
