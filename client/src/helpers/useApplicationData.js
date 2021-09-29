@@ -4,6 +4,7 @@ import axios from "axios";
 export default function useApplicationData() {
   const [state, setState] = useState({
     packages: [],
+    packageId: '',
     thisPackage: {},
     currentUser: 1,
     currentUserObj: {},
@@ -29,19 +30,27 @@ export default function useApplicationData() {
   }, [state.currentUser, state.currentCourier]);
 
   const deletePackage = (id) => {
+    selectPackage(id)
+
+    console.log(id);
+
     return axios
-      .delete(`/api/packages/${id}`)
+      .delete(`/removepackage/${id}`)
       .then(() => {
         const packages = {
-          ...(state.packages[id] = null),
+          ...(state.packages[state.packageId] = null),
         };
         setState((prev) => ({ ...prev, packages }));
       })
       .catch((e) => console.log(e));
   };
 
-  const selectedPackage = () => {
-    console.log("hello");
+  const selectPackage = (packageId) => {
+    let packageIndex = packageId - 1;
+    setState((prev) => ({
+      ...prev,
+      packageId: state.packages[packageIndex],
+    }));
   };
 
   const activeCount = state.packages.length;
@@ -72,7 +81,7 @@ export default function useApplicationData() {
     state,
     setState,
     deletePackage,
-    selectedPackage,
+    selectPackage,
     activeCount,
     delayedCount,
     outForDeliveryCount,
