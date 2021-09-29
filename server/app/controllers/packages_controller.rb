@@ -71,7 +71,7 @@ class PackagesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def package_params
-      params.permit(:id :tracking_number, :description, :nickname)
+      params.permit(:tracking_number, :description, :nickname)
       params.fetch(:package, {})
     end
 end
