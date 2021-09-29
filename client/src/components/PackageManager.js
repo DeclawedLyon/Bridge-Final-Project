@@ -9,17 +9,25 @@ export default function PackageManager() {
 
   const fetchData = (event) => {
     event.preventDefault();
+    console.log("test");
     //sending the tracking number to a custom route with trknum as parameter
     axios
       .get(`/api/getpackage?tracking_number=${state.trkNumSearch}`)
       .then((response) => {
-        setState({
-          thisPackage: response.data[0],
-        });
-        // console.log(state.selectedPackage);
-        let frm = document.getElementById("search-form");
-        frm.reset();
+        console.log("response1:", response);
+        const tempResponse = response.data[0];
+        return tempResponse;
+      })
+      .then((tempResponse) => {
+        console.log("response2:", tempResponse);
+        setState((prev) => ({
+          ...prev,
+          thisPackage: tempResponse,
+        }));
       });
+    console.log("this package *****:", state.thisPackage);
+    let frm = document.getElementById("search-form");
+    frm.reset();
   };
 
   const newPackage = (event) => {
@@ -45,15 +53,19 @@ export default function PackageManager() {
   };
 
   const resetState = function () {
-    setState({
-      trkNumSearch: "",
-    });
+    setState((prev) => ({
+      ...prev,
+      trkNumNew: "",
+      newNickname: "",
+      newDescription: "",
+    }));
   };
 
   const handleChange = function (event) {
-    setState({
+    setState((prev) => ({
+      ...prev,
       trkNumSearch: event.target.value,
-    });
+    }));
   };
 
   const showForm = function () {

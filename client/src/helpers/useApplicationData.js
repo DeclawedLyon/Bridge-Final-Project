@@ -48,7 +48,7 @@ export default function useApplicationData() {
     console.log("hello");
   };
 
-  const activeCount = state.packages.length;
+  const activeCount = state.packages ? state.packages.length : 0;
 
   const delayedCount = () => {
     let delayed = 0;
