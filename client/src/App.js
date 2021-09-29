@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./App.scss";
 import Viewer from "./components/Viewer";
 import Counters from "./components/Counters";
@@ -10,9 +8,18 @@ import useApplicationData from "./helpers/useApplicationData"
 
 export default function App(props) {
 
-  const {state, deletePackage, selectedPackage} = useApplicationData()
+  const {state, setState, deletePackage, selectedPackage} = useApplicationData()
 
-  console.log(state)
+  const selectPackage = (currentPackage) => {
+    setState(prev => ({
+      ...prev,
+      thisPackage: currentPackage
+    }))
+    console.log("current package var:", currentPackage)
+    console.log("Can I select?")
+  }
+
+  console.log("current state:", state.thisPackage)
   const mappedPackages = state.packages.map(mappedPackage => {
     return (
       <TrackedPackage
@@ -28,14 +35,18 @@ export default function App(props) {
       enRoute={mappedPackage.last_known_status === "OF" ? true : false}
       onDelete={deletePackage}
       onSelect={selectedPackage}
+      selectPackage={selectPackage}
       />
     )
   })
 
   const insertDescription = () => {
-    return (
-      <span>Super cool sentence here</span>
-    )
+  //   const textArray = [];
+  //   let elements = document.getElementsByClassName('description')
+  //   console.log(elements);
+  //   let description = document.createElement("div")
+  //   elements.appendChild(document.createTextNode(description))
+    setState(prev => ({...prev, thisPackage: "Cool words here:"}))
   }
 
   return (
@@ -47,7 +58,7 @@ export default function App(props) {
         <h1>{state.currentCourier}</h1>
         <PackageManager />
         <Viewer 
-        description={state.thisPackage ? state.thisPackage.description : ""}
+        description={state.thisPackage}
         />
         <button onClick={() => insertDescription()}>Hello</button>
         <Counters />

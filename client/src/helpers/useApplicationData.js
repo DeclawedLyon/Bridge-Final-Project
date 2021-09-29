@@ -4,7 +4,7 @@ import axios from "axios"
 export default function useApplicationData () {
   const [state, setState] = useState({
     packages: [],
-    thisPackage: "hello",
+    thisPackage: "",
     currentUser: 1,
     currentUserObj: {},
     currentCourier: 1,
@@ -16,13 +16,14 @@ export default function useApplicationData () {
       axios.get(`/api/users/${state.currentUser}`),
       axios.get(`/api/couriers/${state.currentCourier}`)
     ]).then((response) => {
-      setState({
+      setState(prev => ({
+        ...prev,
         packages: response[0].data,
         currentUser: response[1].data.user.id,
         currentUserObj: response[1].data,
         currentCourier: response[2].data.courier.id,
         currentCourierObj: response[2].data
-      })
+      }))
     });
   }, [state.currentUser, state.currentCourier])
 
@@ -44,6 +45,7 @@ export default function useApplicationData () {
 
   return {
     state,
+    setState,
     deletePackage,
     selectedPackage
   }
