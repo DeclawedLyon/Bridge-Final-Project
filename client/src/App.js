@@ -5,37 +5,17 @@ import Viewer from "./components/Viewer";
 import Counters from "./components/Counters";
 import PackageManager from "./components/PackageManager";
 import TrackedPackage from "./components/tracked_package";
+import useApplicationData from "./helpers/useApplicationData";
 
 export default function App(props) {
-  const [state, setState] = useState({
-    packages: [],
-    currentUser: 1,
-    currentUserObj: {},
-    currentCourier: 1,
-    currentCourierObj: {},
-  });
+  const { state, deletePackage, selectedPackage } = useApplicationData();
 
-  useEffect(() => {
-    Promise.all([
-      axios.get("/packages"),
-      axios.get(`/api/users/${state.currentUser}`),
-      axios.get(`/api/couriers/${state.currentCourier}`),
-    ]).then((response) => {
-      setState({
-        packages: response[0].data,
-        currentUser: response[1].data.user.id,
-        currentUserObj: response[1].data,
-        currentCourier: response[2].data.courier.id,
-        currentCourierObj: response[2].data,
-      });
-    });
-    // eslint-disable-next-line
-  }, []);
-
+  console.log(state);
   const mappedPackages = state.packages.map((mappedPackage) => {
     return (
       <TrackedPackage
         key={`package-${mappedPackage.id}`}
+        id={mappedPackage.id}
         nickname={
           mappedPackage.nickname === "N/A"
             ? mappedPackage.tracking_number
@@ -48,12 +28,15 @@ export default function App(props) {
         delivered={mappedPackage.last_known_status === "DE" ? true : false}
         delayed={mappedPackage.last_known_status === "EX" ? true : false}
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
+        onDelete={deletePackage}
+        onSelect={selectedPackage}
       />
     );
   });
 
-  const [selectedPackage, setSelectedPackage] = useState(state.packages[0]);
-  setSelectedPackage("***:", state.packages[0]);
+  const insertDescription = () => {
+    return <span>Super cool sentence here</span>;
+  };
 
   return (
     <div className="App">
@@ -62,11 +45,9 @@ export default function App(props) {
         <h1>{state.currentCourier}</h1>
         <PackageManager />
         <Viewer
-          trkNum={selectedPackage.tracking_number}
-          description={selectedPackage.description}
-          sentTo={selectedPackage.sent_city_province}
-          sentFrom={selectedPackage.from_city_province}
+          description={state.thisPackage ? state.thisPackage.description : ""}
         />
+        <button onClick={() => insertDescription()}>Hello</button>
         <Counters />
       </section>
 
