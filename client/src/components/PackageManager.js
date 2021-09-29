@@ -9,6 +9,8 @@ export default function PackageManager() {
   const [state, setState] = useState({
     trkNumNew: "",
     trkNumSearch: "",
+    newNickname: "",
+    newDescription: "",
     selectedPackage: {},
   });
 
@@ -28,21 +30,44 @@ export default function PackageManager() {
       });
   };
 
-  // const newPackage = (event) => {
-  //   axios
-  //     .post(`/api/packages?tracking_number=${trkNumNew}`)
-  //     .then((response) => {
-  //       console.log(response)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
+  const newPackage = (event) => {
+    event.preventDefault();
+
+    axios
+      .post(
+        `/packages/add_item?tracking_number=${state.trkNumNew}&nickname=${state.newNickname}&description=${state.newDescription}`
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    resetState();
+
+    document.getElementById("add-package-form").reset();
+    document.getElementById("add-package-form").style.display = "none";
+
+    document.getElementById("add-button").style.display = "block";
+  };
+
+  const resetState = function () {
+    setState({
+      trkNumSearch: "",
+    });
+  };
 
   const handleChange = function (event) {
     setState({
       trkNumSearch: event.target.value,
     });
+  };
+
+  const showForm = function () {
+    document.getElementById("add-button").style.display = "none";
+
+    document.getElementById("add-package-form").style.display = "block";
   };
 
   return (
@@ -60,30 +85,43 @@ export default function PackageManager() {
       <button type="submit" form="search-form">
         Search
       </button>
-      <div>
-        HERE IS THE PACKAGE:{state.trkNumSearch}
-        {state.description}
-      </div>
 
-      <form id="add-package-form">
+      <button id="add-button" onClick={() => showForm()}>
+        Add a Package +
+      </button>
+
+      <form id="add-package-form" onSubmit={newPackage}>
         <input
           type="text"
           placeholder="Enter a new tracking number +"
           value={state.trkNumNew}
           onChange={(event) => {
-            setState({
-              trkNumNew: event.target.value,
-            });
+            setState((prev) => ({ ...prev, trkNumNew: event.target.value }));
           }}
         />
+        <input
+          type="text"
+          placeholder="Optional: Enter a Nickname"
+          value={state.newNickname}
+          onChange={(event) => {
+            setState((prev) => ({ ...prev, newNickname: event.target.value }));
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Optional: Enter a Description"
+          value={state.newDescription}
+          onChange={(event) => {
+            setState((prev) => ({
+              ...prev,
+              newDescription: event.target.value,
+            }));
+          }}
+        />
+        <button type="submit" form="add-package-form">
+          Submit to be tracked
+        </button>
       </form>
-      <button
-        type="submit"
-        form="add-package-form"
-        // onClick={() => newPackage()}
-      >
-        Track This Package
-      </button>
     </main>
   );
 }

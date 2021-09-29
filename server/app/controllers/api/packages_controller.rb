@@ -5,6 +5,10 @@ class Api::PackagesController < ApplicationController
     render json: @package
   end
 
+  def destroy
+    @package.destroy
+  end
+
   private
 
   def package_params
