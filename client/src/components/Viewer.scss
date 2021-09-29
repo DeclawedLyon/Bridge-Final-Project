@@ -3,10 +3,11 @@
 
 .viewer {
   background-color: $component-background;
-  border-radius: $border-radius;
-  border-radius: 5px;
+  border-radius: 20px;
   height: 40vh;
-  margin: 1.5em;
+  margin-top: 5em;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
   box-shadow: $box-shadow;
 }
 

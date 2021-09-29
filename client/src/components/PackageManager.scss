@@ -2,9 +2,15 @@
 @import './Styles.scss';
 
 .package-manager {
-  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 1.5em;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
-  background-color: $component-background;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }

@@ -1,2 +1,0 @@
-class TrackingInstancesController < ApplicationController
-end

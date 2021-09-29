@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
+import "./App.scss";
 import Viewer from "./components/Viewer";
 import Counters from "./components/Counters";
 import PackageManager from "./components/PackageManager";
 import TrackedPackage from "./components/tracked_package";
+import Navbar from "./components/Navbar";
 import useApplicationData from "./helpers/useApplicationData";
 
 export default function App(props) {
@@ -40,21 +41,24 @@ export default function App(props) {
 
   return (
     <div className="App">
-      <section className="viewer-container">
-        <h1>{state.currentUser}</h1>
-        <h1>{state.currentCourier}</h1>
-        <PackageManager />
-        <Viewer
-          description={state.thisPackage ? state.thisPackage.description : ""}
-        />
-        <button onClick={() => insertDescription()}>Hello</button>
-        <Counters />
-      </section>
+      <Navbar />
+      <div className="App-main-body">
+        <section className="viewer-container">
+          <h1>{state.currentUser}</h1>
+          <h1>{state.currentCourier}</h1>
+          <PackageManager />
+          <Viewer
+            description={state.thisPackage ? state.thisPackage.description : ""}
+          />
+          <button onClick={() => insertDescription()}>Hello</button>
+          <Counters />
+        </section>
 
-      <section className="packages-container">
-        <h1>I'm the packages container!</h1>
-        {mappedPackages}
-      </section>
+        <section className="packages-container">
+          <h1>I'm the packages container!</h1>
+          {mappedPackages}
+        </section>
+      </div>
     </div>
   );
 }

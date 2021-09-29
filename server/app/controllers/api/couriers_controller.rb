@@ -1,7 +1,7 @@
 class Api::CouriersController < ApplicationController
   
   def index
-  @courier = Courier.find_by(params[:id])
+    @courier = Courier.find_by(params[:id])
   end
 
   def show
