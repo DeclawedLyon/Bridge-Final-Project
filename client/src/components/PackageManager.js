@@ -14,7 +14,7 @@ export default function PackageManager() {
  
   
   const fetchData = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     //sending the tracking number to a custom route with trknum as parameter
     axios
       .get(`/api/getpackage?tracking_number=${state.trkNumSearch}`) 
@@ -29,16 +29,18 @@ export default function PackageManager() {
       })
   }
 
-  // const newPackage = (event) => {
-  //   axios
-  //     .post(`/api/packages?tracking_number=${trkNumNew}`) 
-  //     .then((response) => {
-  //       console.log(response)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
+  const newPackage = (event) => {
+    event.preventDefault();
+
+    axios
+      .post(`/packages/add_item?tracking_number=${state.trkNumNew}`) 
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const handleChange = function(event) {
     setState({
@@ -66,7 +68,7 @@ export default function PackageManager() {
       </button>
       <div>HERE IS THE PACKAGE:{state.trkNumSearch}{state.description}</div>
 
-      <form id="add-package-form">
+      <form id="add-package-form" onSubmit={newPackage}>
       <input
           type="text"
           placeholder="Enter a new tracking number +"
@@ -80,7 +82,6 @@ export default function PackageManager() {
       <button 
         type="submit" 
         form="add-package-form" 
-        // onClick={() => newPackage()}
         >Track This Package
       </button>
     </main>

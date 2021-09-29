@@ -5,7 +5,6 @@ export default function Viewer(props) {
   console.log(props)
  return (
   <main className="viewer">
-    <p>I'm the viewer component!</p>
     <div className="description">
       <h3>tracking number:</h3>
       <p>{props.package.tracking_number}</p>
