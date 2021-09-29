@@ -10,21 +10,6 @@ import useApplicationData from "./helpers/useApplicationData"
 
 export default function App(props) {
 
-  useEffect(() => {
-    Promise.all([
-      axios.get("/packages"),
-      axios.get(`/api/users/${state.currentUser}`),
-      axios.get(`/api/couriers/${state.currentCourier}`)
-    ]).then((response) => {
-      setState({
-        packages: response[0].data,
-        currentUser: response[1].data.user.id,
-        currentUserObj: response[1].data,
-        currentCourier: response[2].data.courier.id,
-        currentCourierObj: response[2].data
-      })
-    });
-  }, [state.currentUser, state.currentCourier])
   const {state, deletePackage, selectedPackage} = useApplicationData()
 
   console.log(state)
@@ -55,6 +40,8 @@ export default function App(props) {
 
   return (
     <div className="App">
+      <Navbar />
+    <div className="App-main-body">
       <section className="viewer-container">
         <h1>{state.currentUser}</h1>
         <h1>{state.currentCourier}</h1>
@@ -66,22 +53,11 @@ export default function App(props) {
         <Counters />
       </section>
 
-      <Navbar />
-
-      <div className="App-main-body">
-        <section className="viewer-container">
-          <h1>{state.currentUser}</h1>
-          <h1>{state.currentCourier}</h1>
-          <PackageManager />
-          <Viewer />
-          <Counters />
-        </section>
-
-        <section className="packages-container">
-          <h1>I'm the packages container!</h1>
-          {mappedPackages}
-        </section>
-      </div>
+      <section className="packages-container">
+        <h1>I'm the packages container!</h1>
+        {mappedPackages}
+      </section>
+    </div>
 
     </div>
   );
