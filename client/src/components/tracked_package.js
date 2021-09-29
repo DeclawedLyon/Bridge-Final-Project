@@ -9,10 +9,14 @@ export default function TrackedPackage(props) {
     "tracked_package--delayed": props.delayed,
     "tracked_package--en_route": props.enRoute
   })
+
   
   return (
     <div className={packageClass}>
-      <span className="nickname">Nickname:{props.nickname}</span>
+      <div className="package_header">
+        <span className="nickname">Nickname:{props.nickname}</span>
+        <i onClick={() => props.onDelete(props.id)} className="fas fa-times-circle"></i>
+      </div>
       <div className="shipping_details">
         <span className="sender">Sent From:{props.sender}</span>
         <span className="recipient">Sent To:{props.recipient}</span>
@@ -21,6 +25,7 @@ export default function TrackedPackage(props) {
         <span className="courier_logo">{props.logo}</span>
         <span className="status_message">Status:{props.statusMessage}</span>
       </div>
+      <button onClick={() => props.onSelect()} />
     </div>
   )
 }
