@@ -1,5 +1,5 @@
 import React from "react";
-import './PackageManager.scss';
+import "./PackageManager.scss";
 import { useState } from "react";
 import axios from "axios";
 
@@ -9,29 +9,28 @@ export default function PackageManager() {
   const [state, setState] = useState({
     trkNumNew: "",
     trkNumSearch: "",
-    selectedPackage: {}
+    selectedPackage: {},
   });
- 
-  
+
   const fetchData = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     //sending the tracking number to a custom route with trknum as parameter
     axios
-      .get(`/api/getpackage?tracking_number=${state.trkNumSearch}`) 
+      .get(`/api/getpackage?tracking_number=${state.trkNumSearch}`)
       .then((response) => {
         // console.log(response.data[0])
         setState({
-          selectedPackage: {}
-        })
+          selectedPackage: response.data[0],
+        });
         // console.log(state.selectedPackage);
-        let frm = document.getElementById('search-form')
+        let frm = document.getElementById("search-form");
         frm.reset();
-      })
-  }
+      });
+  };
 
   // const newPackage = (event) => {
   //   axios
-  //     .post(`/api/packages?tracking_number=${trkNumNew}`) 
+  //     .post(`/api/packages?tracking_number=${trkNumNew}`)
   //     .then((response) => {
   //       console.log(response)
   //     })
@@ -40,51 +39,51 @@ export default function PackageManager() {
   //     });
   // }
 
-  const handleChange = function(event) {
+  const handleChange = function (event) {
     setState({
       trkNumSearch: event.target.value,
-    })
-  }
+    });
+  };
 
   return (
     <main className="package-manager">
-
       <form id="search-form" autoComplete="off" onSubmit={fetchData}>
         <input
           type="text"
           placeholder="Search By Tracking Number"
           value={state.trkNumSearch}
           onChange={(event) => {
-            handleChange(event)}}
+            handleChange(event);
+          }}
         />
       </form>
-      <button 
-        type="submit" 
-        form="search-form" 
-      >
-          Search
+      <button type="submit" form="search-form">
+        Search
       </button>
-      <div>HERE IS THE PACKAGE:{state.trkNumSearch}{state.description}</div>
+      <div>
+        HERE IS THE PACKAGE:{state.trkNumSearch}
+        {state.description}
+      </div>
 
       <form id="add-package-form">
-      <input
+        <input
           type="text"
           placeholder="Enter a new tracking number +"
           value={state.trkNumNew}
-          onChange={event => {
+          onChange={(event) => {
             setState({
               trkNumNew: event.target.value,
-          })}}
+            });
+          }}
         />
       </form>
-      <button 
-        type="submit" 
-        form="add-package-form" 
+      <button
+        type="submit"
+        form="add-package-form"
         // onClick={() => newPackage()}
-        >Track This Package
+      >
+        Track This Package
       </button>
     </main>
   );
-};
-
-
+}
