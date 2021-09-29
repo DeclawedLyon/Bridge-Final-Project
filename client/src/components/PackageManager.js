@@ -1,18 +1,11 @@
 import React from "react";
 import "./PackageManager.scss";
-import { useState } from "react";
 import axios from "axios";
+import useApplicationData from "../helpers/useApplicationData";
 
 export default function PackageManager() {
   //if you add all of the column names to state you can access the whole package in the browser; the setup below (selectedPackage) is not working
-
-  const [state, setState] = useState({
-    trkNumNew: "",
-    trkNumSearch: "",
-    newNickname: "",
-    newDescription: "",
-    selectedPackage: {},
-  });
+  const { state, setState } = useApplicationData();
 
   const fetchData = (event) => {
     event.preventDefault();
@@ -21,7 +14,7 @@ export default function PackageManager() {
       .get(`/api/getpackage?tracking_number=${state.trkNumSearch}`)
       .then((response) => {
         setState({
-          selectedPackage: response.data[0],
+          thisPackage: response.data[0],
         });
         // console.log(state.selectedPackage);
         let frm = document.getElementById("search-form");

@@ -9,6 +9,10 @@ export default function useApplicationData() {
     currentUserObj: {},
     currentCourier: 1,
     currentCourierObj: {},
+    trkNumNew: "",
+    trkNumSearch: "",
+    newNickname: "",
+    newDescription: "",
   });
 
   useEffect(() => {
