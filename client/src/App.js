@@ -7,8 +7,15 @@ import Navbar from "./components/Navbar";
 import useApplicationData from "./helpers/useApplicationData";
 
 export default function App(props) {
-  const { state, setState, deletePackage, selectedPackage } =
-    useApplicationData();
+  const {
+    state,
+    setState,
+    deletePackage,
+    selectedPackage,
+    activeCount,
+    delayedCount,
+    outForDeliveryCount,
+  } = useApplicationData();
 
   const selectPackage = (packageId) => {
     let packageIndex = packageId - 1;
@@ -56,7 +63,11 @@ export default function App(props) {
           <PackageManager />
           <Viewer package={state.thisPackage} />
           <button onClick={() => insertDescription()}>Hello</button>
-          <Counters />
+          <Counters
+            active={activeCount}
+            delayed={delayedCount()}
+            out={outForDeliveryCount()}
+          />
         </section>
 
         <section className="packages-container">
