@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "/packages", to: 'packages#index'
   delete '/removepackage/:id', to: 'packages#destroy'
   
-  resource :packages, only: [:show] do 
+  resource :packages do 
     post  :add_item
     post  :remove_item
   end
