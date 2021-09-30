@@ -61,6 +61,7 @@ export default function PackageManager(props) {
           id="search-form-value"
           type="text"
           placeholder="Search By Tracking Number"
+          onClick={() => {document.getElementById("trkNum-error").style.display = "none"}}
           value={trkNum}
           onChange={(event) => {trkNum = event.target.value}}
         />
