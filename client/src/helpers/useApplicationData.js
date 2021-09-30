@@ -93,7 +93,7 @@ export default function useApplicationData() {
     console.log(id);
 
     return axios
-      .delete(`api/removepackage/${id}`)
+      .delete(`/api/removepackage/${id}`)
       .then(() => {
         const packages = {
           ...(state.packages[state.packageId] = null),
