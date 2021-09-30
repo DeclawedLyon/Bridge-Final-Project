@@ -10,7 +10,6 @@ export default function App(props) {
   const {
     state,
     setState,
-    deletePackage,
     selectPackage,
     activeCount,
     delayedCount,
@@ -36,17 +35,11 @@ export default function App(props) {
         delivered={mappedPackage.last_known_status === "DE" ? true : false}
         delayed={mappedPackage.last_known_status === "EX" ? true : false}
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
-        onDelete={deletePackage}
+        // onDelete={deletePackage}
         selectPackage={selectPackage}
       />
     );
   });
-
-  const insertDescription = () => {
-    setState((prev) => ({ ...prev, thisPackage: "Cool words here:" }));
-  };
-
-  // console.log("The current app state is:", state.thisPackage);
 
   return (
     <div className="App">
@@ -59,7 +52,6 @@ export default function App(props) {
           <Viewer 
           package={state.thisPackage} 
           />
-          <button onClick={() => insertDescription()}>Hello</button>
           <Counters
             active={activeCount}
             delayed={delayedCount()}
@@ -68,7 +60,6 @@ export default function App(props) {
         </section>
 
         <section className="packages-container">
-          <h1>I'm the packages container!</h1>
           {mappedPackages}
         </section>
       </div>

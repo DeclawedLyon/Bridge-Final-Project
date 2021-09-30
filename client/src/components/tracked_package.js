@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import "./tracked_package.css"
+import useApplicationData from "../helpers/useApplicationData";
 
 export default function TrackedPackage(props) {
   const packageClass = classnames("tracked_package", {
@@ -9,13 +10,14 @@ export default function TrackedPackage(props) {
     "tracked_package--delayed": props.delayed,
     "tracked_package--en_route": props.enRoute
   })
+  const { deletePackage } = useApplicationData()
   // console.log(props)
   
   return (
     <div className={packageClass} onClick={() => props.selectPackage(props.id)}>
       <div className="package_header">
         <span className="nickname">Nickname:{props.nickname}</span>
-        <i onClick={() => props.onDelete(props.id)} className="fas fa-times-circle"></i>
+        <i onClick={() => deletePackage(props.id)} className="fas fa-times-circle"></i>
       </div>
       <div className="shipping_details">
         <span className="sender">Sent From:{props.sender}</span>

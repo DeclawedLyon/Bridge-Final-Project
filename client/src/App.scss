@@ -22,7 +22,10 @@
   flex-direction: column;
   min-width: 65vw;
   min-height: 95vh;
+  max-height: 100vh;
   background-color:rgb(195, 205, 213);
+  overflow: auto;
+  // overflow: scroll;
 }
 
 .tracked_package {

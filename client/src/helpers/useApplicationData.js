@@ -28,16 +28,12 @@ export default function useApplicationData() {
         currentCourierObj: response[2].data,
       }));
     });
-  }, [state.currentUser, state.currentCourier]);
+  }, [state.currentUser, state.currentCourier, state.packages]);
 
   const searchByTrackingNum = async (event) => {
     event.preventDefault();
     let trkNum = document.getElementById("search-form-value").value;
-    // console.log(trkNum);
-    
-    // console.log("test");
-    //sending the tracking number to a custom route with trknum as parameter
-    // useEffect(() => {
+
       const data = await axios
         .get(`/api/getpackage?tracking_number=${trkNum}`)
         .then((response) => {
@@ -51,7 +47,6 @@ export default function useApplicationData() {
       
       let frm = document.getElementById("search-form");
       frm.reset();
-    // }, [])
   };
 
   const deletePackage = (id) => {
