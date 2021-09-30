@@ -36,6 +36,9 @@ export default function PackageManager(props) {
     document.getElementById("add-button").style.display = "block";
   };
 
+  let trkNum;
+  let nickname;
+
   const resetState = function () {
     setLocalState((prev) => ({
       ...prev,
@@ -51,14 +54,14 @@ export default function PackageManager(props) {
     document.getElementById("add-package-form").style.display = "block";
   };
 
-  let trkNum;
 
 
   return (
     <main className="package-manager">
-      <form id="search-form" autoComplete="off" onSubmit={props.searchByTrackingNum}>
+
+      <form id="trkNum-search-form" autoComplete="off" onSubmit={props.searchByTrackingNum}>
         <input
-          id="search-form-value"
+          id="trkNum-search-form-value"
           type="text"
           placeholder="Search By Tracking Number"
           onClick={() => {document.getElementById("trkNum-error").style.display = "none"}}
@@ -66,11 +69,22 @@ export default function PackageManager(props) {
           onChange={(event) => {trkNum = event.target.value}}
         />
       </form>
-      <button type="submit" form="search-form">
+      {/* <button type="submit" form="search-form">
         Search
-      </button>
+      </button> */}
 
-      <div id="trkNum-error">No packages found with that tracking number.</div>
+      <form id="nickname-search-form" autoComplete="off" onSubmit={props.searchByNickname}>
+        <input
+          id="nickname-search-form-value"
+          type="text"
+          placeholder="Search By Nickname"
+          onClick={() => {document.getElementById("trkNum-error").style.display = "none"}}
+          value={nickname}
+          onChange={(event) => {nickname = event.target.value}}
+        />
+      </form>
+
+      <div id="trkNum-error">No packages found.</div>
 
       <button id="add-button" onClick={() => showForm()}>
         Add a Package +

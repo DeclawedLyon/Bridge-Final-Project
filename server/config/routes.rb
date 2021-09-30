@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     # routes to send you to packages controller
     get '/packages', to: 'packages#index'
+    get '/getpackagenickname', to: 'packages#get_pkg_by_nickname'
     get '/getpackage', to: 'packages#get_pkg_by_trkNum'
     get '/packages-info', to: 'packages#show'
     post '/packages/add_item', to: 'packages#add_item'
