@@ -18,8 +18,7 @@ export default function App(props) {
     searchByTrackingNum,
   } = useApplicationData();
 
-
-  const mappedPackages = state.packages.map((mappedPackage) => {
+  const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
     return (
       <TrackedPackage
         key={`package-${mappedPackage.id}`}
@@ -53,12 +52,8 @@ export default function App(props) {
       <Navbar />
       <div className="App-main-body">
         <section className="viewer-container">
-          <PackageManager 
-            searchByTrackingNum={searchByTrackingNum}
-          />
-          <Viewer 
-          package={state.thisPackage} 
-          />
+          <PackageManager searchByTrackingNum={searchByTrackingNum} />
+          <Viewer package={state.thisPackage} />
           <button onClick={() => insertDescription()}>Hello</button>
           <Counters
             active={activeCount}
