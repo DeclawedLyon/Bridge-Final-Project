@@ -15,7 +15,7 @@ export default function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      axios.get("/packages"),
+      axios.get("/api/packages"),
       axios.get(`/api/users/${state.currentUser}`),
       axios.get(`/api/couriers/${state.currentCourier}`),
     ]).then((response) => {
@@ -60,7 +60,7 @@ export default function useApplicationData() {
     console.log(id);
 
     return axios
-      .delete(`/removepackage/${id}`)
+      .delete(`api/removepackage/${id}`)
       .then(() => {
         const packages = {
           ...(state.packages[state.packageId] = null),

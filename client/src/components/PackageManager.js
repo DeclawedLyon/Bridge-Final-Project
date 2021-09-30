@@ -19,7 +19,7 @@ export default function PackageManager(props) {
 
     axios
       .post(
-        `/packages/add_item?tracking_number=${localState.trkNumNew}&nickname=${localState.newNickname}&description=${localState.newDescription}`
+        `api/packages/add_item?tracking_number=${localState.trkNumNew}&nickname=${localState.newNickname}&description=${localState.newDescription}`
       )
       .then((response) => {
         console.log(response);
