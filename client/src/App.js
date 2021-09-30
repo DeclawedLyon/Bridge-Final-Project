@@ -16,8 +16,9 @@ export default function App(props) {
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
+    deliveryButton,
+    exceptionButton,
   } = useApplicationData();
-
 
   const mappedPackages = state.packages.map((mappedPackage) => {
     return (
@@ -42,24 +43,15 @@ export default function App(props) {
     );
   });
 
-  const insertDescription = () => {
-    setState((prev) => ({ ...prev, thisPackage: "Cool words here:" }));
-  };
-
-  // console.log("The current app state is:", state.thisPackage);
-
   return (
     <div className="App">
-      <Navbar />
+      <Navbar user={state.currentUser} />
       <div className="App-main-body">
         <section className="viewer-container">
-          <PackageManager 
-            searchByTrackingNum={searchByTrackingNum}
-          />
-          <Viewer 
-          package={state.thisPackage} 
-          />
-          <button onClick={() => insertDescription()}>Hello</button>
+          <button onClick={() => deliveryButton()}>Delivery</button>
+          <button onClick={() => exceptionButton()}>Exception</button>
+          <PackageManager searchByTrackingNum={searchByTrackingNum} />
+          <Viewer package={state.thisPackage} />
           <Counters
             active={activeCount}
             delayed={delayedCount()}

@@ -4,7 +4,7 @@ import axios from "axios";
 export default function useApplicationData() {
   const [state, setState] = useState({
     packages: [],
-    packageId: '',
+    packageId: "",
     thisPackage: {},
     currentUser: 1,
     currentUserObj: {},
@@ -34,28 +34,28 @@ export default function useApplicationData() {
     event.preventDefault();
     let trkNum = document.getElementById("search-form-value").value;
     // console.log(trkNum);
-    
+
     // console.log("test");
     //sending the tracking number to a custom route with trknum as parameter
     // useEffect(() => {
-      const data = await axios
-        .get(`/api/getpackage?tracking_number=${trkNum}`)
-        .then((response) => {
-          console.log("response1:", response);
-          return response.data[0]
-        })
-        setState((prev) => ({
-          ...prev,
-          thisPackage: data
-        }));
-      
-      let frm = document.getElementById("search-form");
-      frm.reset();
+    const data = await axios
+      .get(`/api/getpackage?tracking_number=${trkNum}`)
+      .then((response) => {
+        console.log("response1:", response);
+        return response.data[0];
+      });
+    setState((prev) => ({
+      ...prev,
+      thisPackage: data,
+    }));
+
+    let frm = document.getElementById("search-form");
+    frm.reset();
     // }, [])
   };
 
   const deletePackage = (id) => {
-    selectPackage(id)
+    selectPackage(id);
 
     console.log(id);
 
@@ -101,6 +101,12 @@ export default function useApplicationData() {
     }
     return out;
   };
+  const deliveryButton = () => (setState(packages[2].last_known_status === "DE")
+
+  const exceptionButton = (packages) =>
+    packages[3].last_known_status === "OF"
+      ? setState(packages[3].last_known_status === "DE")
+      : setState(packages[3].last_known_status === "OF");
 
   return {
     state,
@@ -111,5 +117,7 @@ export default function useApplicationData() {
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
+    deliveryButton,
+    exceptionButton,
   };
 }
