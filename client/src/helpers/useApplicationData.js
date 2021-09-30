@@ -42,6 +42,10 @@ export default function useApplicationData() {
         .get(`/api/getpackage?tracking_number=${trkNum}`)
         .then((response) => {
           console.log("response1:", response);
+          if (!response.data[0]) {
+            console.log("ERROR!")
+            return response;
+          }
           return response.data[0]
         })
         setState((prev) => ({
