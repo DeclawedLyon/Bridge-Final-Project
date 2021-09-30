@@ -44,6 +44,7 @@ export default function useApplicationData() {
           console.log("response1:", response);
           if (!response.data[0]) {
             console.log("ERROR!")
+            document.getElementById("trkNum-error").style.display = "block";
             return response;
           }
           return response.data[0]

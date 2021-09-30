@@ -69,6 +69,8 @@ export default function PackageManager(props) {
         Search
       </button>
 
+      <div id="trkNum-error">No packages found with that tracking number.</div>
+
       <button id="add-button" onClick={() => showForm()}>
         Add a Package +
       </button>
