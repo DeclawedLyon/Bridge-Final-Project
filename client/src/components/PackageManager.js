@@ -9,7 +9,6 @@ export default function PackageManager(props) {
     trkNumNew: "",
     newNickname: "",
     newDescription: "",
-    trkNumSearch: "",
   })
 
 
@@ -43,14 +42,6 @@ export default function PackageManager(props) {
       trkNumNew: "",
       newNickname: "",
       newDescription: "",
-      trkNumSearch: "",
-    }));
-  };
-
-  const handleChange = function (event) {
-    setLocalState((prev) => ({
-      ...prev,
-      trkNumSearch: event.target.value,
     }));
   };
 
@@ -60,16 +51,18 @@ export default function PackageManager(props) {
     document.getElementById("add-package-form").style.display = "block";
   };
 
+  let trkNum;
+
 
   return (
     <main className="package-manager">
       <form id="search-form" autoComplete="off" onSubmit={props.searchByTrackingNum}>
         <input
+          id="search-form-value"
           type="text"
           placeholder="Search By Tracking Number"
-          onChange={(event) => {
-            setLocalState((prev) => ({ ...prev, trkNumSearch: event.target.value }));
-          }}
+          value={trkNum}
+          onChange={(event) => {trkNum = event.target.value}}
         />
       </form>
       <button type="submit" form="search-form">

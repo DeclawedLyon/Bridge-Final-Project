@@ -32,11 +32,14 @@ export default function useApplicationData() {
 
   const searchByTrackingNum = async (event) => {
     event.preventDefault();
+    let trkNum = document.getElementById("search-form-value").value;
+    // console.log(trkNum);
+    
     // console.log("test");
     //sending the tracking number to a custom route with trknum as parameter
     // useEffect(() => {
       const data = await axios
-        .get(`/api/getpackage?tracking_number=${state.trkNumSearch}`)
+        .get(`/api/getpackage?tracking_number=${trkNum}`)
         .then((response) => {
           console.log("response1:", response);
           return response.data[0]
@@ -75,13 +78,6 @@ export default function useApplicationData() {
     }));
   };
 
-  const handleChange = function (event) {
-    setState((prev) => ({
-      ...prev,
-      trkNumSearch: event.target.value,
-    }));
-  };
-
   const activeCount = state.packages ? state.packages.length : 0;
 
   const delayedCount = () => {
@@ -115,6 +111,5 @@ export default function useApplicationData() {
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
-    handleChange
   };
 }

@@ -16,7 +16,6 @@ export default function App(props) {
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
-    handleChange
   } = useApplicationData();
 
 
@@ -55,8 +54,7 @@ export default function App(props) {
       <div className="App-main-body">
         <section className="viewer-container">
           <PackageManager 
-          searchByTrackingNum={searchByTrackingNum}
-          handleChange={handleChange}
+            searchByTrackingNum={searchByTrackingNum}
           />
           <Viewer 
           package={state.thisPackage} 
