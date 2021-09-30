@@ -19,8 +19,7 @@ export default function App(props) {
     searchByNickname
   } = useApplicationData();
 
-
-  const mappedPackages = state.packages.map((mappedPackage) => {
+  const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
     return (
       <TrackedPackage
         key={`package-${mappedPackage.id}`}
