@@ -11,19 +11,14 @@ export default function App(props) {
     state,
     setState,
     deletePackage,
-    selectedPackage,
+    selectPackage,
     activeCount,
     delayedCount,
     outForDeliveryCount,
+    searchByTrackingNum,
+    handleChange
   } = useApplicationData();
 
-  const selectPackage = (packageId) => {
-    let packageIndex = packageId - 1;
-    setState((prev) => ({
-      ...prev,
-      thisPackage: state.packages[packageIndex],
-    }));
-  };
 
   const mappedPackages = state.packages.map((mappedPackage) => {
     return (
@@ -43,7 +38,6 @@ export default function App(props) {
         delayed={mappedPackage.last_known_status === "EX" ? true : false}
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
         onDelete={deletePackage}
-        onSelect={selectedPackage}
         selectPackage={selectPackage}
       />
     );
@@ -53,17 +47,20 @@ export default function App(props) {
     setState((prev) => ({ ...prev, thisPackage: "Cool words here:" }));
   };
 
-  console.log("The current app state is:", state.thisPackage);
+  // console.log("The current app state is:", state.thisPackage);
 
   return (
     <div className="App">
       <Navbar />
       <div className="App-main-body">
         <section className="viewer-container">
-          <h1>{state.currentUser}</h1>
-          <h1>{state.currentCourier}</h1>
-          <PackageManager />
-          <Viewer package={state.thisPackage} />
+          <PackageManager 
+          searchByTrackingNum={searchByTrackingNum}
+          handleChange={handleChange}
+          />
+          <Viewer 
+          package={state.thisPackage} 
+          />
           <button onClick={() => insertDescription()}>Hello</button>
           <Counters
             active={activeCount}

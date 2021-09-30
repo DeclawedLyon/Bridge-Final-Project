@@ -25,7 +25,6 @@ export default function TrackedPackage(props) {
         <span className="courier_logo">{props.logo}</span>
         <span className="status_message">Status:{props.statusMessage}</span>
       </div>
-      <button onClick={() => props.onSelect()} />
     </div>
   )
 }

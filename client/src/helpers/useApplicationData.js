@@ -10,10 +10,7 @@ export default function useApplicationData() {
     currentUserObj: {},
     currentCourier: 1,
     currentCourierObj: {},
-    trkNumNew: "",
     trkNumSearch: "",
-    newNickname: "",
-    newDescription: "",
   });
 
   useEffect(() => {
@@ -32,6 +29,27 @@ export default function useApplicationData() {
       }));
     });
   }, [state.currentUser, state.currentCourier]);
+
+  const searchByTrackingNum = async (event) => {
+    event.preventDefault();
+    // console.log("test");
+    //sending the tracking number to a custom route with trknum as parameter
+    // useEffect(() => {
+      const data = await axios
+        .get(`/api/getpackage?tracking_number=${state.trkNumSearch}`)
+        .then((response) => {
+          console.log("response1:", response);
+          return response.data[0]
+        })
+        setState((prev) => ({
+          ...prev,
+          thisPackage: data
+        }));
+      
+      let frm = document.getElementById("search-form");
+      frm.reset();
+    // }, [])
+  };
 
   const deletePackage = (id) => {
     selectPackage(id)
@@ -53,7 +71,14 @@ export default function useApplicationData() {
     let packageIndex = packageId - 1;
     setState((prev) => ({
       ...prev,
-      packageId: state.packages[packageIndex],
+      thisPackage: state.packages[packageIndex],
+    }));
+  };
+
+  const handleChange = function (event) {
+    setState((prev) => ({
+      ...prev,
+      trkNumSearch: event.target.value,
     }));
   };
 
@@ -89,5 +114,7 @@ export default function useApplicationData() {
     activeCount,
     delayedCount,
     outForDeliveryCount,
+    searchByTrackingNum,
+    handleChange
   };
 }

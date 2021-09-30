@@ -1,41 +1,26 @@
 import React from "react";
 import "./PackageManager.scss";
 import axios from "axios";
-import useApplicationData from "../helpers/useApplicationData";
+import { useState } from "react";
 
-export default function PackageManager() {
+
+export default function PackageManager(props) {
+  const [ localState, setLocalState] = useState({
+    trkNumNew: "",
+    newNickname: "",
+    newDescription: "",
+    trkNumSearch: "",
+  })
+
+
   //if you add all of the column names to state you can access the whole package in the browser; the setup below (selectedPackage) is not working
-  const { state, setState } = useApplicationData();
-
-  const fetchData = (event) => {
-    event.preventDefault();
-    console.log("test");
-    //sending the tracking number to a custom route with trknum as parameter
-    axios
-      .get(`/api/getpackage?tracking_number=${state.trkNumSearch}`)
-      .then((response) => {
-        console.log("response1:", response);
-        const tempResponse = response.data[0];
-        return tempResponse;
-      })
-      .then((tempResponse) => {
-        console.log("response2:", tempResponse);
-        setState((prev) => ({
-          ...prev,
-          thisPackage: tempResponse,
-        }));
-      });
-    console.log("this package *****:", state.thisPackage);
-    let frm = document.getElementById("search-form");
-    frm.reset();
-  };
 
   const newPackage = (event) => {
     event.preventDefault();
 
     axios
       .post(
-        `/packages/add_item?tracking_number=${state.trkNumNew}&nickname=${state.newNickname}&description=${state.newDescription}`
+        `/packages/add_item?tracking_number=${localState.trkNumNew}&nickname=${localState.newNickname}&description=${localState.newDescription}`
       )
       .then((response) => {
         console.log(response);
@@ -53,16 +38,17 @@ export default function PackageManager() {
   };
 
   const resetState = function () {
-    setState((prev) => ({
+    setLocalState((prev) => ({
       ...prev,
       trkNumNew: "",
       newNickname: "",
       newDescription: "",
+      trkNumSearch: "",
     }));
   };
 
   const handleChange = function (event) {
-    setState((prev) => ({
+    setLocalState((prev) => ({
       ...prev,
       trkNumSearch: event.target.value,
     }));
@@ -74,15 +60,15 @@ export default function PackageManager() {
     document.getElementById("add-package-form").style.display = "block";
   };
 
+
   return (
     <main className="package-manager">
-      <form id="search-form" autoComplete="off" onSubmit={fetchData}>
+      <form id="search-form" autoComplete="off" onSubmit={props.searchByTrackingNum}>
         <input
           type="text"
           placeholder="Search By Tracking Number"
-          value={state.trkNumSearch}
           onChange={(event) => {
-            handleChange(event);
+            setLocalState((prev) => ({ ...prev, trkNumSearch: event.target.value }));
           }}
         />
       </form>
@@ -98,25 +84,25 @@ export default function PackageManager() {
         <input
           type="text"
           placeholder="Enter a new tracking number +"
-          value={state.trkNumNew}
+          value={localState.trkNumNew}
           onChange={(event) => {
-            setState((prev) => ({ ...prev, trkNumNew: event.target.value }));
+            setLocalState((prev) => ({ ...prev, trkNumNew: event.target.value }));
           }}
         />
         <input
           type="text"
           placeholder="Optional: Enter a Nickname"
-          value={state.newNickname}
+          value={localState.newNickname}
           onChange={(event) => {
-            setState((prev) => ({ ...prev, newNickname: event.target.value }));
+            setLocalState((prev) => ({ ...prev, newNickname: event.target.value }));
           }}
         />
         <input
           type="text"
           placeholder="Optional: Enter a Description"
-          value={state.newDescription}
+          value={localState.newDescription}
           onChange={(event) => {
-            setState((prev) => ({
+            setLocalState((prev) => ({
               ...prev,
               newDescription: event.target.value,
             }));
