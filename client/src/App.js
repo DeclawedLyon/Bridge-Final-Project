@@ -15,10 +15,10 @@ export default function App(props) {
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
+    searchByNickname
   } = useApplicationData();
 
-
-  const mappedPackages = state.packages.map((mappedPackage) => {
+  const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
     return (
       <TrackedPackage
         key={`package-${mappedPackage.id}`}
@@ -48,6 +48,7 @@ export default function App(props) {
         <section className="viewer-container">
           <PackageManager 
             searchByTrackingNum={searchByTrackingNum}
+            searchByNickname={searchByNickname}
           />
           <Viewer 
           package={state.thisPackage} 

@@ -15,7 +15,7 @@ export default function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      axios.get("/packages"),
+      axios.get("/api/packages"),
       axios.get(`/api/users/${state.currentUser}`),
       axios.get(`/api/couriers/${state.currentCourier}`),
     ]).then((response) => {
@@ -32,12 +32,21 @@ export default function useApplicationData() {
 
   const searchByTrackingNum = async (event) => {
     event.preventDefault();
-    let trkNum = document.getElementById("search-form-value").value;
-
+    let trkNum = document.getElementById("trkNum-search-form-value").value;
+    // console.log(trkNum);
+    
+    // console.log("test");
+    //sending the tracking number to a custom route with trknum as parameter
+    // useEffect(() => {
       const data = await axios
         .get(`/api/getpackage?tracking_number=${trkNum}`)
         .then((response) => {
           console.log("response1:", response);
+          if (!response.data[0]) {
+            console.log("ERROR!")
+            document.getElementById("trkNum-error").style.display = "block";
+            return response;
+          }
           return response.data[0]
         })
         setState((prev) => ({
@@ -45,7 +54,36 @@ export default function useApplicationData() {
           thisPackage: data
         }));
       
-      let frm = document.getElementById("search-form");
+      let frm = document.getElementById("trkNum-search-form");
+      frm.reset();
+    // }, [])
+  };
+
+  const searchByNickname = async (event) => {
+    event.preventDefault();
+    let nickname = document.getElementById("nickname-search-form-value").value;
+    // console.log(trkNum);
+    
+    // console.log("test");
+    //sending the tracking number to a custom route with trknum as parameter
+    // useEffect(() => {
+      const data = await axios
+        .get(`/api/getpackagenickname?nickname=${nickname}`)
+        .then((response) => {
+          console.log("response1:", response);
+          if (!response.data[0]) {
+            console.log("ERROR!")
+            document.getElementById("trkNum-error").style.display = "block";
+            return response;
+          }
+          return response.data[0]
+        })
+        setState((prev) => ({
+          ...prev,
+          thisPackage: data
+        }));
+      
+      let frm = document.getElementById("nickname-search-form");
       frm.reset();
   };
 
@@ -55,7 +93,7 @@ export default function useApplicationData() {
     console.log(id);
 
     return axios
-      .delete(`/removepackage/${id}`)
+      .delete(`api/removepackage/${id}`)
       .then(() => {
         const packages = {
           ...(state.packages[state.packageId] = null),
@@ -106,5 +144,6 @@ export default function useApplicationData() {
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
+    searchByNickname
   };
 }
