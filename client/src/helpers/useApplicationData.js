@@ -28,7 +28,7 @@ export default function useApplicationData() {
         currentCourierObj: response[2].data,
       }));
     });
-  }, [state.currentUser, state.currentCourier, state.packages]);
+  }, [state.currentUser, state.currentCourier]);
 
   const searchByTrackingNum = async (event) => {
     event.preventDefault();
@@ -88,19 +88,19 @@ export default function useApplicationData() {
   };
 
   const deletePackage = (id) => {
-    selectPackage(id)
+    // selectPackage(id)
 
-    console.log(id);
+    // console.log(id);
 
-    return axios
-      .delete(`/api/removepackage/${id}`)
-      .then(() => {
-        const packages = {
-          ...(state.packages[state.packageId] = null),
-        };
-        setState((prev) => ({ ...prev, packages }));
-      })
-      .catch((e) => console.log(e));
+    // return axios
+    //   .delete(`/api/removepackage/${id}`)
+    //   .then(() => {
+    //     const packages = {
+    //       ...(state.packages[state.packageId] = null),
+    //     };
+    //     setState((prev) => ({ ...prev, packages }));
+    //   })
+    //   .catch((e) => console.log(e));
   };
 
   const selectPackage = (packageId) => {
