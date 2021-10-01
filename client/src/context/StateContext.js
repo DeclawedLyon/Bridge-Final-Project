@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 export const stateContext = createContext();
@@ -40,15 +40,10 @@ export default function StateProvider(props) {
   const searchByTrackingNum = async (event) => {
     event.preventDefault();
     let trkNum = document.getElementById("trkNum-search-form-value").value;
-    // console.log(trkNum);
 
-    // console.log("test");
-    //sending the tracking number to a custom route with trknum as parameter
-    // useEffect(() => {
     const data = await axios
       .get(`/api/getpackage?tracking_number=${trkNum}`)
       .then((response) => {
-        console.log("response1:", response);
         if (!response.data[0]) {
           console.log("ERROR!");
           document.getElementById("trkNum-error").style.display = "block";
@@ -63,17 +58,12 @@ export default function StateProvider(props) {
 
     let frm = document.getElementById("trkNum-search-form");
     frm.reset();
-    // }, [])
   };
 
   const searchByNickname = async (event) => {
     event.preventDefault();
     let nickname = document.getElementById("nickname-search-form-value").value;
-    // console.log(trkNum);
 
-    // console.log("test");
-    //sending the tracking number to a custom route with trknum as parameter
-    // useEffect(() => {
     const data = await axios
       .get(`/api/getpackagenickname?nickname=${nickname}`)
       .then((response) => {
@@ -110,6 +100,7 @@ export default function StateProvider(props) {
 
   const selectPackage = (packageId) => {
     let packageIndex = packageId - 1;
+
     setState((prev) => ({
       ...prev,
       thisPackage: state.packages[packageIndex],
@@ -149,7 +140,7 @@ export default function StateProvider(props) {
     // currentCourierObj,
     // trkNumSearch,
     // thisPackage,
-    deletePackage,
+    // deletePackage,
     selectPackage,
     activeCount,
     delayedCount,
@@ -164,6 +155,7 @@ export default function StateProvider(props) {
     </stateContext.Provider>
   );
 }
-export function StateConsumer() {
-  return stateContext;
-}
+
+// export function StateConsumer() {
+//   return stateContext
+// }

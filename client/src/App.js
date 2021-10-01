@@ -63,8 +63,6 @@ export default function App(props) {
       <Navbar />
       <div className="App-main-body">
         <section className="viewer-container">
-          <button onClick={() => deliveryButton()}>Delivery</button>
-          <button onClick={() => clearButton()}>Clear</button>
           <PackageManager
             searchByTrackingNum={searchByTrackingNum}
             searchByNickname={searchByNickname}
