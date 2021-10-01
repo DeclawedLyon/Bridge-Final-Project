@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     post '/packages/add_item', to: 'packages#add_item'
     put '/packages/deliver', to: 'packages#deliver'
     put '/packages/clear', to: 'packages#clear'
-    delete "/removepackage/:id", to: 'packages#destroy'
+    put "/packages/remove", to: 'packages#remove'
 
     # routes to send you to courier controller
     get '/couriers', to: 'couriers#show'

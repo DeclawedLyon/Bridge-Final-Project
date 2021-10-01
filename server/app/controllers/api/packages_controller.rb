@@ -51,6 +51,13 @@ class Api::PackagesController < ApplicationController
     @package.save
   end
 
+  def remove
+    @package = Package.find_by(id: params[:id])
+    @package.update(active: false)
+    @package.save
+  end
+
+
   # DELETE /packages/1
   def destroy
     @package = Package.where(id: params[:id])

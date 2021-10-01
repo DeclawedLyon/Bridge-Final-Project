@@ -81,6 +81,15 @@ export default function StateProvider(props) {
 
   const deletePackage = (id) => {
     selectPackage(id);
+
+    axios
+    .put(`api/packages/remove?id=${id}`)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
     
     const packages = state.packages.filter(item => item.id !== id);
 
