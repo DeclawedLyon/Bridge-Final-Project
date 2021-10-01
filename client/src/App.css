@@ -3,19 +3,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   min-height: 100vh;
-  overflow: hidden; }
-
-.viewer-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  flex-basis: 50vw;
-  background-color: #e0e7eb; }
-
-.packages-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 50vw;
-  min-height: 100vh;
-  background-color: #c3cdd5; 
+  overflow: hidden; 
 }
+
+

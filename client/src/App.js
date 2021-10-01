@@ -4,23 +4,34 @@ import Counters from "./components/Counters";
 import PackageManager from "./components/PackageManager";
 import TrackedPackage from "./components/tracked_package";
 import Navbar from "./components/Navbar";
-import useApplicationData from "./helpers/useApplicationData";
+// import useApplicationData from "./helpers/useApplicationData";
+import { useContext, useEffect } from "react";
+import { stateContext } from "./context/StateContext";
+import StateProvider from "./context/StateContext";
 
 export default function App(props) {
   const {
     state,
-    setState,
-    deletePackage,
+    // setState,
+    thisPackage,
     selectPackage,
     activeCount,
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
+<<<<<<< HEAD
     deliveryButton,
     exceptionButton,
   } = useApplicationData();
 
   const mappedPackages = state.packages.map((mappedPackage) => {
+=======
+    searchByNickname
+  } = useContext(stateContext);
+  if(!state){return null}
+  // useEffect(() => {console.log("packages:",state.packages)}, [state.packages])
+  const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
+>>>>>>> master
     return (
       <TrackedPackage
         key={`package-${mappedPackage.id}`}
@@ -37,13 +48,14 @@ export default function App(props) {
         delivered={mappedPackage.last_known_status === "DE" ? true : false}
         delayed={mappedPackage.last_known_status === "EX" ? true : false}
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
-        onDelete={deletePackage}
+        // onDelete={deletePackage}
         selectPackage={selectPackage}
       />
     );
   });
 
   return (
+<<<<<<< HEAD
     <div className="App">
       <Navbar user={state.currentUser} />
       <div className="App-main-body">
@@ -58,12 +70,32 @@ export default function App(props) {
             out={outForDeliveryCount()}
           />
         </section>
+=======
+    // <StateProvider>
+      <div className="App">
+        <Navbar />
+        <div className="App-main-body">
+          <section className="viewer-container">
+            <PackageManager
+              searchByTrackingNum={searchByTrackingNum}
+              searchByNickname={searchByNickname}
+            />
+            <Viewer
+              package={thisPackage}
+            />
+            <Counters
+              active={activeCount}
+              delayed={delayedCount()}
+              out={outForDeliveryCount()}
+            />
+          </section>
+>>>>>>> master
 
-        <section className="packages-container">
-          <h1>I'm the packages container!</h1>
-          {mappedPackages}
-        </section>
+          <section className="packages-container">
+            {mappedPackages}
+          </section>
+        </div>
       </div>
-    </div>
+    // </StateProvider>
   );
 }
