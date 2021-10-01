@@ -2,7 +2,7 @@ import axios from "axios";
 
 const deliveryButton = () => {
   axios
-    .put("api/packages/deliver?id=1")
+    .put("api/packages/deliver?id=2")
     .then((response) => {
       console.log(response);
     })
@@ -13,7 +13,7 @@ const deliveryButton = () => {
 
 const clearButton = () => {
   axios
-    .put("api/packages/clear?id=2")
+    .put("api/packages/clear?id=3")
     .then((response) => {
       console.log(response);
     })
