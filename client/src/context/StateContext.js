@@ -139,7 +139,12 @@ export default function StateProvider(props) {
   };
 
   const makePriority = (id) => {
-    selectPackage(id);
+    let packageIndex = id - 1;
+
+    setState((prev) => ({
+      ...prev,
+      thisPackage: state.priorityPackages[packageIndex],
+    }));
 
     axios
     .put(`api/packages/make_priority?id=${id}`)

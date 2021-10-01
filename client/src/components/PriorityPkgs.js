@@ -8,10 +8,10 @@ export default function PriorityPkgs(props) {
   const { selectPackage, deletePackage } = useContext(stateContext);
 
   const priorityPackageClass = classnames("priority_package", {
-    "tracked_package--delivered": props.delivered,
-    "tracked_package--late": props.late,
-    "tracked_package--delayed": props.delayed,
-    "tracked_package--en_route": props.enRoute
+    "priority_package--delivered": props.delivered,
+    "priority_package--late": props.late,
+    "priority_package--delayed": props.delayed,
+    "priority_package--en_route": props.enRoute
   })
 
   return (

@@ -49,7 +49,9 @@ class Api::PackagesController < ApplicationController
     to_st: '33 Ashway Crescent',
     to_city_province: 'Nanaimo, BC',
     to_post: 'V9F 7K7',
-    nickname: params[:nickname])
+    nickname: params[:nickname],
+    active: true,
+    is_priority: false)
   end
 
   def deliver
