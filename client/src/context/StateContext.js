@@ -45,7 +45,6 @@ export default function StateProvider(props) {
       const data = await axios
         .get(`/api/getpackage?tracking_number=${trkNum}`)
         .then((response) => {
-          console.log("response1:", response);
           if (!response.data[0]) {
             console.log("ERROR!")
             document.getElementById("trkNum-error").style.display = "block";
@@ -65,11 +64,7 @@ export default function StateProvider(props) {
   const searchByNickname = async (event) => {
     event.preventDefault();
     let nickname = document.getElementById("nickname-search-form-value").value;
-    // console.log(trkNum);
-    
-    // console.log("test");
-    //sending the tracking number to a custom route with trknum as parameter
-    // useEffect(() => {
+
       const data = await axios
         .get(`/api/getpackagenickname?nickname=${nickname}`)
         .then((response) => {
