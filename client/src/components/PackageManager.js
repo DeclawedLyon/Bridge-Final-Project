@@ -7,6 +7,7 @@ import { stateContext } from "../context/StateContext";
 
 
 export default function PackageManager(props) {
+  
   const [ localState, setLocalState] = useState({
     trkNumNew: "",
     newNickname: "",
@@ -15,9 +16,11 @@ export default function PackageManager(props) {
 
   const { searchByTrackingNum, searchByNickname } = useContext(stateContext);
 
+  //declare these variables to be used as values on text inputs
+  let trkNum;
+  let nickname;
 
-  //if you add all of the column names to state you can access the whole package in the browser; the setup below (selectedPackage) is not working
-
+  //functions for creating new package and clearing form
   const newPackage = (event) => {
     event.preventDefault();
 
@@ -40,9 +43,6 @@ export default function PackageManager(props) {
     document.getElementById("add-button").style.display = "block";
   };
 
-  let trkNum;
-  let nickname;
-
   const resetState = function () {
     setLocalState((prev) => ({
       ...prev,
@@ -52,6 +52,7 @@ export default function PackageManager(props) {
     }));
   };
 
+  //to pass to button to show create form
   const showForm = function () {
     document.getElementById("add-button").style.display = "none";
 
@@ -73,9 +74,6 @@ export default function PackageManager(props) {
           onChange={(event) => {trkNum = event.target.value}}
         />
       </form>
-      {/* <button type="submit" form="search-form">
-        Search
-      </button> */}
 
       <form id="nickname-search-form" autoComplete="off" onSubmit={searchByNickname}>
         <input
