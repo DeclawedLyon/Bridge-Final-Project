@@ -7,9 +7,9 @@ class Api::PackagesController < ApplicationController
   end
 
   def get_priority
-    @packages = Package.where("active = ? AND is_priority = ?", true, true)
+    @prioritypackages = Package.where("active = ? AND is_priority = ?", true, true)
 
-    render json: @packages
+    render json: @prioritypackages
   end
 
   def make_priority

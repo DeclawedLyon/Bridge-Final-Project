@@ -34,7 +34,7 @@ export default function StateProvider(props) {
         priorityPackages: response[3].data
       }));
     });
-  }, [state.thisPackage]);
+  }, []);
 
   const searchByTrackingNum = async (event) => {
     event.preventDefault();
@@ -139,27 +139,42 @@ export default function StateProvider(props) {
   };
 
   const makePriority = (id) => {
-    let packageIndex = id - 1;
+    // let packageIndex = id - 1;
+
+    let found = state.priorityPackages.find(function(pkg, index) {
+      if(pkg.id === id)
+        return true;
+    });
 
     setState((prev) => ({
       ...prev,
-      thisPackage: state.priorityPackages[packageIndex],
+      thisPackage: found,
     }));
 
     axios
     .put(`api/packages/make_priority?id=${id}`)
-    .then((response) => {
-      console.log(response);
-    })
     .catch((err) => {
       console.log(err);
     });
     
-    const priorityPackages = state.priorityPackages.filter(item => item.id !== id);
+    const priorityPackages = state.priorityPackages; 
 
     setState((prev) => ({
       ...prev,
-      priorityPackages: priorityPackages,
+      priorityPackages: [...priorityPackages, state.thisPackage]
+    }))
+
+  }
+
+  const selectPriorityPackage = (id) => {
+    let found = state.priorityPackages.find(function(pkg, index) {
+      if(pkg.id === id)
+        return true;
+    });
+
+    setState((prev) => ({
+      ...prev,
+      thisPackage: found,
     }));
   }
 
@@ -172,6 +187,7 @@ export default function StateProvider(props) {
     // currentCourierObj,
     // trkNumSearch,
     // thisPackage,
+    selectPriorityPackage,
     makePriority,
     deletePackage,
     selectPackage,
@@ -181,6 +197,7 @@ export default function StateProvider(props) {
     searchByTrackingNum,
     searchByNickname,
   };
+
 
   return (
     <stateContext.Provider value={providerData}>

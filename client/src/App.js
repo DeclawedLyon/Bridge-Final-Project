@@ -14,6 +14,7 @@ export default function App(props) {
   const {
     state,
     // setState,
+    selectPriorityPackage,
     thisPackage,
     selectPackage,
     activeCount,
@@ -68,7 +69,7 @@ export default function App(props) {
         delayed={priorityMappedPackage.last_known_status === "EX" ? true : false}
         enRoute={priorityMappedPackage.last_known_status === "OF" ? true : false}
         // onDelete={deletePackage}
-        selectPackage={selectPackage}
+        selectPriotityPackage={selectPriorityPackage}
       />
     );
   });

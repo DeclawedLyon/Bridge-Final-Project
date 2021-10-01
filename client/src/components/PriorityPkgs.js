@@ -5,7 +5,7 @@ import { stateContext } from "../context/StateContext";
 import "./PriorityPkgs.scss";
 
 export default function PriorityPkgs(props) {
-  const { selectPackage, deletePackage } = useContext(stateContext);
+  const { selectPriorityPackage, deletePackage } = useContext(stateContext);
 
   const priorityPackageClass = classnames("priority_package", {
     "priority_package--delivered": props.delivered,
@@ -16,7 +16,7 @@ export default function PriorityPkgs(props) {
 
   return (
     <main className="priority-container">
-    <div className={priorityPackageClass} onClick={() => selectPackage(props.id)}>
+    <div className={priorityPackageClass} onClick={() => selectPriorityPackage(props.id)}>
       <div className="package_header">
         <span className="nickname">Nickname:{props.nickname}</span>
         <i
