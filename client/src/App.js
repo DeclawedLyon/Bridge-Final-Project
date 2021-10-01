@@ -4,6 +4,7 @@ import Counters from "./components/Counters";
 import PackageManager from "./components/PackageManager";
 import TrackedPackage from "./components/tracked_package";
 import Navbar from "./components/Navbar";
+import { deliveryButton, clearButton } from "./helpers/statusFunctions";
 // import useApplicationData from "./helpers/useApplicationData";
 import { useContext } from "react";
 import { stateContext } from "./context/StateContext";
@@ -48,12 +49,22 @@ export default function App(props) {
     );
   });
 
+  // const deliveryButton = () => {
+  //   for (const pack in state.packages) {
+  //     if (pack.tracking_number === "1Z12345E02919807") {
+  //       setState(pack.last_known_status === "DE");
+  //     }
+  //   }
+  // };
+
   return (
     // <StateProvider>
     <div className="App">
       <Navbar />
       <div className="App-main-body">
         <section className="viewer-container">
+          <button onClick={() => deliveryButton()}>Delivery</button>
+          <button onClick={() => clearButton()}>Clear</button>
           <PackageManager
             searchByTrackingNum={searchByTrackingNum}
             searchByNickname={searchByNickname}

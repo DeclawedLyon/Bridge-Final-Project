@@ -134,12 +134,12 @@ export default function useApplicationData() {
     }
     return out;
   };
-  const deliveryButton = () => (setState(packages[2].last_known_status === "DE")
+  // const deliveryButton = () => (setState(packages[2].last_known_status === "DE")
 
-  const exceptionButton = (packages) =>
-    packages[3].last_known_status === "OF"
-      ? setState(packages[3].last_known_status === "DE")
-      : setState(packages[3].last_known_status === "OF");
+  // const exceptionButton = (packages) =>
+  //   packages[3].last_known_status === "OF"
+  //     ? setState(packages[3].last_known_status === "DE")
+  //     : setState(packages[3].last_known_status === "OF");
 
   return {
     state,
@@ -150,11 +150,6 @@ export default function useApplicationData() {
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
-<<<<<<< HEAD
-    deliveryButton,
-    exceptionButton,
-=======
     searchByNickname,
->>>>>>> master
   };
 }

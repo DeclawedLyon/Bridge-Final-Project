@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     get '/getpackage', to: 'packages#get_pkg_by_trkNum'
     get '/packages-info', to: 'packages#show'
     post '/packages/add_item', to: 'packages#add_item'
+    put '/packages/deliver', to: 'packages#deliver'
+    put '/packages/clear', to: 'packages#clear'
     delete "/removepackage/:id", to: 'packages#destroy'
 
     # routes to send you to courier controller
