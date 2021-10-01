@@ -1,7 +1,7 @@
 class Api::PackagesController < ApplicationController
 
   def index
-    @packages = Package.all
+    @packages = Package.where(active: true)
 
     render json: @packages
   end
@@ -60,7 +60,8 @@ class Api::PackagesController < ApplicationController
   private
 
   def package_params
-    params.permit(:tracking_number, :id, :nickname, :description)
+    params.permit(:tracking_number, :id, :nickname, :description, :active)
   end
   
 end
+

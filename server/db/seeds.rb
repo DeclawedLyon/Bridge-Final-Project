@@ -88,7 +88,7 @@ Package.create(
   to_city_province: 'Toronto, ON',
   to_post: 'Y3N N2I',
   nickname: "Gift For Matt",
-  active: true)
+  active: false)
 Package.create(
   tracking_number: '1Z12345E02919806',
   username: 'Geo789',
