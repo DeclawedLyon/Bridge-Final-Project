@@ -1,9 +1,15 @@
 class Api::PackagesController < ApplicationController
 
   def index
-    @packages = Package.where(active: true)
+    @packages = Package.where("active = ? AND is_priority = ?", true, false)
 
     render json: @packages
+  end
+
+  def get_priority
+    @prioritypackages = Package.where("active = ? AND is_priority = ?", true, true)
+
+    render json: @prioritypackages
   end
    
   def get_pkg_by_nickname 
