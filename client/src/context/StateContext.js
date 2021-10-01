@@ -7,7 +7,7 @@ export default function StateProvider(props) {
   const [state, setState] = useState({
     packages: [],
     packageId: '',
-    thisPackage: {"": ""},
+    thisPackage: {},
     currentUser: 1,
     currentUserObj: {},
     currentCourier: 1,
@@ -85,21 +85,21 @@ export default function StateProvider(props) {
       frm.reset();
   };
 
-  // const deletePackage = (id) => {
-  //   selectPackage(id)
+  const deletePackage = (id) => {
+    selectPackage(id)
 
     
 
-  //   return axios
-  //     .delete(`/api/removepackage/${id}`)
-  //     .then(() => {
-  //       const packages = {
-  //         ...(state.packages[state.packageId] = null),
-  //       };
-  //       setState((prev) => ({ ...prev, packages }));
-  //     })
-  //     .catch((e) => console.log(e));
-  // };
+    return axios
+      .delete(`/api/removepackage/${id}`)
+      .then(() => {
+        const packages = {
+          ...(state.packages[state.packageId] = null),
+        };
+        setState((prev) => ({ ...prev, packages }));
+      })
+      .catch((e) => console.log(e));
+  };
 
   const selectPackage = (packageId) => {
     let packageIndex = packageId - 1;
@@ -160,6 +160,7 @@ export default function StateProvider(props) {
   );
 
 } 
-export function StateConsumer() {
-  return stateContext
-}
+
+// export function StateConsumer() {
+//   return stateContext
+// }
