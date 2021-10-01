@@ -88,19 +88,17 @@ export default function useApplicationData() {
   };
 
   const deletePackage = (id) => {
-    selectPackage(id);
-
-    console.log(id);
-
-    return axios
-      .delete(`api/removepackage/${id}`)
-      .then(() => {
-        const packages = {
-          ...(state.packages[state.packageId] = null),
-        };
-        setState((prev) => ({ ...prev, packages }));
-      })
-      .catch((e) => console.log(e));
+    // selectPackage(id)
+    // console.log(id);
+    // return axios
+    //   .delete(`/api/removepackage/${id}`)
+    //   .then(() => {
+    //     const packages = {
+    //       ...(state.packages[state.packageId] = null),
+    //     };
+    //     setState((prev) => ({ ...prev, packages }));
+    //   })
+    //   .catch((e) => console.log(e));
   };
 
   const selectPackage = (packageId) => {

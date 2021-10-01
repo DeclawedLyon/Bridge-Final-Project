@@ -2,18 +2,25 @@ import React from "react";
 import "./PackageManager.scss";
 import axios from "axios";
 import { useState } from "react";
+import { useContext } from "react";
+import { stateContext } from "../context/StateContext";
 
 
 export default function PackageManager(props) {
+  
   const [ localState, setLocalState] = useState({
     trkNumNew: "",
     newNickname: "",
     newDescription: "",
   })
 
+  const { searchByTrackingNum, searchByNickname } = useContext(stateContext);
 
-  //if you add all of the column names to state you can access the whole package in the browser; the setup below (selectedPackage) is not working
+  //declare these variables to be used as values on text inputs
+  let trkNum;
+  let nickname;
 
+  //functions for creating new package and clearing form
   const newPackage = (event) => {
     event.preventDefault();
 
@@ -36,9 +43,6 @@ export default function PackageManager(props) {
     document.getElementById("add-button").style.display = "block";
   };
 
-  let trkNum;
-  let nickname;
-
   const resetState = function () {
     setLocalState((prev) => ({
       ...prev,
@@ -48,6 +52,7 @@ export default function PackageManager(props) {
     }));
   };
 
+  //to pass to button to show create form
   const showForm = function () {
     document.getElementById("add-button").style.display = "none";
 
@@ -59,7 +64,7 @@ export default function PackageManager(props) {
   return (
     <main className="package-manager">
 
-      <form id="trkNum-search-form" autoComplete="off" onSubmit={props.searchByTrackingNum}>
+      <form id="trkNum-search-form" autoComplete="off" onSubmit={searchByTrackingNum}>
         <input
           id="trkNum-search-form-value"
           type="text"
@@ -69,11 +74,8 @@ export default function PackageManager(props) {
           onChange={(event) => {trkNum = event.target.value}}
         />
       </form>
-      {/* <button type="submit" form="search-form">
-        Search
-      </button> */}
 
-      <form id="nickname-search-form" autoComplete="off" onSubmit={props.searchByNickname}>
+      <form id="nickname-search-form" autoComplete="off" onSubmit={searchByNickname}>
         <input
           id="nickname-search-form-value"
           type="text"
