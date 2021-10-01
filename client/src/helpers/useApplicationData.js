@@ -42,14 +42,11 @@ export default function useApplicationData() {
       .get(`/api/getpackage?tracking_number=${trkNum}`)
       .then((response) => {
         console.log("response1:", response);
-<<<<<<< HEAD
-=======
         if (!response.data[0]) {
           console.log("ERROR!");
           document.getElementById("trkNum-error").style.display = "block";
           return response;
         }
->>>>>>> master
         return response.data[0];
       });
     setState((prev) => ({
@@ -57,11 +54,7 @@ export default function useApplicationData() {
       thisPackage: data,
     }));
 
-<<<<<<< HEAD
-    let frm = document.getElementById("search-form");
-=======
     let frm = document.getElementById("trkNum-search-form");
->>>>>>> master
     frm.reset();
     // }, [])
   };
