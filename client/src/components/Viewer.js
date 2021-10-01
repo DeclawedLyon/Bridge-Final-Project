@@ -1,34 +1,27 @@
 import React from "react";
+import { useContext } from "react";
+import { stateContext } from "../context/StateContext";
 import "./Viewer.scss";
 
 export default function Viewer(props) {
-  // const {
-  //   state,
-  //   // setState,
-  //   thisPackage,
-  //   selectPackage,
-  //   activeCount,
-  //   delayedCount,
-  //   outForDeliveryCount,
-  //   searchByTrackingNum,
-  //   searchByNickname
-  // } = useContext(stateContext);
-  console.log("Viewer props are:", props);
+  const { state  } = useContext(stateContext);
+
+  console.log("This package is:", state.thisPackage );
   return (
     <main className="viewer">
       <div className="description">
         <h3>tracking number:</h3>
-        <p>{props.package ? props.package.tracking_number : ""}</p>
+        <p>{state.thisPackage ? state.thisPackage.tracking_number : ""}</p>
         <h3>Shipping Info:</h3>
         <h4>Shipping Address</h4>
         <p>
-          {props.package ? `${props.package.to_st}, ${props.package.to_city_province},${" "}
-          ${props.package.to_post}` : ""}
+          {state.thisPackage ? `${state.thisPackage.to_st}, ${state.thisPackage.to_city_province},${" "}
+          ${state.thisPackage.to_post}` : ""}
         </p>
         <h4>Courier</h4>
-        <p>{props.package ? props.package.courier : ""}</p>
+        <p>{state.thisPackage ? state.thisPackage.courier : ""}</p>
         <h3>Description:</h3>
-        <p>{props.package ? props.package.description : ""}</p>
+        <p>{state.thisPackage ? state.thisPackage.description : ""}</p>
       </div>
     </main>
   );

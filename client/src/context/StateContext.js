@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 export const stateContext = createContext();
@@ -7,7 +7,7 @@ export default function StateProvider(props) {
   const [state, setState] = useState({
     packages: [],
     packageId: '',
-    thisPackage: {},
+    thisPackage: {"": ""},
     currentUser: 1,
     currentUserObj: {},
     currentCourier: 1,
@@ -95,29 +95,33 @@ export default function StateProvider(props) {
       frm.reset();
   };
 
-  const deletePackage = (id) => {
-    selectPackage(id)
+  // const deletePackage = (id) => {
+  //   selectPackage(id)
 
     
 
-    return axios
-      .delete(`/api/removepackage/${id}`)
-      .then(() => {
-        const packages = {
-          ...(state.packages[state.packageId] = null),
-        };
-        setState((prev) => ({ ...prev, packages }));
-      })
-      .catch((e) => console.log(e));
-  };
+  //   return axios
+  //     .delete(`/api/removepackage/${id}`)
+  //     .then(() => {
+  //       const packages = {
+  //         ...(state.packages[state.packageId] = null),
+  //       };
+  //       setState((prev) => ({ ...prev, packages }));
+  //     })
+  //     .catch((e) => console.log(e));
+  // };
 
   const selectPackage = (packageId) => {
     let packageIndex = packageId - 1;
+    let currentPkg = state.packages[packageIndex];
+    console.log('in onclick', currentPkg)
+
     setState((prev) => ({
       ...prev,
-      thisPackage: state.packages[packageIndex],
+      thisPackage: currentPkg,
     }));
   };
+
 
   const activeCount = state.packages ? state.packages.length : 0;
 
@@ -152,7 +156,7 @@ export default function StateProvider(props) {
     // currentCourierObj,
     // trkNumSearch,
     // thisPackage,
-    deletePackage,
+    // deletePackage,
     selectPackage,
     activeCount,
     delayedCount,
