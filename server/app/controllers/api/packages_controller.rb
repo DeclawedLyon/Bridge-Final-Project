@@ -41,7 +41,7 @@ class Api::PackagesController < ApplicationController
 
   # DELETE /packages/1
   def destroy
-    # @package = Package.where(id: params[:id])
+    @package = Package.where(id: params[:id])
     @package.destroy
   end
 

@@ -4,7 +4,7 @@ import axios from "axios";
 export default function useApplicationData() {
   const [state, setState] = useState({
     packages: [],
-    packageId: '',
+    packageId: "",
     thisPackage: {},
     currentUser: 1,
     currentUserObj: {},
@@ -28,34 +28,34 @@ export default function useApplicationData() {
         currentCourierObj: response[2].data,
       }));
     });
-  }, [state.currentUser, state.currentCourier, state.packages]);
+  }, [state.currentUser, state.currentCourier]);
 
   const searchByTrackingNum = async (event) => {
     event.preventDefault();
     let trkNum = document.getElementById("trkNum-search-form-value").value;
     // console.log(trkNum);
-    
+
     // console.log("test");
     //sending the tracking number to a custom route with trknum as parameter
     // useEffect(() => {
-      const data = await axios
-        .get(`/api/getpackage?tracking_number=${trkNum}`)
-        .then((response) => {
-          console.log("response1:", response);
-          if (!response.data[0]) {
-            console.log("ERROR!")
-            document.getElementById("trkNum-error").style.display = "block";
-            return response;
-          }
-          return response.data[0]
-        })
-        setState((prev) => ({
-          ...prev,
-          thisPackage: data
-        }));
-      
-      let frm = document.getElementById("trkNum-search-form");
-      frm.reset();
+    const data = await axios
+      .get(`/api/getpackage?tracking_number=${trkNum}`)
+      .then((response) => {
+        console.log("response1:", response);
+        if (!response.data[0]) {
+          console.log("ERROR!");
+          document.getElementById("trkNum-error").style.display = "block";
+          return response;
+        }
+        return response.data[0];
+      });
+    setState((prev) => ({
+      ...prev,
+      thisPackage: data,
+    }));
+
+    let frm = document.getElementById("trkNum-search-form");
+    frm.reset();
     // }, [])
   };
 
@@ -63,32 +63,32 @@ export default function useApplicationData() {
     event.preventDefault();
     let nickname = document.getElementById("nickname-search-form-value").value;
     // console.log(trkNum);
-    
+
     // console.log("test");
     //sending the tracking number to a custom route with trknum as parameter
     // useEffect(() => {
-      const data = await axios
-        .get(`/api/getpackagenickname?nickname=${nickname}`)
-        .then((response) => {
-          console.log("response1:", response);
-          if (!response.data[0]) {
-            console.log("ERROR!")
-            document.getElementById("trkNum-error").style.display = "block";
-            return response;
-          }
-          return response.data[0]
-        })
-        setState((prev) => ({
-          ...prev,
-          thisPackage: data
-        }));
-      
-      let frm = document.getElementById("nickname-search-form");
-      frm.reset();
+    const data = await axios
+      .get(`/api/getpackagenickname?nickname=${nickname}`)
+      .then((response) => {
+        console.log("response1:", response);
+        if (!response.data[0]) {
+          console.log("ERROR!");
+          document.getElementById("trkNum-error").style.display = "block";
+          return response;
+        }
+        return response.data[0];
+      });
+    setState((prev) => ({
+      ...prev,
+      thisPackage: data,
+    }));
+
+    let frm = document.getElementById("nickname-search-form");
+    frm.reset();
   };
 
   const deletePackage = (id) => {
-    selectPackage(id)
+    selectPackage(id);
 
     console.log(id);
 
@@ -144,6 +144,6 @@ export default function useApplicationData() {
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
-    searchByNickname
+    searchByNickname,
   };
 }
