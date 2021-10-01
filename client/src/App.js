@@ -5,7 +5,6 @@ import PackageManager from "./components/PackageManager";
 import TrackedPackage from "./components/tracked_package";
 import Navbar from "./components/Navbar";
 import { deliveryButton, clearButton } from "./helpers/statusFunctions";
-// import useApplicationData from "./helpers/useApplicationData";
 import { useContext } from "react";
 import { stateContext } from "./context/StateContext";
 // import StateProvider from "./context/StateContext";
@@ -63,6 +62,8 @@ export default function App(props) {
       <Navbar />
       <div className="App-main-body">
         <section className="viewer-container">
+          <button onClick={() => deliveryButton()}>Delivery</button>
+          <button onClick={() => clearButton()}>Clear</button>
           <PackageManager
             searchByTrackingNum={searchByTrackingNum}
             searchByNickname={searchByNickname}
