@@ -4,20 +4,25 @@ import Counters from "./components/Counters";
 import PackageManager from "./components/PackageManager";
 import TrackedPackage from "./components/tracked_package";
 import Navbar from "./components/Navbar";
-import useApplicationData from "./helpers/useApplicationData";
+// import useApplicationData from "./helpers/useApplicationData";
+import { useContext, useEffect } from "react";
+import { stateContext } from "./context/StateContext";
+import StateProvider from "./context/StateContext";
 
 export default function App(props) {
   const {
     state,
-    setState,
+    // setState,
+    thisPackage,
     selectPackage,
     activeCount,
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
     searchByNickname
-  } = useApplicationData();
-
+  } = useContext(stateContext);
+  if(!state){return null}
+  // useEffect(() => {console.log("packages:",state.packages)}, [state.packages])
   const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
     return (
       <TrackedPackage
@@ -42,28 +47,30 @@ export default function App(props) {
   });
 
   return (
-    <div className="App">
-      <Navbar />
-      <div className="App-main-body">
-        <section className="viewer-container">
-          <PackageManager 
-            searchByTrackingNum={searchByTrackingNum}
-            searchByNickname={searchByNickname}
-          />
-          <Viewer 
-          package={state.thisPackage} 
-          />
-          <Counters
-            active={activeCount}
-            delayed={delayedCount()}
-            out={outForDeliveryCount()}
-          />
-        </section>
+    // <StateProvider>
+      <div className="App">
+        <Navbar />
+        <div className="App-main-body">
+          <section className="viewer-container">
+            <PackageManager
+              searchByTrackingNum={searchByTrackingNum}
+              searchByNickname={searchByNickname}
+            />
+            {/* <Viewer
+              package={thisPackage}
+            /> */}
+            <Counters
+              active={activeCount}
+              delayed={delayedCount()}
+              out={outForDeliveryCount()}
+            />
+          </section>
 
-        <section className="packages-container">
-          {mappedPackages}
-        </section>
+          <section className="packages-container">
+            {mappedPackages}
+          </section>
+        </div>
       </div>
-    </div>
+    // </StateProvider>
   );
 }

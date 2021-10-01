@@ -2,6 +2,17 @@ import React from "react";
 import "./Viewer.scss";
 
 export default function Viewer(props) {
+  // const {
+  //   state,
+  //   // setState,
+  //   thisPackage,
+  //   selectPackage,
+  //   activeCount,
+  //   delayedCount,
+  //   outForDeliveryCount,
+  //   searchByTrackingNum,
+  //   searchByNickname
+  // } = useContext(stateContext);
   console.log("Viewer props are:", props);
   return (
     <main className="viewer">
