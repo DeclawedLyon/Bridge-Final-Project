@@ -4,6 +4,7 @@ import Counters from "./components/Counters";
 import PackageManager from "./components/PackageManager";
 import TrackedPackage from "./components/tracked_package";
 import Navbar from "./components/Navbar";
+import PriorityPkgs from "./components/PriorityPkgs";
 import { deliveryButton, clearButton } from "./helpers/statusFunctions";
 import { useContext } from "react";
 import { stateContext } from "./context/StateContext";
@@ -76,7 +77,10 @@ export default function App(props) {
           />
         </section>
 
-        <section className="packages-container">{mappedPackages}</section>
+        <section className="packages-container">
+          <PriorityPkgs />
+          {mappedPackages}
+          </section>
       </div>
     </div>
     // </StateProvider>
