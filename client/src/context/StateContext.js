@@ -15,11 +15,6 @@ export default function StateProvider(props) {
     trkNumSearch: "",
   });
 
-  // const [ packages, setPackages ] = useState([]);
-  // const [ packageId, setPackageId ] = useState({
-    // packageId: '',
-  // });
-
   useEffect(() => {
     Promise.all([
       axios.get("/api/packages"),
@@ -35,7 +30,7 @@ export default function StateProvider(props) {
         currentCourierObj: response[2].data,
       }));
     });
-  }, []);
+  }, [state.thisPackage]);
 
 
   const searchByTrackingNum = async (event) => {
@@ -86,20 +81,16 @@ export default function StateProvider(props) {
   };
 
   const deletePackage = (id) => {
-    selectPackage(id)
-
+    selectPackage(id);
     
+    const packages = state.packages.filter(item => item.id !== id);
 
-    return axios
-      .delete(`/api/removepackage/${id}`)
-      .then(() => {
-        const packages = {
-          ...(state.packages[state.packageId] = null),
-        };
-        setState((prev) => ({ ...prev, packages }));
-      })
-      .catch((e) => console.log(e));
-  };
+    setState((prev) => ({
+      ...prev,
+      packages: packages,
+    }));
+    
+  }
 
   const selectPackage = (packageId) => {
     let packageIndex = packageId - 1;
@@ -108,6 +99,7 @@ export default function StateProvider(props) {
       ...prev,
       thisPackage: state.packages[packageIndex],
     }));
+
   };
 
 
@@ -144,7 +136,7 @@ export default function StateProvider(props) {
     // currentCourierObj,
     // trkNumSearch,
     // thisPackage,
-    // deletePackage,
+    deletePackage,
     selectPackage,
     activeCount,
     delayedCount,

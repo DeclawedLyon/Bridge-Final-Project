@@ -1,12 +1,11 @@
 import React from "react";
 import classnames from "classnames";
 import "./tracked_package.css"
-import useApplicationData from "../helpers/useApplicationData";
 import { useContext } from "react";
 import { stateContext } from "../context/StateContext";
 
 export default function TrackedPackage(props) {
-  const { selectPackage } = useContext(stateContext);
+  const { selectPackage, deletePackage } = useContext(stateContext);
 
   const packageClass = classnames("tracked_package", {
     "tracked_package--delivered": props.delivered,
@@ -14,8 +13,7 @@ export default function TrackedPackage(props) {
     "tracked_package--delayed": props.delayed,
     "tracked_package--en_route": props.enRoute
   })
-  const { deletePackage } = useApplicationData()
-  // console.log(props)
+  
   
   return (
     <div className={packageClass} onClick={() => selectPackage(props.id)}>
