@@ -19,9 +19,11 @@ export default function App(props) {
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
-    searchByNickname
+    searchByNickname,
   } = useContext(stateContext);
-  if(!state){return null}
+  if (!state) {
+    return null;
+  }
   // useEffect(() => {console.log("packages:",state.packages)}, [state.packages])
   const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
     return (
@@ -48,29 +50,25 @@ export default function App(props) {
 
   return (
     // <StateProvider>
-      <div className="App">
-        <Navbar />
-        <div className="App-main-body">
-          <section className="viewer-container">
-            <PackageManager
-              searchByTrackingNum={searchByTrackingNum}
-              searchByNickname={searchByNickname}
-            />
-            <Viewer
-              package={thisPackage}
-            />
-            <Counters
-              active={activeCount}
-              delayed={delayedCount()}
-              out={outForDeliveryCount()}
-            />
-          </section>
+    <div className="App">
+      <Navbar />
+      <div className="App-main-body">
+        <section className="viewer-container">
+          <PackageManager
+            searchByTrackingNum={searchByTrackingNum}
+            searchByNickname={searchByNickname}
+          />
+          <Viewer package={thisPackage} />
+          <Counters
+            active={activeCount}
+            delayed={delayedCount()}
+            out={outForDeliveryCount()}
+          />
+        </section>
 
-          <section className="packages-container">
-            {mappedPackages}
-          </section>
-        </div>
+        <section className="packages-container">{mappedPackages}</section>
       </div>
+    </div>
     // </StateProvider>
   );
 }
