@@ -41,11 +41,7 @@ export default function StateProvider(props) {
   const searchByTrackingNum = async (event) => {
     event.preventDefault();
     let trkNum = document.getElementById("trkNum-search-form-value").value;
-    // console.log(trkNum);
     
-    // console.log("test");
-    //sending the tracking number to a custom route with trknum as parameter
-    // useEffect(() => {
       const data = await axios
         .get(`/api/getpackage?tracking_number=${trkNum}`)
         .then((response) => {
@@ -64,7 +60,6 @@ export default function StateProvider(props) {
       
       let frm = document.getElementById("trkNum-search-form");
       frm.reset();
-    // }, [])
   };
 
   const searchByNickname = async (event) => {
@@ -113,12 +108,10 @@ export default function StateProvider(props) {
 
   const selectPackage = (packageId) => {
     let packageIndex = packageId - 1;
-    let currentPkg = state.packages[packageIndex];
-    console.log('in onclick', currentPkg)
 
     setState((prev) => ({
       ...prev,
-      thisPackage: currentPkg,
+      thisPackage: state.packages[packageIndex],
     }));
   };
 

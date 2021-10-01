@@ -3,10 +3,9 @@ import { useContext } from "react";
 import { stateContext } from "../context/StateContext";
 import "./Viewer.scss";
 
-export default function Viewer(props) {
+export default function Viewer() {
   const { state  } = useContext(stateContext);
 
-  console.log("This package is:", state.thisPackage );
   return (
     <main className="viewer">
       <div className="description">

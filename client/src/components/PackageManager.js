@@ -2,6 +2,8 @@ import React from "react";
 import "./PackageManager.scss";
 import axios from "axios";
 import { useState } from "react";
+import { useContext } from "react";
+import { stateContext } from "../context/StateContext";
 
 
 export default function PackageManager(props) {
@@ -10,6 +12,8 @@ export default function PackageManager(props) {
     newNickname: "",
     newDescription: "",
   })
+
+  const { searchByTrackingNum, searchByNickname } = useContext(stateContext);
 
 
   //if you add all of the column names to state you can access the whole package in the browser; the setup below (selectedPackage) is not working
@@ -59,7 +63,7 @@ export default function PackageManager(props) {
   return (
     <main className="package-manager">
 
-      <form id="trkNum-search-form" autoComplete="off" onSubmit={props.searchByTrackingNum}>
+      <form id="trkNum-search-form" autoComplete="off" onSubmit={searchByTrackingNum}>
         <input
           id="trkNum-search-form-value"
           type="text"
@@ -73,7 +77,7 @@ export default function PackageManager(props) {
         Search
       </button> */}
 
-      <form id="nickname-search-form" autoComplete="off" onSubmit={props.searchByNickname}>
+      <form id="nickname-search-form" autoComplete="off" onSubmit={searchByNickname}>
         <input
           id="nickname-search-form-value"
           type="text"
