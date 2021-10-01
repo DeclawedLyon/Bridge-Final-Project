@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { stateContext } from "../context/StateContext";
 
 export default function TrackedPackage(props) {
-  const { selectPackage, deletePackage } = useContext(stateContext);
+  const { selectPackage, deletePackage, makePriority } = useContext(stateContext);
 
   const packageClass = classnames("tracked_package", {
     "tracked_package--delivered": props.delivered,
@@ -22,6 +22,10 @@ export default function TrackedPackage(props) {
         <i
           onClick={() => deletePackage(props.id)}
           className="fas fa-times-circle"
+        ></i>
+        <i
+          onClick={() => makePriority(props.id)}
+          className="fas fa-plus-circle"
         ></i>
       </div>
       <div className="shipping_details">

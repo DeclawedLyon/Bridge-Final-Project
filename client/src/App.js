@@ -25,6 +25,7 @@ export default function App(props) {
   if (!state) {
     return null;
   }
+
   // useEffect(() => {console.log("packages:",state.packages)}, [state.packages])
   const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
     return (
@@ -43,6 +44,29 @@ export default function App(props) {
         delivered={mappedPackage.last_known_status === "DE" ? true : false}
         delayed={mappedPackage.last_known_status === "EX" ? true : false}
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
+        // onDelete={deletePackage}
+        selectPackage={selectPackage}
+      />
+    );
+  });
+
+  const priorityMappedPackages = [...state.priorityPackages].reverse().map((priorityMappedPackage) => {
+    return (
+      <PriorityPkgs
+        key={`package-${priorityMappedPackage.id}`}
+        id={priorityMappedPackage.id}
+        nickname={
+          priorityMappedPackage.nickname === "N/A"
+            ? priorityMappedPackage.tracking_number
+            : priorityMappedPackage.nickname
+        }
+        sender={priorityMappedPackage.sent_from}
+        recipient={priorityMappedPackage.sent_to}
+        logo={priorityMappedPackage.courier}
+        statusMessage={priorityMappedPackage.last_known_status}
+        delivered={priorityMappedPackage.last_known_status === "DE" ? true : false}
+        delayed={priorityMappedPackage.last_known_status === "EX" ? true : false}
+        enRoute={priorityMappedPackage.last_known_status === "OF" ? true : false}
         // onDelete={deletePackage}
         selectPackage={selectPackage}
       />
@@ -78,7 +102,7 @@ export default function App(props) {
         </section>
 
         <section className="packages-container">
-          <PriorityPkgs />
+          {priorityMappedPackages}
           {mappedPackages}
           </section>
       </div>

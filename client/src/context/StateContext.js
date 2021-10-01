@@ -6,6 +6,7 @@ export const stateContext = createContext();
 export default function StateProvider(props) {
   const [state, setState] = useState({
     packages: [],
+    priorityPackages: [],
     packageId: "",
     thisPackage: {},
     currentUser: 1,
@@ -20,7 +21,9 @@ export default function StateProvider(props) {
       axios.get("/api/packages"),
       axios.get(`/api/users/${state.currentUser}`),
       axios.get(`/api/couriers/${state.currentCourier}`),
+      axios.get('/api/packages/get_priority')
     ]).then((response) => {
+
       setState((prev) => ({
         ...prev,
         packages: response[0].data,
@@ -28,6 +31,7 @@ export default function StateProvider(props) {
         currentUserObj: response[1].data,
         currentCourier: response[2].data.courier.id,
         currentCourierObj: response[2].data,
+        priorityPackages: response[3].data
       }));
     });
   }, [state.thisPackage]);
@@ -134,6 +138,26 @@ export default function StateProvider(props) {
     return out;
   };
 
+  const makePriority = (id) => {
+    selectPackage(id);
+
+    axios
+    .put(`api/packages/make_priority?id=${id}`)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    
+    const priorityPackages = state.priorityPackages.filter(item => item.id !== id);
+
+    setState((prev) => ({
+      ...prev,
+      priorityPackages: priorityPackages,
+    }));
+  }
+
   const providerData = {
     state,
     // packageId,
@@ -143,6 +167,7 @@ export default function StateProvider(props) {
     // currentCourierObj,
     // trkNumSearch,
     // thisPackage,
+    makePriority,
     deletePackage,
     selectPackage,
     activeCount,

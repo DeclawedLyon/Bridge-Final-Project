@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   min-height: 95vh;
+  max-height: 95vh;
   flex-basis: 35vw;
   background-color:rgb(224, 231, 235);
 }
@@ -22,7 +23,7 @@
   flex-direction: column;
   min-width: 65vw;
   min-height: 95vh;
-  max-height: 100vh;
+  max-height: 95vh;
   background-color:rgb(195, 205, 213);
   overflow: auto;
   // overflow: scroll;

@@ -7,10 +7,17 @@ class Api::PackagesController < ApplicationController
   end
 
   def get_priority
-    @prioritypackages = Package.where("active = ? AND is_priority = ?", true, true)
+    @packages = Package.where("active = ? AND is_priority = ?", true, true)
 
-    render json: @prioritypackages
+    render json: @packages
   end
+
+  def make_priority
+    @package = Package.find_by(id: params[:id])
+    @package.update(is_priority: true)
+    @package.save
+  end
+
    
   def get_pkg_by_nickname 
     @package = Package.where(nickname: params[:nickname])
