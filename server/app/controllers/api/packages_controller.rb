@@ -39,9 +39,21 @@ class Api::PackagesController < ApplicationController
     nickname: params[:nickname])
   end
 
+  def deliver
+    @package = Package.find_by(id: params[:id])
+    @package.update(last_known_status: 'DE')
+    @package.save
+  end
+
+  def clear
+    @package = Package.find_by(id: params[:id])
+    @package.update(last_known_status: 'OF')
+    @package.save
+  end
+
   # DELETE /packages/1
   def destroy
-    # @package = Package.where(id: params[:id])
+    @package = Package.where(id: params[:id])
     @package.destroy
   end
 

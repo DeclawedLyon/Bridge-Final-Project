@@ -19,7 +19,10 @@ export default function TrackedPackage(props) {
     <div className={packageClass} onClick={() => selectPackage(props.id)}>
       <div className="package_header">
         <span className="nickname">Nickname:{props.nickname}</span>
-        <i onClick={() => deletePackage(props.id)} className="fas fa-times-circle"></i>
+        <i
+          onClick={() => deletePackage(props.id)}
+          className="fas fa-times-circle"
+        ></i>
       </div>
       <div className="shipping_details">
         <span className="sender">Sent From:{props.sender}</span>
@@ -30,5 +33,5 @@ export default function TrackedPackage(props) {
         <span className="status_message">Status:{props.statusMessage}</span>
       </div>
     </div>
-  )
+  );
 }

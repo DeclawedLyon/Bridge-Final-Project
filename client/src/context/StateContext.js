@@ -6,7 +6,7 @@ export const stateContext = createContext();
 export default function StateProvider(props) {
   const [state, setState] = useState({
     packages: [],
-    packageId: '',
+    packageId: "",
     thisPackage: {},
     currentUser: 1,
     currentUserObj: {},
@@ -32,52 +32,51 @@ export default function StateProvider(props) {
     });
   }, [state.thisPackage]);
 
-
   const searchByTrackingNum = async (event) => {
     event.preventDefault();
     let trkNum = document.getElementById("trkNum-search-form-value").value;
-    
-      const data = await axios
-        .get(`/api/getpackage?tracking_number=${trkNum}`)
-        .then((response) => {
-          if (!response.data[0]) {
-            console.log("ERROR!")
-            document.getElementById("trkNum-error").style.display = "block";
-            return response;
-          }
-          return response.data[0]
-        })
-        setState((prev) => ({
-          ...prev,
-          thisPackage: data
-        }));
-      
-      let frm = document.getElementById("trkNum-search-form");
-      frm.reset();
+
+    const data = await axios
+      .get(`/api/getpackage?tracking_number=${trkNum}`)
+      .then((response) => {
+        if (!response.data[0]) {
+          console.log("ERROR!");
+          document.getElementById("trkNum-error").style.display = "block";
+          return response;
+        }
+        return response.data[0];
+      });
+    setState((prev) => ({
+      ...prev,
+      thisPackage: data,
+    }));
+
+    let frm = document.getElementById("trkNum-search-form");
+    frm.reset();
   };
 
   const searchByNickname = async (event) => {
     event.preventDefault();
     let nickname = document.getElementById("nickname-search-form-value").value;
 
-      const data = await axios
-        .get(`/api/getpackagenickname?nickname=${nickname}`)
-        .then((response) => {
-          console.log("response1:", response);
-          if (!response.data[0]) {
-            console.log("ERROR!")
-            document.getElementById("trkNum-error").style.display = "block";
-            return response;
-          }
-          return response.data[0]
-        })
-        setState((prev) => ({
-          ...prev,
-          thisPackage: data
-        }));
-      
-      let frm = document.getElementById("nickname-search-form");
-      frm.reset();
+    const data = await axios
+      .get(`/api/getpackagenickname?nickname=${nickname}`)
+      .then((response) => {
+        console.log("response1:", response);
+        if (!response.data[0]) {
+          console.log("ERROR!");
+          document.getElementById("trkNum-error").style.display = "block";
+          return response;
+        }
+        return response.data[0];
+      });
+    setState((prev) => ({
+      ...prev,
+      thisPackage: data,
+    }));
+
+    let frm = document.getElementById("nickname-search-form");
+    frm.reset();
   };
 
   const deletePackage = (id) => {
@@ -101,7 +100,6 @@ export default function StateProvider(props) {
     }));
 
   };
-
 
   const activeCount = state.packages ? state.packages.length : 0;
 
@@ -127,7 +125,7 @@ export default function StateProvider(props) {
     return out;
   };
 
-  const providerData =  {
+  const providerData = {
     state,
     // packageId,
     // currentUser,
@@ -142,7 +140,7 @@ export default function StateProvider(props) {
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
-    searchByNickname
+    searchByNickname,
   };
 
   return (
@@ -150,8 +148,7 @@ export default function StateProvider(props) {
       {props.children}
     </stateContext.Provider>
   );
-
-} 
+}
 
 // export function StateConsumer() {
 //   return stateContext
