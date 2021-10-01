@@ -56,9 +56,9 @@ export default function App(props) {
               searchByTrackingNum={searchByTrackingNum}
               searchByNickname={searchByNickname}
             />
-            {/* <Viewer
+            <Viewer
               package={thisPackage}
-            /> */}
+            />
             <Counters
               active={activeCount}
               delayed={delayedCount()}
