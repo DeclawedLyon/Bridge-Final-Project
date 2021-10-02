@@ -16,25 +16,44 @@ export default function StateProvider(props) {
     trkNumSearch: "",
   });
 
+  // useEffect(() => {
+  //   Promise.all([
+  //     axios.get("/api/packages"),
+  //     axios.get(`/api/users/${state.currentUser}`),
+  //     axios.get(`/api/couriers/${state.currentCourier}`),
+  //     axios.get('/api/packages/get_priority')
+  //   ]).then((response) => {
+
+  //     setState((prev) => ({
+  //       ...prev,
+  //       packages: response[0].data,
+  //       currentUser: response[1].data.user.id,
+  //       currentUserObj: response[1].data,
+  //       currentCourier: response[2].data.courier.id,
+  //       currentCourierObj: response[2].data,
+  //       priorityPackages: response[3].data
+  //     }));
+  //   });
+  // }, [state.thisPackage]);
+
+  //get non-priority packages
   useEffect(() => {
     Promise.all([
-      axios.get("/api/packages"),
-      axios.get(`/api/users/${state.currentUser}`),
-      axios.get(`/api/couriers/${state.currentCourier}`),
+      axios.get('/api/packages'),
       axios.get('/api/packages/get_priority')
-    ]).then((response) => {
+    ])
+      .then((response) => {
+        setState((prev) => ({
+          ...prev,
+          packages: response[0].data,
+          priorityPackages: response[1].data
+        })
+      )})
+  }, [state.thisPackage])
 
-      setState((prev) => ({
-        ...prev,
-        packages: response[0].data,
-        currentUser: response[1].data.user.id,
-        currentUserObj: response[1].data,
-        currentCourier: response[2].data.courier.id,
-        currentCourierObj: response[2].data,
-        priorityPackages: response[3].data
-      }));
-    });
-  }, [state.thisPackage]);
+
+
+
 
   const searchByTrackingNum = async (event) => {
     event.preventDefault();
@@ -119,7 +138,7 @@ export default function StateProvider(props) {
 
     setState((prev) => ({
       ...prev,
-      packages: packages,
+      priorityPackages: packages,
     }));
   }
     

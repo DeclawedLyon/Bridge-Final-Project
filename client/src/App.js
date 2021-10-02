@@ -14,9 +14,7 @@ export default function App(props) {
   const {
     state,
     // setState,
-    selectPriorityPackage,
     thisPackage,
-    selectPackage,
     activeCount,
     delayedCount,
     outForDeliveryCount,
@@ -31,7 +29,7 @@ export default function App(props) {
   const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
     return (
       <TrackedPackage
-        key={`package-${mappedPackage.id}`}
+        key={Math.random()}
         id={mappedPackage.id}
         nickname={
           mappedPackage.nickname === "N/A"
@@ -54,7 +52,7 @@ export default function App(props) {
   const priorityMappedPackages = [...state.priorityPackages].reverse().map((priorityMappedPackage) => {
     return (
       <PriorityPkgs
-        key={`package-${priorityMappedPackage.id}`}
+        key={Math.random()}
         id={priorityMappedPackage.id}
         nickname={
           priorityMappedPackage.nickname === "N/A"
