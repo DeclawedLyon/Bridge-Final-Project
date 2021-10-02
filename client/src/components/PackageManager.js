@@ -14,7 +14,7 @@ export default function PackageManager(props) {
     newDescription: "",
   })
 
-  const { state, searchByTrackingNum, searchByNickname, selectPackage } = useContext(stateContext);
+  const { searchByTrackingNum, searchByNickname, addNewPackage } = useContext(stateContext);
 
   //declare these variables to be used as values on text inputs
   let trkNum;
@@ -28,8 +28,8 @@ export default function PackageManager(props) {
       .post(
         `api/packages/add_item?tracking_number=${localState.trkNumNew}&nickname=${localState.newNickname}&description=${localState.newDescription}`
       )
-      .then((response) => {
-        console.log(response);
+      .then(() => {
+        addNewPackage(localState.trkNumNew);
       })
       .catch((err) => {
         console.log(err);
@@ -37,7 +37,7 @@ export default function PackageManager(props) {
 
     resetState();
 
-    selectPackage(state.packages.length +1);
+    // selectPackage(state.packages.length +1);
 
 
     document.getElementById("add-package-form").reset();

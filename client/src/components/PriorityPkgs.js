@@ -5,7 +5,7 @@ import { stateContext } from "../context/StateContext";
 import "./PriorityPkgs.scss";
 
 export default function PriorityPkgs(props) {
-  const { selectPriorityPackage, deletePriorityPackage } = useContext(stateContext);
+  const { selectPriorityPackage, deletePriorityPackage, removeFromPriority } = useContext(stateContext);
 
   const priorityPackageClass = classnames("priority_package", {
     "priority_package--delivered": props.delivered,
@@ -22,6 +22,10 @@ export default function PriorityPkgs(props) {
         <i
           onClick={() => deletePriorityPackage(props.id)}
           className="fas fa-times-circle"
+        ></i>
+        <i
+          onClick={() => removeFromPriority(props.id)}
+          className="fas fa-circle"
         ></i>
       </div>
       <div className="shipping_details">

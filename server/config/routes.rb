@@ -14,8 +14,9 @@ Rails.application.routes.draw do
     post '/packages/add_item', to: 'packages#add_item'
     put '/packages/deliver', to: 'packages#deliver'
     put '/packages/clear', to: 'packages#clear'
-    put "/packages/remove", to: 'packages#remove'
-    put "packages/make_priority", to: 'packages#make_priority'
+    put '/packages/remove', to: 'packages#remove'
+    put 'packages/make_priority', to: 'packages#make_priority'
+    put 'packages/remove_from_priority', to: 'packages#remove_from_priority'
 
     # routes to send you to courier controller
     get '/couriers', to: 'couriers#show'

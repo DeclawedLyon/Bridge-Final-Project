@@ -14,9 +14,7 @@ export default function App(props) {
   const {
     state,
     // setState,
-    selectPriorityPackage,
     thisPackage,
-    selectPackage,
     activeCount,
     delayedCount,
     outForDeliveryCount,
@@ -33,7 +31,7 @@ export default function App(props) {
   const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
     return (
       <TrackedPackage
-        key={`package-${mappedPackage.id}`}
+        key={Math.random()}
         id={mappedPackage.id}
         nickname={
           mappedPackage.nickname === "N/A"
@@ -53,6 +51,7 @@ export default function App(props) {
     );
   });
 
+<<<<<<< HEAD
   const priorityMappedPackages = [...state.priorityPackages]
     .reverse()
     .map((priorityMappedPackage) => {
@@ -83,6 +82,30 @@ export default function App(props) {
         />
       );
     });
+=======
+  const priorityMappedPackages = [...state.priorityPackages].reverse().map((priorityMappedPackage) => {
+    return (
+      <PriorityPkgs
+        key={Math.random()}
+        id={priorityMappedPackage.id}
+        nickname={
+          priorityMappedPackage.nickname === "N/A"
+            ? priorityMappedPackage.tracking_number
+            : priorityMappedPackage.nickname
+        }
+        sender={priorityMappedPackage.sent_from}
+        recipient={priorityMappedPackage.sent_to}
+        logo={priorityMappedPackage.courier}
+        statusMessage={priorityMappedPackage.last_known_status}
+        delivered={priorityMappedPackage.last_known_status === "DE" ? true : false}
+        delayed={priorityMappedPackage.last_known_status === "EX" ? true : false}
+        enRoute={priorityMappedPackage.last_known_status === "OF" ? true : false}
+        // onDelete={deletePackage}
+        // selectPriotityPackage={selectPriorityPackage}
+      />
+    );
+  });
+>>>>>>> test/separate-useEffect
 
   // const deliveryButton = () => {
   //   for (const pack in state.packages) {
@@ -104,7 +127,7 @@ export default function App(props) {
             searchByTrackingNum={searchByTrackingNum}
             searchByNickname={searchByNickname}
           />
-          <Viewer package={thisPackage} />
+          <Viewer />
           <Counters
             active={activeCount()}
             delayed={delayedCount()}
