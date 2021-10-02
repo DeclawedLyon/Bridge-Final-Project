@@ -17,6 +17,11 @@ export default function StateProvider(props) {
     trkNumSearch: "",
   });
 
+   // this vvvvvvv should be fixed : it loads at the start.
+   useEffect(() => {
+    selectPackage(1);
+  }, []);
+
   // useEffect(() => {
   //   Promise.all([
   //     axios.get("/api/packages"),
@@ -219,12 +224,6 @@ export default function StateProvider(props) {
       thisPackage: found,
     }));
   };
-
-  // this vvvvvvv should be fixed : it loads at the start.
-  useEffect(() => {
-    selectPackage(1);
-  }, []);
-
 
 
   const removeFromPriority = (id) => {

@@ -37,9 +37,6 @@ export default function PackageManager(props) {
 
     resetState();
 
-    // selectPackage(state.packages.length +1);
-
-
     document.getElementById("add-package-form").reset();
     document.getElementById("add-package-form").style.display = "none";
 
