@@ -96,7 +96,7 @@ export default function App(props) {
           />
           <Viewer package={thisPackage} />
           <Counters
-            active={activeCount}
+            active={activeCount()}
             delayed={delayedCount()}
             out={outForDeliveryCount()}
           />

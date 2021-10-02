@@ -186,7 +186,6 @@ export default function StateProvider(props) {
   };
 
   const makePriority = (id) => {
-    // let packageIndex = id - 1;
 
     let found = state.priorityPackages.find(function(pkg, index) {
       if(pkg.id === id)
@@ -227,13 +226,6 @@ export default function StateProvider(props) {
 
   const providerData = {
     state,
-    // packageId,
-    // currentUser,
-    // currentUserObj,
-    // currentCourier,
-    // currentCourierObj,
-    // trkNumSearch,
-    // thisPackage,
     selectPriorityPackage,
     makePriority,
     deletePackage,
@@ -254,6 +246,4 @@ export default function StateProvider(props) {
   );
 }
 
-// export function StateConsumer() {
-//   return stateContext
-// }
+
