@@ -1,0 +1,49 @@
+.priority-container {
+  display: flex;
+  border: 5px solid red;
+  max-height: 20vh;
+
+}
+
+.package_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.priority_package {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 80em;
+  margin: 1.5em;
+  padding-right: 0.25em;
+  padding-left: 0.5em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  background-color: orange;
+}
+.priority_package--delivered {
+  background-color: rgb(97, 224, 97);
+}
+.priority_package--late {
+  background-color: orange;
+}
+.priority_package--en_route {
+  background-color: rgb(238, 198, 67);
+}
+.priority_package--delayed {
+  background-color: rgb(252, 90, 62);
+}
+
+.shipping_details {
+  display: flex;
+  flex-direction: column;
+}
+
+.package_footer {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}

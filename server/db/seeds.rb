@@ -28,7 +28,8 @@ Package.create(
   to_city_province: 'Victoria, BC',
   to_post: 'V9F 8P8',
   nickname: 'Docs re: Lease',
-  active: true)
+  active: true,
+  is_priority: false)
 Package.create(
   tracking_number: '770387548724',
   username: 'Geo789',
@@ -48,7 +49,8 @@ Package.create(
   to_city_province: 'Calgary, AB',
   to_post: 'T2S 2C9',
   nickname: 'N/A',
-  active: true)
+  active: true,
+  is_priority: true)
 Package.create(
   tracking_number: '770387548723',
   username: 'Geo789',
@@ -68,7 +70,8 @@ Package.create(
   to_city_province: 'Hamilton, ON',
   to_post: 'Y6F F4S',
   nickname: 'Fender',
-  active: true)
+  active: true,
+  is_priority: false)
 Package.create(
   tracking_number: '770387548722',
   username: 'Geo789',
@@ -88,7 +91,8 @@ Package.create(
   to_city_province: 'Toronto, ON',
   to_post: 'Y3N N2I',
   nickname: "Gift For Matt",
-  active: false)
+  active: false,
+  is_priority: false)
 Package.create(
   tracking_number: '1Z12345E02919806',
   username: 'Geo789',
@@ -108,7 +112,8 @@ Package.create(
   to_city_province: 'Saskatoon, SK',
   to_post: 'Y5B 2C8',
   nickname: 'N/A',
-  active: true)
+  active: true,
+  is_priority: false)
 Package.create(
   tracking_number: '1Z12345E02919807',
   username: 'Geo789',
@@ -128,7 +133,8 @@ Package.create(
   to_city_province: 'Kenora, ON',
   to_post: 'O7C 2B8',
   nickname: 'N/A',
-  active: true)
+  active: true,
+  is_priority: false)
 Package.create(
   tracking_number: '1Z12345E02919808',
   username: 'Geo789',
@@ -148,7 +154,8 @@ Package.create(
   to_city_province: 'Halifax, NS',
   to_post: "J1C 7C8",
   nickname: "Spark Docs",
-  active: true)
+  active: true,
+  is_priority: false)
 Package.create(
   tracking_number: '1Z12345E02919809',
   username: 'Geo789',
@@ -168,7 +175,8 @@ Package.create(
   to_city_province: 'NY, NY',
   to_post: '90001',
   nickname: 'N/A',
-  active: true)
+  active: true,
+  is_priority: false)
 Courier.create(name: 'FedEx', code: '1', base_url: 'www.fedex.com/tracking')
 Courier.create(name: 'UPS', code: '2', base_url: 'www.ups.com/tracking')
 

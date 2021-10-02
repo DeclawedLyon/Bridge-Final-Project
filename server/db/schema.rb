@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_10_02_183119) do
     t.string "to_post"
     t.string "nickname"
     t.boolean "active"
+    t.boolean "is_priority"
   end
 
   create_table "sms_messages", force: :cascade do |t|

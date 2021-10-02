@@ -1,10 +1,23 @@
 class Api::PackagesController < ApplicationController
 
   def index
-    @packages = Package.where(active: true)
+    @packages = Package.where("active = ? AND is_priority = ?", true, false)
 
     render json: @packages
   end
+
+  def get_priority
+    @prioritypackages = Package.where("active = ? AND is_priority = ?", true, true)
+
+    render json: @prioritypackages
+  end
+
+  def make_priority
+    @package = Package.find_by(id: params[:id])
+    @package.update(is_priority: true)
+    @package.save
+  end
+
    
   def get_pkg_by_nickname 
     @package = Package.where(nickname: params[:nickname])
@@ -36,7 +49,12 @@ class Api::PackagesController < ApplicationController
     to_st: '33 Ashway Crescent',
     to_city_province: 'Nanaimo, BC',
     to_post: 'V9F 7K7',
-    nickname: params[:nickname])
+    nickname: params[:nickname],
+    active: true,
+    is_priority: false)
+
+    @package = Package.where(send_to: 'Elizabeth Ducksworth')
+    render json: @package
   end
 
   def deliver
