@@ -3,11 +3,11 @@ import Viewer from "./components/Viewer";
 import Counters from "./components/Counters";
 import PackageManager from "./components/PackageManager";
 import TrackedPackage from "./components/tracked_package";
+import TextInput from "./components/textInput";
 import Navbar from "./components/Navbar";
 import { deliveryButton, clearButton } from "./helpers/statusFunctions";
 import { useContext } from "react";
 import { stateContext } from "./context/StateContext";
-// import StateProvider from "./context/StateContext";
 
 export default function App(props) {
   const {
@@ -21,10 +21,11 @@ export default function App(props) {
     searchByTrackingNum,
     searchByNickname,
   } = useContext(stateContext);
+
   if (!state) {
     return null;
   }
-  // useEffect(() => {console.log("packages:",state.packages)}, [state.packages])
+
   const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
     return (
       <TrackedPackage
@@ -78,6 +79,7 @@ export default function App(props) {
 
         <section className="packages-container">{mappedPackages}</section>
       </div>
+      <TextInput />
     </div>
     // </StateProvider>
   );

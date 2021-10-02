@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   # resources :couriers
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+  resources :sms_messages, only: [:create]
+
   namespace :api do # /api/data
 
     # routes to send you to packages controller
