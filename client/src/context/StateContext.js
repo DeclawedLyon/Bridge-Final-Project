@@ -213,6 +213,32 @@ export default function StateProvider(props) {
     }));
   };
 
+  const deliveryButton = () => {
+    axios
+      .put("api/packages/deliver?id=2")
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    selectPackage(2);
+  };
+
+  const clearButton = () => {
+    axios
+      .put("api/packages/clear?id=3")
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    selectPackage(3);
+  };
+
   const providerData = {
     state,
     selectPriorityPackage,
@@ -225,6 +251,8 @@ export default function StateProvider(props) {
     outForDeliveryCount,
     searchByTrackingNum,
     searchByNickname,
+    deliveryButton,
+    clearButton,
   };
 
   return (
