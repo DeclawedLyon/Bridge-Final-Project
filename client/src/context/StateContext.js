@@ -34,7 +34,7 @@ export default function StateProvider(props) {
         priorityPackages: response[3].data
       }));
     });
-  }, []);
+  }, [state.thisPackage]);
 
   const searchByTrackingNum = async (event) => {
     event.preventDefault();
@@ -101,15 +101,45 @@ export default function StateProvider(props) {
       ...prev,
       packages: packages,
     }));
-    
   }
 
-  const selectPackage = (packageId) => {
-    let packageIndex = packageId - 1;
+  const deletePriorityPackage = (id) => {
+    selectPriorityPackage(id);
+
+    axios
+    .put(`api/packages/remove?id=${id}`)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+    const packages = state.priorityPackages.filter(item => item.id !== id);
 
     setState((prev) => ({
       ...prev,
-      thisPackage: state.packages[packageIndex],
+      packages: packages,
+    }));
+  }
+    
+
+  const selectPackage = (id) => {
+    // let packageIndex = packageId - 1;
+
+    // setState((prev) => ({
+    //   ...prev,
+    //   thisPackage: state.packages[packageIndex],
+    // }));
+
+    let found = state.packages.find(function(pkg, index) {
+      if(pkg.id === id)
+        return true;
+    });
+
+    setState((prev) => ({
+      ...prev,
+      thisPackage: found,
     }));
 
   };
@@ -190,6 +220,7 @@ export default function StateProvider(props) {
     selectPriorityPackage,
     makePriority,
     deletePackage,
+    deletePriorityPackage,
     selectPackage,
     activeCount,
     delayedCount,

@@ -46,7 +46,7 @@ export default function App(props) {
         delayed={mappedPackage.last_known_status === "EX" ? true : false}
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
         // onDelete={deletePackage}
-        selectPackage={selectPackage}
+        // selectPackage={selectPackage}
       />
     );
   });
@@ -69,7 +69,7 @@ export default function App(props) {
         delayed={priorityMappedPackage.last_known_status === "EX" ? true : false}
         enRoute={priorityMappedPackage.last_known_status === "OF" ? true : false}
         // onDelete={deletePackage}
-        selectPriotityPackage={selectPriorityPackage}
+        // selectPriotityPackage={selectPriorityPackage}
       />
     );
   });
