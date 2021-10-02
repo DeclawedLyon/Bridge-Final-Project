@@ -52,6 +52,9 @@ class Api::PackagesController < ApplicationController
     nickname: params[:nickname],
     active: true,
     is_priority: false)
+
+    @package = Package.where(send_to: 'Elizabeth Ducksworth')
+    render json: @package
   end
 
   def deliver

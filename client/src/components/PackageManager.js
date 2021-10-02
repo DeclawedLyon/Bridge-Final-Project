@@ -8,13 +8,13 @@ import { stateContext } from "../context/StateContext";
 
 export default function PackageManager(props) {
   
-  const [ localState, setLocalState] = useState({
+  const [ localState, setLocalState ] = useState({
     trkNumNew: "",
     newNickname: "",
     newDescription: "",
   })
 
-  const { searchByTrackingNum, searchByNickname } = useContext(stateContext);
+  const { state, searchByTrackingNum, searchByNickname, selectPackage } = useContext(stateContext);
 
   //declare these variables to be used as values on text inputs
   let trkNum;
@@ -36,6 +36,9 @@ export default function PackageManager(props) {
       });
 
     resetState();
+
+    selectPackage(state.packages.length +1);
+
 
     document.getElementById("add-package-form").reset();
     document.getElementById("add-package-form").style.display = "none";
