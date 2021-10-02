@@ -83,22 +83,21 @@ export default function StateProvider(props) {
     selectPackage(id);
 
     axios
-    .put(`api/packages/remove?id=${id}`)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-    
-    const packages = state.packages.filter(item => item.id !== id);
+      .put(`api/packages/remove?id=${id}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    const packages = state.packages.filter((item) => item.id !== id);
 
     setState((prev) => ({
       ...prev,
       packages: packages,
     }));
-    
-  }
+  };
 
   const selectPackage = (packageId) => {
     let packageIndex = packageId - 1;
@@ -107,7 +106,6 @@ export default function StateProvider(props) {
       ...prev,
       thisPackage: state.packages[packageIndex],
     }));
-
   };
 
   const activeCount = state.packages ? state.packages.length : 0;
