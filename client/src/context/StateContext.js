@@ -19,8 +19,8 @@ export default function StateProvider(props) {
   useEffect(() => {
     Promise.all([
       axios.get("/api/packages"),
-      axios.get(`/api/users/${state.currentUser}`),
-      axios.get(`/api/couriers/${state.currentCourier}`),
+      axios.get(`/api/users/1`),
+      axios.get(`/api/couriers/1`),
       axios.get("/api/packages/get_priority"),
     ]).then((response) => {
       setState((prev) => ({
@@ -132,6 +132,11 @@ export default function StateProvider(props) {
       thisPackage: found,
     }));
   };
+
+  // this vvvvvvv should be fixed : it loads at the start.
+  useEffect(() => {
+    selectPackage(1);
+  }, []);
 
   // const activeCount = state.packages ? state.packages.length : 0;
 
