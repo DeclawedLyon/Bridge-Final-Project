@@ -125,12 +125,6 @@ export default function StateProvider(props) {
     
 
   const selectPackage = (id) => {
-    // let packageIndex = packageId - 1;
-
-    // setState((prev) => ({
-    //   ...prev,
-    //   thisPackage: state.packages[packageIndex],
-    // }));
 
     let found = state.packages.find(function(pkg, index) {
       if(pkg.id === id)
@@ -144,12 +138,35 @@ export default function StateProvider(props) {
 
   };
 
-  const activeCount = state.packages ? state.packages.length : 0;
+  // const activeCount = state.packages ? state.packages.length : 0;
+
+  const activeCount = () => {
+    let active = 0;
+
+    for (const pack of state.packages) {
+      if (pack.active === true) {
+        active += 1;
+      }
+    }
+
+    for (const pack of state.priorityPackages) {
+      if (pack.active) {
+        active += 1;
+      }
+    }
+    return active;
+  }
 
   const delayedCount = () => {
     let delayed = 0;
 
     for (const pack of state.packages) {
+      if (pack.last_known_status === "EX" || pack.last_known_status === "LA") {
+        delayed += 1;
+      }
+    }
+
+    for (const pack of state.priorityPackages) {
       if (pack.last_known_status === "EX" || pack.last_known_status === "LA") {
         delayed += 1;
       }
