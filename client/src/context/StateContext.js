@@ -18,9 +18,9 @@ export default function StateProvider(props) {
   });
 
    // this vvvvvvv should be fixed : it loads at the start.
-   useEffect(() => {
-    selectPackage(1);
-  }, []);
+  //  useEffect(() => {
+  //   selectPackage(1);
+  // }, []);
 
   // useEffect(() => {
   //   Promise.all([
