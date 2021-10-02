@@ -18,6 +18,12 @@ class Api::PackagesController < ApplicationController
     @package.save
   end
 
+  def remove_from_priority
+    @package = Package.find_by(id: params[:id])
+    @package.update(is_priority: false)
+    @package.save
+  end
+
    
   def get_pkg_by_nickname 
     @package = Package.where(nickname: params[:nickname])
@@ -37,7 +43,7 @@ class Api::PackagesController < ApplicationController
     courier: '1',
     date_sent: '2021-09-07',
     date_delivered: '2021-09-08',
-    last_known_status: 'DE',
+    last_known_status: 'OF',
     signed_for: 'N/A',
     sent_to: 'Elizabeth Ducksworth',
     sent_from: 'Almond Grove',
@@ -52,9 +58,6 @@ class Api::PackagesController < ApplicationController
     nickname: params[:nickname],
     active: true,
     is_priority: false)
-
-    @package = Package.where(send_to: 'Elizabeth Ducksworth')
-    render json: @package
   end
 
   def deliver

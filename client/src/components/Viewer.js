@@ -15,7 +15,7 @@ export default function Viewer() {
         <h4>Shipping Address</h4>
         <p>
           {state.thisPackage ? `${state.thisPackage.to_st}, ${state.thisPackage.to_city_province},
-          ${state.thisPackage.to_post}` : "", "", ""}
+          ${state.thisPackage.to_post}` : ""}
         </p>
         <h4>Courier</h4>
         <p>{state.thisPackage ? state.thisPackage.courier : ""}</p>
