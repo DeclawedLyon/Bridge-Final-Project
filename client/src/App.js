@@ -51,38 +51,6 @@ export default function App(props) {
     );
   });
 
-<<<<<<< HEAD
-  const priorityMappedPackages = [...state.priorityPackages]
-    .reverse()
-    .map((priorityMappedPackage) => {
-      return (
-        <PriorityPkgs
-          key={`package-${priorityMappedPackage.id}`}
-          id={priorityMappedPackage.id}
-          nickname={
-            priorityMappedPackage.nickname === "N/A"
-              ? priorityMappedPackage.tracking_number
-              : priorityMappedPackage.nickname
-          }
-          sender={priorityMappedPackage.sent_from}
-          recipient={priorityMappedPackage.sent_to}
-          logo={priorityMappedPackage.courier}
-          statusMessage={priorityMappedPackage.last_known_status}
-          delivered={
-            priorityMappedPackage.last_known_status === "DE" ? true : false
-          }
-          delayed={
-            priorityMappedPackage.last_known_status === "EX" ? true : false
-          }
-          enRoute={
-            priorityMappedPackage.last_known_status === "OF" ? true : false
-          }
-          // onDelete={deletePackage}
-          // selectPriotityPackage={selectPriorityPackage}
-        />
-      );
-    });
-=======
   const priorityMappedPackages = [...state.priorityPackages].reverse().map((priorityMappedPackage) => {
     return (
       <PriorityPkgs
@@ -105,7 +73,6 @@ export default function App(props) {
       />
     );
   });
->>>>>>> test/separate-useEffect
 
   // const deliveryButton = () => {
   //   for (const pack in state.packages) {
