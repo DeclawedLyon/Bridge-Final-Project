@@ -62,7 +62,7 @@ export default function StateProvider(props) {
         priorityPackages: response.data,
       })
     )})
-  }, [state.thisPackage])
+  }, [])
       
 
   //search functions 
@@ -157,13 +157,16 @@ export default function StateProvider(props) {
     axios
     .put(`api/packages/make_priority?id=${id}`)
     .then(() => {
+      deletePackage(id);
+    })
+    .then(() => {
       const priorityPackages = state.priorityPackages; 
-      const packages = state.packages;
+      // const packages = state.packages;
   
       setState((prev) => ({
         ...prev,
         priorityPackages: [...priorityPackages, state.thisPackage],
-        packages: [...packages]
+        // packages: [...packages]
       }))
     })
     .catch((err) => {
@@ -180,19 +183,12 @@ export default function StateProvider(props) {
         newPkg = pkg;
         return newPkg;
     });
-
-
+    
     setState((prev) => ({
       ...prev,
-      thisPackage: found,
-    }));
+      thisPackage: newPkg
+    }))
 
-    // const packages = state.packages;
-
-    // setState((prev) => ({
-    //   ...prev,
-    //   packages: [...packages, found]
-    // }));
   }
 
 
@@ -239,6 +235,9 @@ export default function StateProvider(props) {
 
     axios
     .put(`api/packages/remove_from_priority?id=${id}`)
+    .then(() => {
+      deletePriorityPackage(id);
+    })
     .then(() => {
       const packages = state.packages; 
       // const priorityPackages = state.priorityPackages;

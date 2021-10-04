@@ -31,21 +31,21 @@ export default function PackageManager(props) {
       .then(() => {
         addNewPackage(localState.trkNumNew);
       })
-
       .then(() => {
         resetState();
-
       })
       .catch((err) => {
         console.log(err);
       });
 
+      document.getElementById("add-package-form").reset();
+      document.getElementById("add-package-form").style.display = "none";
+  
+      document.getElementById("add-button").style.display = "block";
+    };
 
-    document.getElementById("add-package-form").reset();
-    document.getElementById("add-package-form").style.display = "none";
 
-    document.getElementById("add-button").style.display = "block";
-  };
+
 
   const resetState = function () {
     setLocalState((prev) => ({
