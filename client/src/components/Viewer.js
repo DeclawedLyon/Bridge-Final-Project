@@ -6,22 +6,28 @@ import "./Viewer.scss";
 export default function Viewer() {
   const { state  } = useContext(stateContext);
 
+  const renderCourier = () => {
+    if (state.thisPackage.courier === "1") {
+      return "FedEx"
+    }
+    if (state.thisPackage.courier === "2"){
+      return "UPS"
+    }
+  }
+
   return (
     <main className="viewer">
+      <h1>Details</h1>
       <div className="description">
-        <h3>tracking number:</h3>
-        <p>{state.thisPackage ? state.thisPackage.tracking_number : ""}</p>
-        <h3>Shipping Info:</h3>
-        <h4>Shipping Address</h4>
-        <p>
-          {state.thisPackage ? `${state.thisPackage.to_st}, ${state.thisPackage.to_city_province},
+        <p><b>Tracking #: </b>{state.thisPackage ? state.thisPackage.tracking_number : ""}</p>
+        <p>{state.thisPackage.nickname !== 'N/A' ? <b>Nickname: </b> : ""}{state.thisPackage.nickname !== 'N/A' ? state.thisPackage.nickname : ""}</p>
+        <p> <b>Delivery Address: </b>
+          {state.thisPackage.to_st ? `${state.thisPackage.to_st}, ${state.thisPackage.to_city_province},
           ${state.thisPackage.to_post}` : ""}
         </p>
-        <h4>Courier</h4>
-        <p>{state.thisPackage ? state.thisPackage.courier : ""}</p>
-        <h3>Description:</h3>
-        <p>{state.thisPackage ? state.thisPackage.description : ""}</p>
+        <p><b>Courier: </b>{renderCourier()}</p>
+        <p><b>Description: </b>{state.thisPackage.description ? state.thisPackage.description : ""}</p>
       </div>
     </main>
   );
-}
+} 

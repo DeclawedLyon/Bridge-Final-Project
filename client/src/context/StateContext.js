@@ -113,6 +113,7 @@ export default function StateProvider(props) {
     frm.reset();
   };
 
+  
   //functions for non-priority packages
   const deletePackage = (id) => {
     selectPackage(id);

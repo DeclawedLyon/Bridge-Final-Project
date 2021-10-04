@@ -1,7 +1,10 @@
 @import './Colours.scss';
 @import './Styles.scss';
 
+
 .viewer {
+  display: flex;
+  flex-direction: column;
   background-color: $component-background;
   border-radius: 20px;
   height: 40vh;
@@ -12,3 +15,6 @@
   overflow: scroll;
 }
 
+h1 {
+  align-self: center;
+}
