@@ -12,8 +12,8 @@ export default function PriorityPkgs(props) {
   //   "priority_package--delivered": props.delivered,
   //   "priority_package--late": props.late,
   //   "priority_package--delayed": props.delayed,
-  //   "priority_package--en_route": props.enRoute
-  // })
+  //   "priority_package--en_route": props.enRoute,
+  // });
 
   const renderStatus = () => {
     if (props.delivered) {
