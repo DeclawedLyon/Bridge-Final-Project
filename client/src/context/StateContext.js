@@ -138,10 +138,11 @@ export default function StateProvider(props) {
 
   const selectPackage = (id) => {
 
-    let found = state.packages.find(function(pkg, index) {
+  let found = state.packages.find(function(pkg, index) {
       if(pkg.id === id)
         return pkg;
     });
+
 
     setState((prev) => ({
       ...prev,
@@ -157,12 +158,12 @@ export default function StateProvider(props) {
     .put(`api/packages/make_priority?id=${id}`)
     .then(() => {
       const priorityPackages = state.priorityPackages; 
-      // const packages = state.packages;
+      const packages = state.packages;
   
       setState((prev) => ({
         ...prev,
         priorityPackages: [...priorityPackages, state.thisPackage],
-        // packages: [...packages]
+        packages: [...packages]
       }))
     })
     .catch((err) => {
@@ -223,6 +224,8 @@ export default function StateProvider(props) {
       if(pkg.id === id)
         return pkg;
     });
+
+    console.log(found);
 
     setState((prev) => ({
       ...prev,
@@ -312,6 +315,7 @@ export default function StateProvider(props) {
 
     selectPackage(3);
   };
+  
   const deliveryButton = () => {
     axios
       .put("api/packages/deliver?id=2")
