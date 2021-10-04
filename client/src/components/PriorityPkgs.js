@@ -34,33 +34,31 @@ export default function PriorityPkgs(props) {
   };
 
   return (
-    <main className="priority-container">
-      <div
-        className={priorityPackageClass}
-        onClick={() => selectPriorityPackage(props.id)}
-      >
-        <div className="package_header">
-          <i
-            onClick={() => deletePriorityPackage(props.id)}
-            className="fas fa-times-circle"
-          ></i>
-          <span className="nickname">{props.nickname}</span>
-          <i
-            onClick={() => removeFromPriority(props.id)}
-            className="fas fa-circle"
-          ></i>
-        </div>
-        <div className="shipping_details">
-          <span className="sender">Sent From:{props.sender}</span>
-          <span className="recipient">Sent To:{props.recipient}</span>
-        </div>
-        <div className="package_footer">
-          <span className="courier_logo">{props.logo}</span>
-          <span className="status_message">
-            Status:{props.statusMessage} {renderStatus()}
-          </span>
-        </div>
+    <div
+      className={priorityPackageClass}
+      onClick={() => selectPriorityPackage(props.id)}
+    >
+      <div className="package_header">
+        <i
+          onClick={() => deletePriorityPackage(props.id)}
+          className="fas fa-times-circle"
+        ></i>
+        <span className="nickname">{props.nickname}</span>
+        <i
+          onClick={() => removeFromPriority(props.id)}
+          className="fas fa-circle"
+        ></i>
       </div>
-    </main>
+      <div className="shipping_details">
+        <span className="sender">Sent From:{props.sender}</span>
+        <span className="recipient">Sent To:{props.recipient}</span>
+      </div>
+      <div className="package_footer">
+        <span className="courier_logo">{props.logo}</span>
+        <span className="status_message">
+          Status:{props.statusMessage} {renderStatus()}
+        </span>
+      </div>
+    </div>
   );
 }

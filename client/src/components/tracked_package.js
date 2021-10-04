@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import "./tracked_package.css";
+import "./tracked_package.scss";
 import { useContext } from "react";
 import { stateContext } from "../context/StateContext";
 

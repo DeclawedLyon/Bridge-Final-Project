@@ -1,17 +1,6 @@
-.priority-container {
-  display: flex;
-  max-height: 20vh;
-
-}
-
 .package_header {
   display: flex;
   justify-content: space-between;
-}
-
-.priority-container {
-  display: flex;
-  flex-direction: column;
 }
 
 .priority_package {
@@ -19,14 +8,12 @@
   flex-direction: column;
   border: none;
   border-radius: 5px;
-  width: 75em;
   margin: 1.5em;
   padding-right: 0.25em;
   padding-left: 0.5em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
   background: rgb(238, 238, 238);
-  box-shadow: orange;
 }
 .priority_package--delivered {
   box-shadow: 0 5px 10px rgb(100, 237, 229);
@@ -58,14 +45,13 @@
 }
 
 .fa-clock {
-  color:rgb(252, 143, 54);
+  color: rgb(252, 143, 54);
 }
 
 .fa-truck {
-  color:salmon;
+  color: salmon;
 }
 
 .fa-exclamation {
   color: red;
 }
-

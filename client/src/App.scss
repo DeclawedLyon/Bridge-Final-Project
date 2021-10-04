@@ -5,13 +5,13 @@
 
 .App-main-body {
   display: flex;
-  flex-direction: row;
 }
 
 .viewer-container {
   justify-content: space-evenly;
   display: flex;
   flex-direction: column;
+  width: 35%;
   min-height: 95vh;
   max-height: 95vh;
   flex-basis: 35vw;
@@ -21,47 +21,10 @@
 .packages-container {
   display: flex;
   flex-direction: column;
-  min-width: none;
+  width: 65%;
   min-height: 95vh;
   max-height: 95vh;
   background-color: rgb(238, 238, 238);
-  overflow: auto;
-  // overflow: scroll;
-}
-
-.tracked_package {
-  display: flex;
-  flex-direction: column;
-  border: 2px solid black;
-  border-radius: 5px;
-  width: 80%;
-  margin: 1.5em;
-  padding-right: 1.5em;
-  background-color: orange;
-}
-.tracked_package--delivered {
-  background-color: rgb(97, 224, 97);
-}
-.tracked_package--late {
-  background-color: orange;
-}
-.tracked_package--en_route {
-  background-color: rgb(238, 198, 67);
-}
-.tracked_package--delayed {
-  background-color: rgb(252, 90, 62);
-}
-
-.shipping_details {
-  display: flex;
-  flex-direction: column;
-}
-
-.package_footer {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
 }
 
 .change {
@@ -75,5 +38,9 @@
 @media only screen and (max-width: 800px) {
   .viewer-container {
     display: none;
+  }
+
+  .packages-container {
+    width: 100%;
   }
 }
