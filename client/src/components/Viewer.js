@@ -17,7 +17,7 @@ export default function Viewer() {
 
   return (
     <main className="viewer">
-      <h1>Details</h1>
+      <h1><u>Shipment Details</u></h1>
       <div className="description">
         <p><b>Tracking #: </b>{state.thisPackage ? state.thisPackage.tracking_number : ""}</p>
         <p>{state.thisPackage.nickname !== 'N/A' ? <b>Nickname: </b> : ""}{state.thisPackage.nickname !== 'N/A' ? state.thisPackage.nickname : ""}</p>
@@ -28,6 +28,7 @@ export default function Viewer() {
         <p><b>Courier: </b>{renderCourier()}</p>
         <p><b>Description: </b>{state.thisPackage.description ? state.thisPackage.description : ""}</p>
       </div>
+
     </main>
   );
 } 

@@ -171,11 +171,15 @@ export default function StateProvider(props) {
   }
 
   const addNewPackage = (trkNum) => {
+    let newPkg = {};
+
     let found = state.packages.find(function(pkg, index) {
       console.log('in addNew', pkg)
       if(pkg.tracking_number === trkNum)
-        return pkg;
+        newPkg = pkg;
+        return newPkg;
     });
+
 
     setState((prev) => ({
       ...prev,

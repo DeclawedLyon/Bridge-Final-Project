@@ -1,6 +1,5 @@
 .priority-container {
   display: flex;
-  border: 5px solid red;
   max-height: 20vh;
 
 }
@@ -10,30 +9,36 @@
   justify-content: space-between;
 }
 
+.priority-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .priority_package {
   display: flex;
   flex-direction: column;
-  border: 2px solid black;
+  border: none;
   border-radius: 5px;
-  width: 80em;
+  width: 75em;
   margin: 1.5em;
   padding-right: 0.25em;
   padding-left: 0.5em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
-  background-color: orange;
-} 
+  background: rgb(238, 238, 238);
+  box-shadow: orange;
+}
 .priority_package--delivered {
-  background-color: rgb(97, 224, 97);
+  box-shadow: 0 5px 10px rgb(100, 237, 229);
 }
 .priority_package--late {
-  background-color: orange;
+  box-shadow: 0 5px 10px rgb(252, 143, 54);
 }
 .priority_package--en_route {
-  background-color: rgb(238, 198, 67);
+  box-shadow: 0 5px 10px rgb(244, 198, 78);
 }
 .priority_package--delayed {
-  background-color: rgb(252, 90, 62);
+  box-shadow: 0 5px 10px rgb(252, 149, 142);
 }
 
 .shipping_details {
@@ -47,3 +52,20 @@
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
+
+.fa-check {
+  color: green;
+}
+
+.fa-clock {
+  color:rgb(252, 143, 54);
+}
+
+.fa-truck {
+  color:salmon;
+}
+
+.fa-exclamation {
+  color: red;
+}
+
