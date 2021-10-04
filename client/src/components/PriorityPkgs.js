@@ -5,7 +5,8 @@ import { stateContext } from "../context/StateContext";
 import "./PriorityPkgs.scss";
 
 export default function PriorityPkgs(props) {
-  const { selectPriorityPackage, deletePriorityPackage, removeFromPriority } = useContext(stateContext);
+  const { selectPriorityPackage, deletePriorityPackage, removeFromPriority } =
+    useContext(stateContext);
 
   // const priorityPackageClass = classnames("priority_package", {
   //   "priority_package--delivered": props.delivered,
@@ -16,53 +17,47 @@ export default function PriorityPkgs(props) {
 
   const renderStatus = () => {
     if (props.delivered) {
-      return <i className="fas fa-solid fa-lg fa-check"></i>
+      return <i className="fas fa-solid fa-lg fa-check"></i>;
     }
 
     if (props.late) {
-      return <i className="fas fa-solid fa-lg fa-clock"></i>
+      return <i className="fas fa-solid fa-lg fa-clock"></i>;
     }
 
     if (props.delayed) {
-      return <i id="delayed" className="fas fa-solid fa-lg fa-exclamation"></i>
+      return <i id="delayed" className="fas fa-solid fa-lg fa-exclamation"></i>;
     }
 
     if (props.enRoute) {
-      return <i className="fas fa-solid fa-lg fa-truck"></i>
+      return <i className="fas fa-solid fa-lg fa-truck"></i>;
     }
-  }
-
+  };
 
   return (
     <main className="priority-container">
-    <div  onClick={() => selectPriorityPackage(props.id)}>
-      <div className="package_header">
-        <span className="nickname">Nickname:{props.nickname}</span>
-        <div className="status-and-buttons">
-        <i
-          onClick={() => deletePriorityPackage(props.id)}
-          className="fas fa-times-circle"
-        ></i>
-        <i
-          onClick={() => removeFromPriority(props.id)}
-          className="fas fa-circle"
-        ></i>
-  
+      <div onClick={() => selectPriorityPackage(props.id)}>
+        <div className="package_header">
+          <i
+            onClick={() => deletePriorityPackage(props.id)}
+            className="fas fa-times-circle"
+          ></i>
+          <span className="nickname">{props.nickname}</span>
+          <i
+            onClick={() => removeFromPriority(props.id)}
+            className="fas fa-circle"
+          ></i>
+        </div>
+        <div className="shipping_details">
+          <span className="sender">Sent From:{props.sender}</span>
+          <span className="recipient">Sent To:{props.recipient}</span>
+        </div>
+        <div className="package_footer">
+          <span className="courier_logo">{props.logo}</span>
+          <span className="status_message">
+            Status:{props.statusMessage} {renderStatus()}
+          </span>
         </div>
       </div>
-      <div className="shipping_details">
-        <span className="sender">Sent From:{props.sender}</span>
-        <span className="recipient">Sent To:{props.recipient}</span>
-      </div>
-      <div className="package_footer">
-        <span className="courier_logo">{props.logo}</span>
-        <span className="status_message">Status:{props.statusMessage} {renderStatus()}</span>
-      </div>
-    </div>
-    
     </main>
   );
 }
-
-  
-  

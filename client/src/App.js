@@ -51,28 +51,36 @@ export default function App(props) {
     );
   });
 
-  const priorityMappedPackages = [...state.priorityPackages].reverse().map((priorityMappedPackage) => {
-    return (
-      <PriorityPkgs
-        key={Math.random()}
-        id={priorityMappedPackage.id}
-        nickname={
-          priorityMappedPackage.nickname === "N/A"
-            ? priorityMappedPackage.tracking_number
-            : priorityMappedPackage.nickname
-        }
-        sender={priorityMappedPackage.sent_from}
-        recipient={priorityMappedPackage.sent_to}
-        logo={priorityMappedPackage.courier}
-        statusMessage={priorityMappedPackage.last_known_status}
-        delivered={priorityMappedPackage.last_known_status === "DE" ? true : false}
-        delayed={priorityMappedPackage.last_known_status === "EX" ? true : false}
-        enRoute={priorityMappedPackage.last_known_status === "OF" ? true : false}
-        // onDelete={deletePackage}
-        // selectPriotityPackage={selectPriorityPackage}
-      />
-    );
-  });
+  const priorityMappedPackages = [...state.priorityPackages]
+    .reverse()
+    .map((priorityMappedPackage) => {
+      return (
+        <PriorityPkgs
+          key={Math.random()}
+          id={priorityMappedPackage.id}
+          nickname={
+            priorityMappedPackage.nickname === "N/A"
+              ? priorityMappedPackage.tracking_number
+              : priorityMappedPackage.nickname
+          }
+          sender={priorityMappedPackage.sent_from}
+          recipient={priorityMappedPackage.sent_to}
+          logo={priorityMappedPackage.courier}
+          statusMessage={priorityMappedPackage.last_known_status}
+          delivered={
+            priorityMappedPackage.last_known_status === "DE" ? true : false
+          }
+          delayed={
+            priorityMappedPackage.last_known_status === "EX" ? true : false
+          }
+          enRoute={
+            priorityMappedPackage.last_known_status === "OF" ? true : false
+          }
+          // onDelete={deletePackage}
+          // selectPriotityPackage={selectPriorityPackage}
+        />
+      );
+    });
 
   // const deliveryButton = () => {
   //   for (const pack in state.packages) {
@@ -88,8 +96,12 @@ export default function App(props) {
       <Navbar />
       <div className="App-main-body">
         <section className="viewer-container">
-          <button onClick={() => deliveryButton()}>Delivery</button>
-          <button onClick={() => clearButton()}>Clear</button>
+          <button className="change" onClick={() => deliveryButton()}>
+            Delivery
+          </button>
+          <button className="change" onClick={() => clearButton()}>
+            Clear
+          </button>
           <PackageManager
             searchByTrackingNum={searchByTrackingNum}
             searchByNickname={searchByNickname}
