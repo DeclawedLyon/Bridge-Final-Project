@@ -8,12 +8,12 @@ export default function PriorityPkgs(props) {
   const { selectPriorityPackage, deletePriorityPackage, removeFromPriority } =
     useContext(stateContext);
 
-  // const priorityPackageClass = classnames("priority_package", {
-  //   "priority_package--delivered": props.delivered,
-  //   "priority_package--late": props.late,
-  //   "priority_package--delayed": props.delayed,
-  //   "priority_package--en_route": props.enRoute,
-  // });
+  const priorityPackageClass = classnames("priority_package", {
+    "priority_package--delivered": props.delivered,
+    "priority_package--late": props.late,
+    "priority_package--delayed": props.delayed,
+    "priority_package--en_route": props.enRoute,
+  });
 
   const renderStatus = () => {
     if (props.delivered) {
@@ -35,7 +35,10 @@ export default function PriorityPkgs(props) {
 
   return (
     <main className="priority-container">
-      <div onClick={() => selectPriorityPackage(props.id)}>
+      <div
+        className={priorityPackageClass}
+        onClick={() => selectPriorityPackage(props.id)}
+      >
         <div className="package_header">
           <i
             onClick={() => deletePriorityPackage(props.id)}

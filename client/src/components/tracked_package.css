@@ -6,6 +6,7 @@
 .tracked_package {
   display: flex;
   flex-direction: column;
+  flex-shrink: 1;
   border: none;
   border-radius: 5px;
   width: 75em;
