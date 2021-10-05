@@ -45,7 +45,7 @@ export default function App(props) {
         delivered={mappedPackage.last_known_status === "DE" ? true : false}
         delayed={mappedPackage.last_known_status === "EX" ? true : false}
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
-        late={mappedPackage.last_known_status === "LA" ? true : false }
+        late={mappedPackage.last_known_status === "LA" ? true : false}
       />
     );
   });
@@ -99,13 +99,13 @@ export default function App(props) {
           <button className="change" onClick={() => deliveryButton()}>
             Delivery
           </button>
-          <button className="change" onClick={() => clearButton()}>
-            Clear
-          </button>
           <PackageManager
             searchByTrackingNum={searchByTrackingNum}
             searchByNickname={searchByNickname}
           />
+          <button className="change" onClick={() => clearButton()}>
+            Clear
+          </button>
           <Viewer />
           <Counters
             active={activeCount()}
