@@ -1,5 +1,6 @@
-@import './Styles.scss';
-
+@import "./Styles.scss";
+// @import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Francois+One&display=swap");
 body {
   margin: 0;
 }
@@ -11,16 +12,18 @@ main {
 .navbar {
   display: flex;
   align-items: center;
-  
   background: $accent-color;
-  color: white;
-  font-family: Helvetica;
+  color: rgba(255, 255, 251, 0.81);
+  // font-family: "Staatliches", cursive;
+  font-family: "Francois One", sans-serif;
   font-weight: 300;
 }
 
 .navbar__title {
   margin-right: auto;
-  font-size: 150%;
+  align-items: center;
+  font-size: 400%;
+  letter-spacing: 10px;
   padding: 12px 16px;
 }
 
@@ -28,4 +31,27 @@ main {
   padding: 16px 16px;
   cursor: pointer;
   vertical-align: middle;
+}
+
+.navbar__name {
+  font-size: 200%;
+  letter-spacing: 10px;
+  padding: 12px 16px;
+}
+
+.wheel-logo {
+  width: 120px;
+  height: 120px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  filter: invert(85%);
+}
+
+@media only screen and (max-width: 800px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+    align-content: center;
+  }
 }

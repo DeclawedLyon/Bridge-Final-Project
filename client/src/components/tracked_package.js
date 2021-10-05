@@ -35,30 +35,30 @@ export default function TrackedPackage(props) {
 
   const renderStatus = () => {
     if (props.delivered) {
-      return "Delivered!  "
+      return "Delivered!  ";
     }
 
     if (props.late) {
-      return "Late  "
+      return "Late  ";
     }
 
     if (props.delayed) {
-      return "Delayed  "
+      return "Attention Needed  ";
     }
 
     if (props.enRoute) {
-      return "Out for Delivery  "
+      return "Out for Delivery  ";
     }
   };
 
   const renderCourier = () => {
     if (props.logo === "1") {
-      return <i className="fab fa-3x fa-fedex"></i>
+      return <i className="fab fa-3x fa-fedex"></i>;
     }
-    if (props.logo === "2"){
-      return <i className="fab fa-2x fa-ups"></i>
+    if (props.logo === "2") {
+      return <i className="fab fa-2x fa-ups"></i>;
     }
-  }
+  };
 
   return (
     <div className={packageClass} onClick={() => selectPackage(props.id)}>
@@ -79,7 +79,10 @@ export default function TrackedPackage(props) {
       </div>
       <div className="package_footer">
         <span className="courier_logo">{renderCourier()}</span>
-        <span className="status_message">{renderStatus()}{renderStatusIcons()}</span>
+        <span className="status_message">
+          {renderStatus()}
+          {renderStatusIcons()}
+        </span>
       </div>
     </div>
   );
