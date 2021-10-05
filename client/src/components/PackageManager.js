@@ -7,8 +7,8 @@ import { stateContext } from "../context/StateContext";
 
 
 export default function PackageManager(props) {
-  
-  const [ localState, setLocalState ] = useState({
+
+  const [localState, setLocalState] = useState({
     trkNumNew: "",
     newNickname: "",
     newDescription: "",
@@ -60,10 +60,14 @@ export default function PackageManager(props) {
   const showForm = function () {
     document.getElementById("add-button").style.display = "none";
 
-    document.getElementById("add-package-form").style.display = "block";
+    document.getElementById("add-package-form").style.display = "flex";
   };
 
+  const hideForm = function () {
+    document.getElementById("add-button").style.display = "block";
 
+    document.getElementById("add-package-form").style.display = "none";
+  };
 
   return (
     <main className="package-manager">
@@ -73,9 +77,9 @@ export default function PackageManager(props) {
           id="trkNum-search-form-value"
           type="text"
           placeholder="Search By Tracking Number"
-          onClick={() => {document.getElementById("trkNum-error").style.display = "none"}}
+          onClick={() => { document.getElementById("trkNum-error").style.display = "none" }}
           value={trkNum}
-          onChange={(event) => {trkNum = event.target.value}}
+          onChange={(event) => { trkNum = event.target.value }}
         />
       </form>
 
@@ -84,9 +88,9 @@ export default function PackageManager(props) {
           id="nickname-search-form-value"
           type="text"
           placeholder="Search By Nickname"
-          onClick={() => {document.getElementById("trkNum-error").style.display = "none"}}
+          onClick={() => { document.getElementById("trkNum-error").style.display = "none" }}
           value={nickname}
-          onChange={(event) => {nickname = event.target.value}}
+          onChange={(event) => { nickname = event.target.value }}
         />
       </form>
 
@@ -97,6 +101,13 @@ export default function PackageManager(props) {
       </button>
 
       <form id="add-package-form" onSubmit={newPackage}>
+        <div id="exit">
+          <i 
+          class="far fa-window-close"
+          onClick={hideForm}
+          ></i>
+        </div>
+        <h1>New Package:</h1>
         <input
           type="text"
           placeholder="Enter a new tracking number +"

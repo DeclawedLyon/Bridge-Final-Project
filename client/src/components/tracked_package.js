@@ -3,10 +3,19 @@ import classnames from "classnames";
 import "./tracked_package.scss";
 import { useContext } from "react";
 import { stateContext } from "../context/StateContext";
+import useVisualMode from "../hooks/useVisualMode";
+import SmsForm from "./textInput";
+
 
 export default function TrackedPackage(props) {
-  const { selectPackage, deletePackage, makePriority } =
-    useContext(stateContext);
+  const { state, selectPackage, deletePackage, makePriority } = useContext(stateContext);
+
+  const TEXT = "TEXT";
+  const SHOW = "SHOW";
+
+  const { mode, transition, back } = useVisualMode(
+    props.text ? SHOW : SHOW
+  );
 
   const packageClass = classnames("tracked_package", {
     "tracked_package--delivered": props.delivered,
@@ -60,27 +69,66 @@ export default function TrackedPackage(props) {
     }
   }
 
+  // return (
+  //   <div className={packageClass} onClick={() => selectPackage(props.id)}>
+  //     <div className="package_header">
+  //       <i
+  //         onClick={() => deletePackage(props.id)}
+  //         className="fas fa-times-circle"
+  //       ></i>
+  //       <span className="nickname">{props.nickname}</span>
+  //       <i
+  //         onClick={() => makePriority(props.id)}
+  //         className="fas fa-plus-circle"
+  //       ></i>
+  //     </div>
+  //     <div className="shipping_details">
+  //       <span className="sender">Sent From:{props.sender}</span>
+  //       <span className="recipient">Sent To:{props.recipient}</span>
+  //     </div>
+  //     <div className="package_footer">
+  //       <span className="courier_logo">{renderCourier()}</span>
+  //       <span className="status_message">{renderStatus()}{renderStatusIcons()}</span>
+  //     </div>
+
+  const implementPopup = () => {
+    const id = props.id
+    selectPackage(props.id)
+    // console.log(state)
+    return props.popup(id)
+  }
+    
+
   return (
-    <div className={packageClass} onClick={() => selectPackage(props.id)}>
-      <div className="package_header">
-        <i
-          onClick={() => deletePackage(props.id)}
-          className="fas fa-times-circle"
-        ></i>
-        <span className="nickname">{props.nickname}</span>
-        <i
-          onClick={() => makePriority(props.id)}
-          className="fas fa-plus-circle"
-        ></i>
-      </div>
-      <div className="shipping_details">
-        <span className="sender">Sent From:{props.sender}</span>
-        <span className="recipient">Sent To:{props.recipient}</span>
-      </div>
-      <div className="package_footer">
-        <span className="courier_logo">{renderCourier()}</span>
-        <span className="status_message">{renderStatus()}{renderStatusIcons()}</span>
-      </div>
+    <div>
+
+        <div className={packageClass} onClick={() => selectPackage(props.id)}>
+          <div className="package_header">
+            <i
+              onClick={() => deletePackage(props.id)}
+              className="fas fa-times-circle"
+            ></i>
+            <span className="nickname">{props.nickname}</span>
+            <div>
+              <i
+                onClick={() => makePriority(props.id)}
+                className="fas fa-plus-circle"
+              ></i>
+              <i
+                class="fas fa-sms"
+                onClick={() => implementPopup()}></i>
+            </div>
+          </div>
+          <div className="shipping_details">
+            <span className="sender">Sent From:{props.sender}</span>
+            <span className="recipient">Sent To:{props.recipient}</span>
+          </div>
+          <div className="package_footer">
+            <span className="courier_logo">{props.logo}</span>
+            <span className="status_message">Status:{props.statusMessage}</span>
+          </div>
+        </div>
+      
     </div>
   );
 }

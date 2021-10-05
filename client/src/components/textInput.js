@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
+import { useContext } from 'react';
+import { stateContext } from '../context/StateContext';
 
 export default function SmsForm(props) {
   const [sms, setSms] = useState('');
   const [number, setNumber] = useState('');
+
+  const { state, addTextAlert } = useContext(stateContext)
 
   const sendSms = (event) => {
     event.preventDefault();
@@ -32,6 +36,8 @@ export default function SmsForm(props) {
     }
   }
 
+  console.log("the state withing SMS Form: ", state.thisPackage)
+
   return (
     <div>
       <header>Send SMS Message!</header>
@@ -42,6 +48,7 @@ export default function SmsForm(props) {
         <textarea name='sms' onChange={handleChange}></textarea>
         <button>Submit</button>
       </form>
+      <button onClick={() => addTextAlert(state.thisPackage.id)}>Alert</button>
     </div>
   );
 }
