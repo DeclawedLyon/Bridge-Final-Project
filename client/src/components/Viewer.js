@@ -8,10 +8,10 @@ export default function Viewer() {
 
   const renderCourier = () => {
     if (state.thisPackage.courier === "1") {
-      return "FedEx"
+      return <i className="fab fa-3x fa-fedex"></i>
     }
     if (state.thisPackage.courier === "2"){
-      return "UPS"
+      return <div className="fab fa-2x fa-ups"></div>
     }
   }
 

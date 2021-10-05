@@ -51,6 +51,15 @@ export default function PriorityPkgs(props) {
     }
   };
 
+  const renderCourier = () => {
+    if (props.logo === "1") {
+      return <i className="fab fa-3x fa-fedex"></i>
+    }
+    if (props.logo === "2"){
+      return <i className="fab fa-3x fa-ups"></i>
+    }
+  }
+
   return (
     <div
       className={priorityPackageClass}
@@ -72,7 +81,7 @@ export default function PriorityPkgs(props) {
         <span className="recipient">Sent To:{props.recipient}</span>
       </div>
       <div className="package_footer">
-        <span className="courier_logo">{props.logo}</span>
+        <span className="courier_logo">{renderCourier()}</span>
         <span className="status_message">
         {renderStatus()} {renderStatusIcons()}
         </span>
