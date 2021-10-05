@@ -7,8 +7,9 @@ import TextInput from "./components/textInput";
 import Navbar from "./components/Navbar";
 import PriorityPkgs from "./components/PriorityPkgs";
 // import { deliveryButton, clearButton } from "./helpers/statusFunctions";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { stateContext } from "./context/StateContext";
+import Popup from "./components/Popup";
 
 export default function App(props) {
   const {
@@ -22,11 +23,25 @@ export default function App(props) {
     searchByNickname,
     deliveryButton,
     clearButton,
+    addTextAlert,
   } = useContext(stateContext);
+  const [isOpen, setIsOpen] = useState(false);
+
 
   if (!state) {
     return null;
   }
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+    // document.getElementById("popup-box").style.display = "flex";
+  }
+
+  // 1 select this package
+  // open popup with selected package
+  // update this packages phone number, custom message ? custom message : "" , alert status {false ? true : false}
+  // update the packages array with this package (erase old package object)
+  // setState with new package array
 
   const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
     return (
@@ -45,6 +60,14 @@ export default function App(props) {
         delivered={mappedPackage.last_known_status === "DE" ? true : false}
         delayed={mappedPackage.last_known_status === "EX" ? true : false}
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
+        // onSMS={togglePopup}
+        addTextAlert={addTextAlert}
+        popup={togglePopup}
+        phoneNum={null}
+        textAlert={false}
+
+      // onDelete={deletePackage}
+      // selectPackage={selectPackage}
         late={mappedPackage.last_known_status === "LA" ? true : false}
       />
     );
@@ -82,14 +105,6 @@ export default function App(props) {
       );
     });
 
-  // const deliveryButton = () => {
-  //   for (const pack in state.packages) {
-  //     if (pack.tracking_number === "1Z12345E02919807") {
-  //       setState(pack.last_known_status === "DE");
-  //     }
-  //   }
-  // };
-
   return (
     // <StateProvider>
     <div className="App">
@@ -119,7 +134,20 @@ export default function App(props) {
           {mappedPackages}
         </section>
       </div>
-      <TextInput />
+      <div>
+        <input
+          type="button"
+          value="Click to Open Popup"
+          onClick={togglePopup}
+        /> 
+        {isOpen && <Popup
+          addAlert={addTextAlert}         
+          handleClose={togglePopup}
+          package={thisPackage}
+        />}
+        {/* <TextInput /> */}
+        {/* {<Popup handleClose={togglePopup} /> */}
+      </div>
     </div>
     // </StateProvider>
   );
