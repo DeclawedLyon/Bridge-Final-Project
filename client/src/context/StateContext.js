@@ -5,7 +5,6 @@ import axios from "axios";
 export const stateContext = createContext();
 
 export default function StateProvider(props) {
-  
   const [state, setState] = useState({
     packages: [],
     priorityPackages: [],
@@ -59,10 +58,9 @@ export default function StateProvider(props) {
       setState((prev) => ({
         ...prev,
         priorityPackages: response.data,
-      })
-    )})
-  }, [])
-      
+      }));
+    });
+  }, [state.thisPackage]);
 
   //search functions
   const searchByTrackingNum = async (event) => {
@@ -135,41 +133,35 @@ export default function StateProvider(props) {
   };
 
   const selectPackage = (id) => {
-    let found = state.packages.find(function(pkg, index) {
-        if(pkg.id === id)
-          return pkg;
-      });
-  
-  
-      setState((prev) => ({
-        ...prev,
-        thisPackage: found,
-      }));
-    };
+    let found = state.packages.find(function (pkg, index) {
+      if (pkg.id === id) return pkg;
+    });
 
+    setState((prev) => ({
+      ...prev,
+      thisPackage: found,
+    }));
+  };
 
   const makePriority = (id) => {
     selectPackage(id);
 
     axios
-    .put(`api/packages/make_priority?id=${id}`)
-    .then(() => {
-      deletePackage(id);
-    })
-    .then(() => {
-      const priorityPackages = state.priorityPackages; 
-      // const packages = state.packages;
-  
-      setState((prev) => ({
-        ...prev,
-        priorityPackages: [...priorityPackages, state.thisPackage],
-        // packages: [...packages]
-      }))
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+      .put(`api/packages/make_priority?id=${id}`)
+      .then(() => {
+        const priorityPackages = state.priorityPackages;
+        // const packages = state.packages;
+
+        setState((prev) => ({
+          ...prev,
+          priorityPackages: [...priorityPackages, state.thisPackage],
+          // packages: [...packages]
+        }));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const addNewPackage = (trkNum) => {
     let newPkg = {};
@@ -179,13 +171,19 @@ export default function StateProvider(props) {
       if (pkg.tracking_number === trkNum) newPkg = pkg;
       return newPkg;
     });
+
     setState((prev) => ({
       ...prev,
-      thisPackage: newPkg
-    }))
+      thisPackage: found,
+    }));
 
-  }
+    // const packages = state.packages;
 
+    // setState((prev) => ({
+    //   ...prev,
+    //   packages: [...packages, found]
+    // }));
+  };
 
   //functions for priority packages
   const deletePriorityPackage = (id) => {
@@ -216,8 +214,6 @@ export default function StateProvider(props) {
       if (pkg.id === id) return pkg;
     });
 
-    console.log(found);
-
     setState((prev) => ({
       ...prev,
       thisPackage: found,
@@ -228,23 +224,20 @@ export default function StateProvider(props) {
     selectPriorityPackage(id);
 
     axios
-    .put(`api/packages/remove_from_priority?id=${id}`)
-    .then(() => {
-      deletePriorityPackage(id);
-    })
-    .then(() => {
-      const packages = state.packages; 
-      // const priorityPackages = state.priorityPackages;
-  
-      setState((prev) => ({
-        ...prev,
-        packages: [...packages, state.thisPackage],
-        // priorityPackages: [...priorityPackages]
-      }))
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .put(`api/packages/remove_from_priority?id=${id}`)
+      .then(() => {
+        const packages = state.packages;
+        // const priorityPackages = state.priorityPackages;
+
+        setState((prev) => ({
+          ...prev,
+          packages: [...packages, state.thisPackage],
+          // priorityPackages: [...priorityPackages]
+        }));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   //functions for counters
@@ -305,7 +298,6 @@ export default function StateProvider(props) {
 
     selectPackage(3);
   };
-  
   const deliveryButton = () => {
     axios
       .put("api/packages/deliver?id=2")

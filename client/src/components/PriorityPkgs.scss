@@ -6,13 +6,13 @@
   border: none;
   border-radius: 5px;
   width: 70em;
+  max-width: 70em;
   margin: 1.5em;
   padding-right: 0.25em;
   padding-left: 0.5em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
   background: $component-background;
-  // box-shadow: orange;
 }
 .priority_package--delivered {
   box-shadow: 0 5px 10px $delivered-color;
