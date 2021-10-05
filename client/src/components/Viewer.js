@@ -20,7 +20,7 @@ export default function Viewer() {
       <h1><u>Shipment Details</u></h1>
       <div className="description">
         <p><b>Tracking #: </b>{state.thisPackage ? state.thisPackage.tracking_number : ""}</p>
-        <p>{state.thisPackage.nickname ? <b>Nickname: </b> : ""}{state.thisPackage.nickname !== 'N/A' ? state.thisPackage.nickname : ""}{state.thisPackage.nickname === 'N/A' ? state.thisPackage.nickname : "N/A"}</p>
+        <p>{state.thisPackage.nickname ? <b>Nickname: </b> : ""}{state.thisPackage.nickname !== 'N/A' ? state.thisPackage.nickname : ""}{state.thisPackage.nickname === 'N/A' ? "N/A" : ""}</p>
         <p> <b>Delivery Address: </b>
           {state.thisPackage.to_st ? `${state.thisPackage.to_st}, ${state.thisPackage.to_city_province},
           ${state.thisPackage.to_post}` : ""}

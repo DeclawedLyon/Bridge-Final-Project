@@ -75,6 +75,7 @@ export default function App(props) {
           enRoute={
             priorityMappedPackage.last_known_status === "OF" ? true : false
           }
+          late={priorityMappedPackage.last_known_status === "LA" ? true : false}
           // onDelete={deletePackage}
           // selectPriotityPackage={selectPriorityPackage}
         />
