@@ -18,18 +18,19 @@
   padding-bottom: 0.25em;
   background: $component-background;
   box-shadow: orange;
+  border: 1px solid silver;
 }
 .tracked_package--delivered {
-  box-shadow: 0 5px 10px $delivered-color;
+  box-shadow: 5px 5px 10px $delivered-color;
 }
 .tracked_package--late {
-  box-shadow: 0 5px 10px $late-color;
+  box-shadow: 5px 5px 10px $late-color;
 }
 .tracked_package--en_route {
-  box-shadow: 0 5px 10px $enRoute-color;
+  box-shadow: 5px 5px 10px $enRoute-color;
 }
 .tracked_package--delayed {
-  box-shadow: 0 5px 10px $delayed-color;
+  box-shadow: 5px 5px 10px $delayed-color;
 }
 
 .shipping_details {

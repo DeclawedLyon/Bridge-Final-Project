@@ -1,4 +1,5 @@
 @import './components/Colours.scss';
+@import './components/Styles.scss';
 
 .App {
   display: flex;
@@ -18,6 +19,7 @@
   max-height: 95vh;
   flex-basis: 35vw;
   background-color: $background-color;
+  border-right: 0.5px solid silver;
 }
 
 .packages-container {
