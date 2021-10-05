@@ -7,13 +7,13 @@
 
 .App-main-body {
   display: flex;
-  flex-direction: row;
 }
 
 .viewer-container {
   justify-content: space-evenly;
   display: flex;
   flex-direction: column;
+  width: 35%;
   min-height: 95vh;
   max-height: 95vh;
   flex-basis: 35vw;
@@ -23,7 +23,7 @@
 .packages-container {
   display: flex;
   flex-direction: column;
-  min-width: 65vw;
+  width: 65%;
   min-height: 95vh;
   max-height: 95vh;
   background-color: $background-color;
@@ -77,5 +77,9 @@
 @media only screen and (max-width: 800px) {
   .viewer-container {
     display: none;
+  }
+
+  .packages-container {
+    width: 100%;
   }
 }
