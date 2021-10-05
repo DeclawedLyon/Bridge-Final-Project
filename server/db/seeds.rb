@@ -177,6 +177,27 @@ Package.create(
   nickname: 'N/A',
   active: true,
   is_priority: false)
+  Package.create(
+  tracking_number: '3B87934HM847329',
+  username: 'Geo789',
+  courier: '2',
+  date_sent: '2021-10-03',
+  date_delivered: 'N/A',
+  last_known_status: 'LA',
+  signed_for: 'Mae S.',
+  sent_to: 'Kenny A.',
+  sent_from: 'Paula B.',
+  description: 'board games',
+  estimated_delivery: '2021-10-20',
+  from_st: '1020 Elm St.',
+  from_city_province: 'Campbell River, BC',
+  from_post: 'V6Z 3E8',
+  to_st: '4545 10th Ave',
+  to_city_province: 'Waterloo, ON',
+  to_post: 'L6N 2J8',
+  nickname: 'N/A',
+  active: true,
+  is_priority: false)
 Courier.create(name: 'FedEx', code: '1', base_url: 'www.fedex.com/tracking')
 Courier.create(name: 'UPS', code: '2', base_url: 'www.ups.com/tracking')
 

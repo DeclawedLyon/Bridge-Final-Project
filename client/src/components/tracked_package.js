@@ -15,7 +15,7 @@ export default function TrackedPackage(props) {
     "tracked_package--en_route": props.enRoute,
   });
 
-  const renderStatus = () => {
+  const renderStatusIcons = () => {
     if (props.delivered) {
       return <i className="fas fa-solid fa-lg fa-check"></i>;
     }
@@ -30,6 +30,24 @@ export default function TrackedPackage(props) {
 
     if (props.enRoute) {
       return <i className="fas fa-solid fa-lg fa-truck"></i>;
+    }
+  };
+
+  const renderStatus = () => {
+    if (props.delivered) {
+      return "Delivered!  "
+    }
+
+    if (props.late) {
+      return "Late  "
+    }
+
+    if (props.delayed) {
+      return "Delayed  "
+    }
+
+    if (props.enRoute) {
+      return "Out for Delivery  "
     }
   };
 
@@ -52,7 +70,7 @@ export default function TrackedPackage(props) {
       </div>
       <div className="package_footer">
         <span className="courier_logo">{props.logo}</span>
-        <span className="status_message">Status:{props.statusMessage} {renderStatus()}</span>
+        <span className="status_message">{renderStatus()}{renderStatusIcons()}</span>
       </div>
     </div>
   );

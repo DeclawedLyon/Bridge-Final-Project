@@ -45,6 +45,7 @@ export default function App(props) {
         delivered={mappedPackage.last_known_status === "DE" ? true : false}
         delayed={mappedPackage.last_known_status === "EX" ? true : false}
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
+        late={mappedPackage.last_known_status === "LA" ? true : false }
       />
     );
   });

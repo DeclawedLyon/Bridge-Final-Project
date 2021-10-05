@@ -15,7 +15,7 @@ export default function PriorityPkgs(props) {
     "priority_package--en_route": props.enRoute
   });
 
-  const renderStatus = () => {
+  const renderStatusIcons = () => {
     if (props.delivered) {
       return <i className="fas fa-solid fa-lg fa-check"></i>;
     }
@@ -30,6 +30,24 @@ export default function PriorityPkgs(props) {
 
     if (props.enRoute) {
       return <i className="fas fa-solid fa-lg fa-truck"></i>;
+    }
+  };
+
+  const renderStatus = () => {
+    if (props.delivered) {
+      return "Delivered!"
+    }
+
+    if (props.late) {
+      return "Late"
+    }
+
+    if (props.delayed) {
+      return "Delayed  "
+    }
+
+    if (props.enRoute) {
+      return "Out for Delivery  "
     }
   };
 
@@ -56,7 +74,7 @@ export default function PriorityPkgs(props) {
       <div className="package_footer">
         <span className="courier_logo">{props.logo}</span>
         <span className="status_message">
-          Status:{props.statusMessage} {renderStatus()}
+        {renderStatus()} {renderStatusIcons()}
         </span>
       </div>
     </div>
