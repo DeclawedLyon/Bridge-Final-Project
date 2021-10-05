@@ -320,6 +320,12 @@ export default function StateProvider(props) {
         out += 1;
       }
     }
+
+    for (const pack of state.priorityPackages) {
+      if (pack.last_known_status === "OF") {
+        out += 1;
+      }
+    }
     return out;
   };
 

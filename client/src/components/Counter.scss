@@ -1,10 +1,12 @@
-@import './Colours.scss';
-@import './Styles.scss';
+@import "./Colours.scss";
+@import "./Styles.scss";
 
 .counters-container {
-  height: 10vh;
+  height: 10.5vh;
   margin: 1.5em;
-  border-radius: $border-radius;
+  border-radius: 3px;
+  padding-left: 2.5em;
   background-color: $component-background;
-  box-shadow: -10px 10px 20px -10px rgb(99, 170, 138);
+  box-shadow: -10px 10px 20px -10px rgb(100, 237, 229);
+  border: 1px solid silver;
 }

@@ -61,7 +61,6 @@ export default function App(props) {
         delayed={mappedPackage.last_known_status === "EX" ? true : false}
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
         // onSMS={togglePopup}
-        text={mappedPackage.last_known_status === "DE" ? true : false}
         addTextAlert={addTextAlert}
         popup={togglePopup}
         phoneNum={null}
@@ -69,6 +68,7 @@ export default function App(props) {
 
       // onDelete={deletePackage}
       // selectPackage={selectPackage}
+        late={mappedPackage.last_known_status === "LA" ? true : false}
       />
     );
   });
@@ -98,6 +98,9 @@ export default function App(props) {
           enRoute={
             priorityMappedPackage.last_known_status === "OF" ? true : false
           }
+          late={priorityMappedPackage.last_known_status === "LA" ? true : false}
+          // onDelete={deletePackage}
+          // selectPriotityPackage={selectPriorityPackage}
         />
       );
     });
@@ -111,14 +114,13 @@ export default function App(props) {
           <button className="change" onClick={() => deliveryButton()}>
             Delivery
           </button>
-          <button className="change" onClick={() => clearButton()}>
-            Clear
-          </button>
           <PackageManager
             searchByTrackingNum={searchByTrackingNum}
             searchByNickname={searchByNickname}
           />
-          {/* <button onClick={() => addTextAlert()}>Add Alert</button> */}
+          <button className="change" onClick={() => clearButton()}>
+            Clear
+          </button>
           <Viewer />
           <Counters
             active={activeCount()}

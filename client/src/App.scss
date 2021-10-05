@@ -1,4 +1,6 @@
-@import './components/Colours.scss';
+@import "./components/Colours.scss";
+@import "./components/Styles.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
 .App {
   display: flex;
@@ -17,7 +19,9 @@
   min-height: 95vh;
   max-height: 95vh;
   flex-basis: 35vw;
+  font-family: "Roboto", sans-serif;
   background-color: $background-color;
+  border-right: 0.5px solid silver;
 }
 
 .packages-container {
@@ -26,6 +30,7 @@
   width: 65%;
   min-height: 95vh;
   max-height: 95vh;
+  font-family: "Roboto", sans-serif;
   background-color: $background-color;
   overflow: auto;
   // overflow: scroll;
