@@ -1,8 +1,9 @@
-@import './Colours.scss';
+@import "./Colours.scss";
 
 .package_header {
   display: flex;
   justify-content: space-between;
+  font-size: larger;
 }
 
 .tracked_package {
@@ -14,12 +15,13 @@
   margin: 1.5em;
   padding-right: 0.25em;
   padding-left: 0.5em;
-  padding-top: 0.25em;
+  padding-top: 0.7em;
   padding-bottom: 0.25em;
   background: $component-background;
   box-shadow: orange;
   border: 1px solid silver;
 }
+
 .tracked_package--delivered {
   box-shadow: 5px 5px 10px $delivered-color;
 }
@@ -33,14 +35,36 @@
   box-shadow: 5px 5px 10px $delayed-color;
 }
 
-// .shipping_details {
-//   display: flex;
-//   flex-direction: column;
-// }
-
+.shipping_details {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 3px;
+}
 .package_footer {
   display: flex;
   justify-content: space-between;
   margin-left: 0.5em;
   margin-right: 0.5em;
+}
+
+.status_message {
+  font-size: larger;
+}
+
+.fas .fa-plus-circle {
+  padding: 10px;
+}
+
+.fas .fa-sms {
+  color: red;
+}
+
+#priority {
+  font-size: 20px;
+  padding: 7px;
+}
+
+#sms {
+  font-size: 20px;
+  padding: 7px;
 }

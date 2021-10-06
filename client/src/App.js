@@ -27,7 +27,6 @@ export default function App(props) {
   } = useContext(stateContext);
   const [isOpen, setIsOpen] = useState(false);
 
-
   if (!state) {
     return null;
   }
@@ -35,7 +34,7 @@ export default function App(props) {
   const togglePopup = () => {
     setIsOpen(!isOpen);
     // document.getElementById("popup-box").style.display = "flex";
-  }
+  };
 
   // 1 select this package
   // open popup with selected package
@@ -65,9 +64,8 @@ export default function App(props) {
         popup={togglePopup}
         phoneNum={null}
         textAlert={false}
-
-      // onDelete={deletePackage}
-      // selectPackage={selectPackage}
+        // onDelete={deletePackage}
+        // selectPackage={selectPackage}
         late={mappedPackage.last_known_status === "LA" ? true : false}
       />
     );
@@ -111,16 +109,10 @@ export default function App(props) {
       <Navbar />
       <div className="App-main-body">
         <section className="viewer-container">
-          <button className="change" onClick={() => deliveryButton()}>
-            Delivery
-          </button>
           <PackageManager
             searchByTrackingNum={searchByTrackingNum}
             searchByNickname={searchByNickname}
           />
-          <button className="change" onClick={() => clearButton()}>
-            Clear
-          </button>
           <Viewer />
           <Counters
             active={activeCount()}
@@ -139,12 +131,14 @@ export default function App(props) {
           type="button"
           value="Click to Open Popup"
           onClick={togglePopup}
-        /> 
-        {isOpen && <Popup
-          addAlert={addTextAlert}         
-          handleClose={togglePopup}
-          package={thisPackage}
-        />}
+        />
+        {isOpen && (
+          <Popup
+            addAlert={addTextAlert}
+            handleClose={togglePopup}
+            package={thisPackage}
+          />
+        )}
         {/* <TextInput /> */}
         {/* {<Popup handleClose={togglePopup} /> */}
       </div>

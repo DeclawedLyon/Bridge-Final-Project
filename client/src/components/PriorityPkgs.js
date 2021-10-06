@@ -12,7 +12,7 @@ export default function PriorityPkgs(props) {
     "priority_package--delivered": props.delivered,
     "priority_package--late": props.late,
     "priority_package--delayed": props.delayed,
-    "priority_package--en_route": props.enRoute
+    "priority_package--en_route": props.enRoute,
   });
 
   const renderStatusIcons = () => {
@@ -35,30 +35,30 @@ export default function PriorityPkgs(props) {
 
   const renderStatus = () => {
     if (props.delivered) {
-      return "Delivered!"
+      return "Delivered!";
     }
 
     if (props.late) {
-      return "Late"
+      return "Late";
     }
 
     if (props.delayed) {
-      return "Delayed  "
+      return "Delayed  ";
     }
 
     if (props.enRoute) {
-      return "Out for Delivery  "
+      return "Out for Delivery  ";
     }
   };
 
   const renderCourier = () => {
     if (props.logo === "1") {
-      return <i className="fab fa-3x fa-fedex"></i>
+      return <i className="fab fa-3x fa-fedex"></i>;
     }
-    if (props.logo === "2"){
-      return <i className="fab fa-3x fa-ups"></i>
+    if (props.logo === "2") {
+      return <i className="fab fa-3x fa-ups"></i>;
     }
-  }
+  };
 
   return (
     <div
@@ -83,7 +83,7 @@ export default function PriorityPkgs(props) {
       <div className="package_footer">
         <span className="courier_logo">{renderCourier()}</span>
         <span className="status_message">
-        {renderStatus()} {renderStatusIcons()}
+          {renderStatus()} {renderStatusIcons()}
         </span>
       </div>
     </div>

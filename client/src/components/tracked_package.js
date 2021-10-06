@@ -85,19 +85,23 @@ export default function TrackedPackage(props) {
           <span className="nickname">{props.nickname}</span>
           <div>
             <i
+              id="priority"
               onClick={() => makePriority(props.id)}
               className="fas fa-plus-circle"
             ></i>
-            <i class="fas fa-sms" onClick={() => implementPopup()}></i>
+            <i id="sms" class="fas fa-sms" onClick={() => implementPopup()}></i>
           </div>
         </div>
         <div className="shipping_details">
-          <span className="sender">Sent From:{props.sender}</span>
-          <span className="recipient">Sent To:{props.recipient}</span>
+          <span className="sender">Sent From: {props.sender}</span>
+          <span className="recipient">Sent To: {props.recipient}</span>
         </div>
         <div className="package_footer">
-          <span className="courier_logo">{props.logo}</span>
-          <span className="status_message">Status:{props.statusMessage}</span>
+          <span className="courier_logo">{renderCourier()}</span>
+          <span className="status_message">
+            {renderStatus()}
+            {renderStatusIcons()}
+          </span>
         </div>
       </div>
     </div>
