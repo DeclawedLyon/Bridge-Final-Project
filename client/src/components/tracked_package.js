@@ -24,19 +24,19 @@ export default function TrackedPackage(props) {
 
   const renderStatusIcons = () => {
     if (props.delivered) {
-      return <i className="fas fa-solid fa-lg fa-check"></i>;
+      return <i className="fas fa-solid fa-2x fa-check"></i>;
     }
 
     if (props.late) {
-      return <i className="fas fa-solid fa-lg fa-clock"></i>;
+      return <i className="fas fa-solid fa-2x fa-clock"></i>;
     }
 
     if (props.delayed) {
-      return <i id="delayed" className="fas fa-solid fa-lg fa-exclamation"></i>;
+      return <i id="delayed" className="fas fa-solid fa-2x fa-exclamation"></i>;
     }
 
     if (props.enRoute) {
-      return <i className="fas fa-solid fa-lg fa-truck"></i>;
+      return <i className="fas fa-solid fa-2x fa-truck"></i>;
     }
   };
 
@@ -68,11 +68,11 @@ export default function TrackedPackage(props) {
   };
 
   const implementPopup = () => {
-    const id = props.id;
-    selectPackage(props.id);
-    // console.log(state)
-    return props.popup(id);
-  };
+    const id = props.id
+    selectPackage(props.id)
+    return props.popup(id)
+  }
+    
 
   return (
     <div>
