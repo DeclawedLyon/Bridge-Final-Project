@@ -50,26 +50,29 @@ export default function StateProvider(props) {
 
   const sendSms = (packageId) => {
     // event.preventDefault();
-    console.log("the package id is:",packageId);
-    const packageObj = state.packages.filter(item => item.id === packageId);
-    console.log("package object is:",packageObj)
+    console.log("the package id is:", packageId);
+    const packageObj = state.packages.filter((item) => item.id === packageId);
+    console.log("package object is:", packageObj);
 
     let smsObj = {
-      mobile_number: '1' + (packageObj.alertStatus ? packageObj.alertStatus : "4033059248"),
-      message: (packageObj.alertStatus ? packageObj.message : "The status of your package has been updated!"),
-    }
+      mobile_number:
+        "1" + (packageObj.alertStatus ? packageObj.alertStatus : "4033059248"),
+      message: packageObj.alertStatus
+        ? packageObj.message
+        : "The status of your package has been updated!",
+    };
 
-    fetch('http://localhost:3001/sms_messages/', {
-      method: 'POST',
+    fetch("http://localhost:3001/sms_messages/", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json',
-        accepts: "application/json"
+        "content-type": "application/json",
+        accepts: "application/json",
       },
-      body: JSON.stringify(smsObj)
+      body: JSON.stringify(smsObj),
     })
-      .then(resp => resp.json())
-      .then(resp => console.log(resp))
-  }
+      .then((resp) => resp.json())
+      .then((resp) => console.log(resp));
+  };
 
   // const handleChange = (event) => {
   //   if (event.target.name === 'number') {
@@ -334,7 +337,7 @@ export default function StateProvider(props) {
       .put("api/packages/clear?id=3")
       .then((response) => {
         console.log(response);
-        sendSms(3)
+        sendSms(3);
       })
       .catch((err) => {
         console.log(err);
@@ -344,10 +347,10 @@ export default function StateProvider(props) {
   };
   const deliveryButton = () => {
     axios
-      .put("api/packages/deliver?id=2")
+      .put("api/packages/deliver?id=5")
       .then((response) => {
         console.log(response);
-        sendSms(2)
+        sendSms(5);
       })
       .catch((err) => {
         console.log(err);
@@ -360,7 +363,6 @@ export default function StateProvider(props) {
     let packageToChange = state.packages.find(function (pkg, index) {
       if (pkg.id === id) return pkg;
     });
-
 
     let newPackage = {
       active: packageToChange.active,
@@ -392,16 +394,16 @@ export default function StateProvider(props) {
       phoneNum: "4033059248",
       message: "test text",
       alertStatus: true,
-    }
+    };
 
-    const index = state.packages.indexOf(packageToChange)
+    const index = state.packages.indexOf(packageToChange);
 
-    console.log("HEY HEY THE INDEX IS THIS NUMBER =RIGHT HERE:", index)
+    console.log("HEY HEY THE INDEX IS THIS NUMBER =RIGHT HERE:", index);
 
     let newPackages = state.packages;
-    newPackages[index] = newPackage
+    newPackages[index] = newPackage;
 
-    console.log("new packages:", newPackages)
+    console.log("new packages:", newPackages);
 
     setState((prev) => ({
       ...prev,
@@ -415,7 +417,7 @@ export default function StateProvider(props) {
     // console.log("this package after update", state.thisPackage)
     // console.log("=================", packageToChange);
     // console.log(packageToChange)
-  }
+  };
 
   const providerData = {
     state,
@@ -433,7 +435,7 @@ export default function StateProvider(props) {
     clearButton,
     removeFromPriority,
     addNewPackage,
-    addTextAlert
+    addTextAlert,
   };
 
   return (

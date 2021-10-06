@@ -11,8 +11,6 @@
   flex-direction: column;
   border: none;
   border-radius: 5px;
-  width: 70em;
-  max-width: 70em;
   margin: 1.5em;
   padding-right: 0.25em;
   padding-left: 0.5em;
@@ -21,21 +19,22 @@
   background: $component-background;
 }
 .priority_package--delivered {
-  box-shadow: 0 5px 10px $delivered-color;
+  box-shadow: 5px 5px 10px $delivered-color;
 }
 .priority_package--late {
-  box-shadow: 0 5px 10px $late-color;
+  box-shadow: 5px 5px 10px $late-color;
 }
 .priority_package--en_route {
-  box-shadow: 0 5px 10px $enRoute-color;
+  box-shadow: 5px 5px 10px $enRoute-color;
 }
 .priority_package--delayed {
-  box-shadow: 0 5px 10px $delayed-color;
+  box-shadow: 5px 5px 10px $delayed-color;
 }
 
 .shipping_details {
   display: flex;
   flex-direction: column;
+  padding-top: 10px;
   padding-bottom: 3px;
 }
 
