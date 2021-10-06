@@ -127,11 +127,11 @@ export default function App(props) {
         </section>
       </div>
       <div>
-        <input
+        {/* <input
           type="button"
           value="Click to Open Popup"
           onClick={togglePopup}
-        />
+        /> */}
         {isOpen && (
           <Popup
             addAlert={addTextAlert}
