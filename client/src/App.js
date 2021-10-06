@@ -36,12 +36,6 @@ export default function App(props) {
     // document.getElementById("popup-box").style.display = "flex";
   };
 
-  // 1 select this package
-  // open popup with selected package
-  // update this packages phone number, custom message ? custom message : "" , alert status {false ? true : false}
-  // update the packages array with this package (erase old package object)
-  // setState with new package array
-
   const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
     return (
       <TrackedPackage

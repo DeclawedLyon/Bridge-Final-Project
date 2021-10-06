@@ -350,7 +350,7 @@ export default function StateProvider(props) {
       .put("api/packages/deliver?id=5")
       .then((response) => {
         console.log(response);
-        sendSms(5);
+        sendSms(5)
       })
       .catch((err) => {
         console.log(err);
