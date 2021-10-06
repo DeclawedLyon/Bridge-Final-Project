@@ -15,8 +15,23 @@ export default function Viewer() {
     }
   };
 
+  const renderShade = () => {
+    if (state.thisPackage.last_known_status === "DE") {
+      return "delivered";
+    }
+    if (state.thisPackage.last_known_status === "LA") {
+      return "late";
+    }
+    if (state.thisPackage.last_known_status === "OF") {
+      return "en_route";
+    }
+    if (state.thisPackage.last_known_status === "EX") {
+      return "delayed";
+    }
+  };
+
   return (
-    <main className="viewer">
+    <main id={renderShade()} className="viewer">
       <div className="description">
         <h1>
           <u>Shipment Details</u>
