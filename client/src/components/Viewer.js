@@ -53,18 +53,20 @@ export default function Viewer() {
           {state.thisPackage.to_st
             ? `${state.thisPackage.to_st}, ${state.thisPackage.to_city_province},
           ${state.thisPackage.to_post}`
-            : ""}
+            : "N/A"}
         </p>
         {/* <p><b>Courier: </b>{renderCourier()}</p> */}
         <p>
           <b>Description: </b>
-          {state.thisPackage.description ? state.thisPackage.description : ""}
+          {state.thisPackage.description
+            ? state.thisPackage.description
+            : "N/A"}
         </p>
         <p>
           <b>Estimated Delivery Date: </b>
           {state.thisPackage.estimated_delivery
             ? state.thisPackage.estimated_delivery
-            : ""}
+            : "N/A"}
         </p>
         <p>
           <b>Delivery Date: </b>
@@ -78,11 +80,11 @@ export default function Viewer() {
         </p>
         <p>
           <b>Sent To: </b>
-          {state.thisPackage.sent_to ? state.thisPackage.sent_to : ""}
+          {state.thisPackage.sent_to ? state.thisPackage.sent_to : "N/A"}
         </p>
         <p>
           <b>Sent From: </b>
-          {state.thisPackage.sent_from ? state.thisPackage.sent_from : ""}
+          {state.thisPackage.sent_from ? state.thisPackage.sent_from : "N/A"}
         </p>
         <div className="courier">{renderCourier()}</div>
       </div>
