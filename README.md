@@ -1,4 +1,4 @@
-# Bridge
+### Bridge
 
 ## About
 
@@ -12,14 +12,14 @@ Bridge is a shipping logistics utility application. It helps businesses or peopl
 
 ## Using Bridge
 
-First, fork this boilerplate so you get your own copy of it. Once you have done that, you can clone your new repo to your machine, and get started.
+First, fork this repository so you get your own copy. Once you have done that, you can clone your new repo to your machine, and get started.
 
-You need **TWO** terminals for this.
+Bridge requires **TWO** terminals.
 
-In one terminal, run `bundle` to install the dependencies. Run `bin/rake db:setup` to create the databases (called rails_project_development by default). Run `bin/rails s` to run the server.
+Confirm that you have postgres on your machine.
 
-In the other terminal, `cd` into `client`. Run `npm install`. Rename the `.env.example` file to be called `.env`. Then run `npm start` and go to `localhost:3000` in your browser.
+In one terminal, run `bundle` to install the dependencies. Run `bin/rake db:setup` to create the databases (called rails_project_development by default).
 
-In the browser, you can click on the button and see the data get loaded.
+Then run `rails s -b 0.0.0.0` to run the server.
 
-If this doesn't work, please message me!
+In the other terminal, `cd` into `client`. Run `npm install`. Rename the `.env.example` file to `.env`. Then run `npm start` and go to `localhost:3001` in your browser.
