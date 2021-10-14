@@ -2,7 +2,13 @@
 
 ## About
 
-## Pictures?
+Bridge is a shipping logistics utility application. It helps businesses or people with intensive shipping requirements keep all of their information in one place. This makes supply chain management easier and more manageable for the user.
+
+## Pictures
+
+!["Bridge-Dashboard](https://github.com/DeclawedLyon/Bridge-Final-Project/blob/master/docs/bridge-dashboard.png?raw=true)
+![Bridge-Add-A-Package](https://github.com/DeclawedLyon/Bridge-Final-Project/blob/master/docs/bridge-add-a-package.png?raw=true)
+![Bridge-Mobile](https://github.com/DeclawedLyon/Bridge-Final-Project/blob/master/docs/bridge-mobile.png?raw=true)
 
 ## Using Bridge
 
