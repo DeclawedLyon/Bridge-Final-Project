@@ -11,48 +11,12 @@ export default function StateProvider(props) {
     priorityPackages: [],
     packageId: "",
     thisPackage: {},
-    // currentUser: 1,
-    // currentUserObj: {},
-    // currentCourier: 1,
-    // currentCourierObj: {},
     trkNumSearch: "",
   });
 
-  // this vvvvvvv should be fixed : it loads at the start.
-  //  useEffect(() => {
-  //   selectPackage(1);
-  // }, []);
-
-  // useEffect(() => {
-  //   Promise.all([
-  //     axios.get("/api/packages"),
-  //     axios.get(`/api/users/${state.currentUser}`),
-  //     axios.get(`/api/couriers/${state.currentCourier}`),
-  //     axios.get('/api/packages/get_priority')
-  //   ]).then((response) => {
-
-  //     setState((prev) => ({
-  //       ...prev,
-  //       packages: response[0].data,
-  //       currentUser: response[1].data.user.id,
-  //       currentUserObj: response[1].data,
-  //       currentCourier: response[2].data.courier.id,
-  //       currentCourierObj: response[2].data,
-  //       priorityPackages: response[3].data
-  //     }));
-  //   });
-  // }, [state.thisPackage]);
-
-  // const [sms, setSms] = useState('');
-  // const [number, setNumber] = useState('');
-
-  // const { state, addTextAlert } = useContext(stateContext)
-
   const sendSms = (packageId) => {
     // event.preventDefault();
-    console.log("the package id is:", packageId);
     const packageObj = state.packages.filter((item) => item.id === packageId);
-    console.log("package object is:", packageObj);
 
     let smsObj = {
       mobile_number:
@@ -73,14 +37,6 @@ export default function StateProvider(props) {
       .then((resp) => resp.json())
       .then((resp) => console.log(resp));
   };
-
-  // const handleChange = (event) => {
-  //   if (event.target.name === 'number') {
-  //     setNumber(event.target.value);
-  //   } else if (event.target.name === 'sms') {
-  //     setSms(event.target.value);
-  //   }
-  // }
 
   //get non-priority packages
   useEffect(() => {
@@ -135,7 +91,6 @@ export default function StateProvider(props) {
       .then((response) => {
         console.log("response1:", response);
         if (!response.data[0]) {
-          console.log("ERROR!");
           document.getElementById("trkNum-error").style.display = "block";
           return response;
         }
@@ -190,12 +145,10 @@ export default function StateProvider(props) {
       .put(`api/packages/make_priority?id=${id}`)
       .then(() => {
         const priorityPackages = state.priorityPackages;
-        // const packages = state.packages;
 
         setState((prev) => ({
           ...prev,
           priorityPackages: [...priorityPackages, state.thisPackage],
-          // packages: [...packages]
         }));
       })
       .catch((err) => {
@@ -207,7 +160,6 @@ export default function StateProvider(props) {
     let newPkg = {};
 
     let found = state.packages.find(function (pkg, index) {
-      console.log("in addNew", pkg);
       if (pkg.tracking_number === trkNum) newPkg = pkg;
       return newPkg;
     });
@@ -216,13 +168,6 @@ export default function StateProvider(props) {
       ...prev,
       thisPackage: found,
     }));
-
-    // const packages = state.packages;
-
-    // setState((prev) => ({
-    //   ...prev,
-    //   packages: [...packages, found]
-    // }));
   };
 
   //functions for priority packages
@@ -267,12 +212,10 @@ export default function StateProvider(props) {
       .put(`api/packages/remove_from_priority?id=${id}`)
       .then(() => {
         const packages = state.packages;
-        // const priorityPackages = state.priorityPackages;
 
         setState((prev) => ({
           ...prev,
           packages: [...packages, state.thisPackage],
-          // priorityPackages: [...priorityPackages]
         }));
       })
       .catch((err) => {
@@ -336,7 +279,6 @@ export default function StateProvider(props) {
     axios
       .put("api/packages/clear?id=3")
       .then((response) => {
-        console.log(response);
         sendSms(3);
       })
       .catch((err) => {
@@ -349,8 +291,7 @@ export default function StateProvider(props) {
     axios
       .put("api/packages/deliver?id=5")
       .then((response) => {
-        console.log(response);
-        sendSms(5)
+        sendSms(5);
       })
       .catch((err) => {
         console.log(err);
@@ -398,25 +339,13 @@ export default function StateProvider(props) {
 
     const index = state.packages.indexOf(packageToChange);
 
-    console.log("HEY HEY THE INDEX IS THIS NUMBER =RIGHT HERE:", index);
-
     let newPackages = state.packages;
     newPackages[index] = newPackage;
-
-    console.log("new packages:", newPackages);
 
     setState((prev) => ({
       ...prev,
       thisPackage: newPackage,
     }));
-
-    // console.log(id)
-    // const packageToClone = state.packages.filter(element => element.id === id)
-    // console.log("-----Cloned------",clonedElementWithProps)
-    // console.log('~~~~~~~~~~~~~~~~~~~~~~~~', newPackage)
-    // console.log("this package after update", state.thisPackage)
-    // console.log("=================", packageToChange);
-    // console.log(packageToChange)
   };
 
   const providerData = {

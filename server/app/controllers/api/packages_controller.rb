@@ -48,7 +48,7 @@ class Api::PackagesController < ApplicationController
     sent_to: 'Elizabeth Ducksworth',
     sent_from: 'Almond Grove',
     description: params[:description],
-    estimated_delivery: 'N/A',
+    estimated_delivery: '2021-10-08',
     from_st: '4444 los feliz ave',
     from_city_province: 'London, ON',
     from_post: 'T84 V7N',

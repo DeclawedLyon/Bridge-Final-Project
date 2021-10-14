@@ -68,11 +68,10 @@ export default function TrackedPackage(props) {
   };
 
   const implementPopup = () => {
-    const id = props.id
-    selectPackage(props.id)
-    return props.popup(id)
-  }
-    
+    const id = props.id;
+    selectPackage(props.id);
+    return props.popup(id);
+  };
 
   return (
     <div>

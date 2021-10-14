@@ -10,9 +10,8 @@
   height: 100vh;
   top: 0;
   left: 0;
-  // display: block;
 }
- 
+
 .box {
   align-self: center;
   justify-self: center;
@@ -28,9 +27,9 @@
   border: 1px solid #999;
   overflow: auto;
 }
- 
+
 .close-icon {
-  content: 'x';
+  content: "x";
   cursor: pointer;
   position: fixed;
   right: calc(15% - 30px);

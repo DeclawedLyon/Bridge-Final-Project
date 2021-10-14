@@ -1,5 +1,4 @@
 @import "./Styles.scss";
-// @import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Francois+One&display=swap");
 body {
   margin: 0;
@@ -14,7 +13,6 @@ main {
   align-items: center;
   background: $accent-color;
   color: rgba(255, 255, 251, 0.81);
-  // font-family: "Staatliches", cursive;
   font-family: "Francois One", sans-serif;
   font-weight: 300;
 }

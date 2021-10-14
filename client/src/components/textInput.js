@@ -47,11 +47,6 @@ export default function SmsForm(props) {
           <label>Mobile Number:</label>
           <input name="number" onChange={handleChange}></input>
         </div>
-        <div className="message_input">
-          {/* <label>Message:</label>
-          <input name="sms" onChange={handleChange}></input> */}
-        </div>
-        {/* <button>Submit</button> */}
       </form>
       <button
         className="set-alert"

@@ -20,15 +20,3 @@ export default function Navbar(props) {
     </header>
   );
 }
-
-{
-  /* <button className="change" onClick={() => deliveryButton()}>
-Delivery
-</button> */
-}
-
-{
-  /* <button className="change" onClick={() => clearButton()}>
-Clear
-</button> */
-}

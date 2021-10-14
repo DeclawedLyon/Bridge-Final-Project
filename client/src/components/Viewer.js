@@ -55,7 +55,6 @@ export default function Viewer() {
           ${state.thisPackage.to_post}`
             : "N/A"}
         </p>
-        {/* <p><b>Courier: </b>{renderCourier()}</p> */}
         <p>
           <b>Description: </b>
           {state.thisPackage.description

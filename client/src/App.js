@@ -6,7 +6,6 @@ import TrackedPackage from "./components/tracked_package";
 import TextInput from "./components/textInput";
 import Navbar from "./components/Navbar";
 import PriorityPkgs from "./components/PriorityPkgs";
-// import { deliveryButton, clearButton } from "./helpers/statusFunctions";
 import { useState, useContext } from "react";
 import { stateContext } from "./context/StateContext";
 import Popup from "./components/Popup";
@@ -14,15 +13,12 @@ import Popup from "./components/Popup";
 export default function App(props) {
   const {
     state,
-    // setState,
     thisPackage,
     activeCount,
     delayedCount,
     outForDeliveryCount,
     searchByTrackingNum,
     searchByNickname,
-    deliveryButton,
-    clearButton,
     addTextAlert,
   } = useContext(stateContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +29,6 @@ export default function App(props) {
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
-    // document.getElementById("popup-box").style.display = "flex";
   };
 
   const mappedPackages = [...state.packages].reverse().map((mappedPackage) => {
@@ -53,13 +48,10 @@ export default function App(props) {
         delivered={mappedPackage.last_known_status === "DE" ? true : false}
         delayed={mappedPackage.last_known_status === "EX" ? true : false}
         enRoute={mappedPackage.last_known_status === "OF" ? true : false}
-        // onSMS={togglePopup}
         addTextAlert={addTextAlert}
         popup={togglePopup}
         phoneNum={null}
         textAlert={false}
-        // onDelete={deletePackage}
-        // selectPackage={selectPackage}
         late={mappedPackage.last_known_status === "LA" ? true : false}
       />
     );
@@ -91,14 +83,11 @@ export default function App(props) {
             priorityMappedPackage.last_known_status === "OF" ? true : false
           }
           late={priorityMappedPackage.last_known_status === "LA" ? true : false}
-          // onDelete={deletePackage}
-          // selectPriotityPackage={selectPriorityPackage}
         />
       );
     });
 
   return (
-    // <StateProvider>
     <div className="App">
       <Navbar />
       <div className="App-main-body">
@@ -121,11 +110,6 @@ export default function App(props) {
         </section>
       </div>
       <div>
-        {/* <input
-          type="button"
-          value="Click to Open Popup"
-          onClick={togglePopup}
-        /> */}
         {isOpen && (
           <Popup
             addAlert={addTextAlert}
@@ -133,10 +117,7 @@ export default function App(props) {
             package={thisPackage}
           />
         )}
-        {/* <TextInput /> */}
-        {/* {<Popup handleClose={togglePopup} /> */}
       </div>
     </div>
-    // </StateProvider>
   );
 }

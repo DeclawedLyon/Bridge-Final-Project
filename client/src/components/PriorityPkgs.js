@@ -71,10 +71,13 @@ export default function PriorityPkgs(props) {
           className="fas fa-times-circle"
         ></i>
         <span className="nickname">{props.nickname}</span>
-        <i
-          onClick={() => removeFromPriority(props.id)}
-          className="fas fa-minus-circle"
-        ></i>
+        <div>
+          <i
+            onClick={() => removeFromPriority(props.id)}
+            className="fas fa-minus-circle"
+          ></i>
+          <i id="sms" class="fas fa-sms"></i>
+        </div>
       </div>
       <div className="shipping_details">
         <span className="sender">Sent From:{props.sender}</span>
