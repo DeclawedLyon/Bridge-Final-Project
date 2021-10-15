@@ -1,8 +1,10 @@
 ## Third Party Tracking API's
 
-For the purposes of our demo Bridge was not connected to our third party API. This was done due to the time constraint in which we were able to demo the application. In order to demonstrate the functionality we needed to excersize more control over the data recieved by the front end.
+For the purposes of our demo Bridge was not connected to our third party API. This was done due to the time constraint in which we were able to demo the application. In order to demonstrate the functionality we needed to exersize more control over the data recieved by the front end.
 
-## Actual method for real-time updates
+In order for Bridge to fully function for you, you will need to implement a few functions with information provided to you from your desired courier.
+
+## Method for real-time updates:
 
 #### Sign up for credentials -
 
@@ -59,6 +61,7 @@ let input = {
 };
 
 const bearerToken = "";
+let packagesReturnedFromThirdParty = [];
 
 var data = JSON.stringify(input);
 fetch("https://apis.fedex.com/track/v1/trackingdocuments", {
@@ -74,7 +77,7 @@ fetch("https://apis.fedex.com/track/v1/trackingdocuments", {
     return res.json();
   })
   .then((data) => {
-    console.log(data.output.completeTrackResults[0].trackResults);
+    packagesReturnedFromThirdParty.push(data.output.completeTrackResults[0].trackResults);
   });
 ```
 
@@ -90,8 +93,6 @@ const updateStatusFunc = (arr1, arr2) => {
   for (const returnedPackage of packagesReturnedFromThirdParty) {
     if (returnedPackage.status !== packagesArrayInState[index].status) {
       updatedStatuses.push(returnedPackage);
-    } else {
-      updatedStatuses.push(packagesArrayInState[index]);
     }
     index++;
   }
@@ -101,8 +102,22 @@ const updateStatusFunc = (arr1, arr2) => {
 
 #### Update function -
 
-The final step in the process if to loop through the array and update the packages on Bridge's database via the rails backend.
+The next step in the process is to loop through the updatedStatuses array to update Bridge's database via the Rails back-end.
 
 ```
-
+const postStatus = (updatedStatuses) => {
+  for (const changedPackage of updatedStatuses) {
+    axios
+      .put(
+        `api/packages/deliver?id=${changedPackage.id}&last_known_status=${changedPackage.status}`
+      )
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+};
 ```
+
+#### Polling and last steps -
+
+The group of operations above should be surronded by a setInterval function set to your desired refresh interval. The keys aquired when you register with a courier should be saved in an .env file and referenced in the appropriate operation as to keep them private.
